@@ -1,0 +1,186 @@
+/* portfolio.css */
+body {
+    background-color: #111;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+  
+  a.back-link {
+    display: inline-block;
+    color: #f1f1f1;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #fff;
+    padding: 0.5rem 1.2rem;
+    margin-bottom: 2rem;
+    transition: 0.3s;
+  }
+  
+  a.back-link:hover {
+    background-color: #fff;
+    color: #111;
+  }
+  
+  iframe {
+    width: 100%;
+    max-width: 960px;
+    height: 540px;
+    margin: 2rem auto;
+    border: none;
+    display: block;
+  }
+  
+  .image-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin: 3rem 0;
+  }
+  
+  @media (min-width: 768px) {
+    .image-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+  }
+  
+  .image-grid img:hover {
+    transform: scale(1.02);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #fff;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    margin: 3rem 0 1.5rem;
+    color: #fff;
+    border-bottom: 2px solid #444;
+    padding-bottom: 0.5rem;
+  }
+  
+  p, ul {
+    margin-bottom: 1.5rem;
+    color: #ddd;
+  }
+  
+  ul {
+    padding-left: 1.5rem;
+  }
+  
+  li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 2rem 0;
+    justify-content: center;
+  }
+  
+  .meta-item {
+    background: rgba(255,255,255,0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    min-width: 200px;
+  }
+  
+  .meta-item h3 {
+    margin-top: 0;
+    color: #fff;
+  }
+  
+  .section {
+    background: rgba(255,255,255,0.05);
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    color: #fff;
+  }
+  
+  .team-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .team-member {
+    background: rgba(255,255,255,0.05);
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .techniques-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .technique {
+    background: rgba(255,255,255,0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  
+  .technique h4 {
+    margin-top: 0;
+    color: #fff;
+  }
+  
+  .quote {
+    font-style: italic;
+    padding: 1.5rem;
+    border-left: 3px solid #fff;
+    background: rgba(255,255,255,0.05);
+    margin: 2rem 0;
+    color: #ddd;
+  }
+  
+  .concept-art {
+    text-align: center;
+    margin: 2rem 0;
+  }
+  
+  .concept-art img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .concept-art p {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  
+  .award-badge {
+    background: linear-gradient(135deg, #ffd700, #c5a600);
+    color: #111;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    margin: 2rem 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
