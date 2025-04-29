@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedro Costa | My Story</title>
+  <style>
+    /* Main Styles matching your portfolio */
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .story-content {
+      padding-right: 2rem;
+    }
+    
+    .story-image {
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    
+    .story-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    
+    .story-image:hover img {
+      transform: scale(1.02);
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    h1:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: #fff;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+    }
+    
+    .highlight {
+      color: #fff;
+      font-weight: 500;
+    }
+    
+    .skills {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    
+    .skill-tag {
+      background: rgba(255,255,255,0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+        padding: 2rem 1.5rem;
+      }
+      
+      .story-content {
+        padding-right: 0;
+        margin-bottom: 3rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="story-content">
+      <h1>My Story</h1>
+      
+      <p>I'm <span class="highlight">Pedro Costa</span>, a Multimedia student at ESMAD - School of Media Arts and Design (Politécnico do Porto). I specialize in video editing, motion design, and VFX, with professional proficiency in Adobe Creative Suite and Unity.</p>
+      
+      <p>My journey in multimedia began early - since I was 14, I've been working with video editing as both a freelancer and content creator. Over the years, I've expanded my skillset to include 3D modeling, game development, photography, and creating immersive spaces using tools like MadMapper and TouchDesigner.</p>
+      
+      <p>Beyond technical skills, I'm deeply committed to the multimedia community. I founded and served as president of NEME (Núcleo de Estudantes de Multimédia da ESMAD) and have been actively involved in the students' association of ESMAD, most recently as coordinator of the communication department.</p>
+      
+      <p>What drives me is the intersection of technology and creativity - finding innovative ways to tell stories and create experiences that resonate with people. Every project is an opportunity to push boundaries and explore new possibilities in digital media.</p>
+      
+      <div class="skills">
+        <div class="skill-tag">Video Editing</div>
+        <div class="skill-tag">Motion Design</div>
+        <div class="skill-tag">VFX</div>
+        <div class="skill-tag">3D Modeling</div>
+        <div class="skill-tag">Game Development</div>
+        <div class="skill-tag">Photography</div>
+        <div class="skill-tag">Immersive Spaces</div>
+      </div>
+    </div>
+    
+    <div class="story-image">
+      <!-- Replace with your actual image path -->
+      <img src="pedro-portrait.jpg" alt="Pedro Costa">
+    </div>
+  </div>
+</body>
+</html>
