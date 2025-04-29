@@ -5,23 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cidade do Futuro – Descalco Media</title>
   <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+      text-align: center;
+    }
+    a.back-link {
+      display: inline-block;
+      color: #f1f1f1;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid #fff;
+      padding: 0.5rem 1.2rem;
+      margin-bottom: 2rem;
+      transition: 0.3s;
+    }
+    a.back-link:hover {
+      background-color: #fff;
+      color: #111;
+    }
+    iframe {
+      width: 100%;
+      max-width: 960px;
+      height: 540px;
+      margin: 2rem 0;
+      border: none;
+    }
+    .image-grid {
+      display: grid;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    @media (min-width: 768px) {
+      .image-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .image-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    p, h2 {
+      margin-bottom: 2rem;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <a href="index.html">← Back to Portfolio</a>
-  </header>
 
-  <main>
+  <div class="container">
+    <a class="back-link" href="index.html">← Back to Home</a>
+
     <h1>Cidade do Futuro</h1>
-    <p>Exhibition at Alfândega do Porto featuring projection mapping & ambient motion.</p>
-    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
-    <h2>Tools Used</h2>
-    <ul>
-      <li>After Effects</li>
-      <li>Blender</li>
-      <li>TouchDesigner</li>
-    </ul>
-    <p><strong>Role:</strong> Concept, animation, post-production</p>
-  </main>
+
+    <!-- Embedded video (replace with your real video link) -->
+    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+
+    <!-- Image grid -->
+    <div class="image-grid">
+      <img src="assets/img/CidadeDoFuturo.jpeg" alt="Cidade do Futuro 1" />
+      <img src="assets/img/work-alex-nowak.jpg" alt="Cidade do Futuro 2" />
+      <img src="assets/img/CidadeDoFuturo.jpeg" alt="Cidade do Futuro 3" />
+    </div>
+
+    <!-- Descriptive text -->
+    <h2>About the Project</h2>
+    <p>
+      “Cidade do Futuro” is an interactive projection art experience developed for the Alfândega do Porto exhibition, exploring future cities through immersive motion graphics and ambient sound.
+    </p>
+
+    <h2>My Role</h2>
+    <p>
+      I led the creative direction, animation, and integration of multimedia elements using After Effects and TouchDesigner. The focus was on narrative motion and reactive visuals that respond to audience flow.
+    </p>
+
+    <a class="back-link" href="index.html">← Back to Home</a>
+  </div>
+
 </body>
 </html>
