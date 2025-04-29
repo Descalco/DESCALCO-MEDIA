@@ -1871,3 +1871,60 @@ body {
     -webkit-transition-delay: .16s;
     transition-delay: .16s
 }
+
+/* Other Works Button Styles */
+.other-works {
+    text-align: center;
+    margin: 3rem 0;
+  }
+  
+  .other-works--button {
+    position: relative;
+    display: inline-block;
+    padding: 1rem 2rem;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: transparent;
+    border: 2px solid #fff;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .other-works--button svg {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    vertical-align: middle;
+    fill: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  .other-works--button .btn-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #fff;
+    transition: all 0.3s ease;
+    z-index: -1;
+  }
+  
+  .other-works--button:hover {
+    color: #111;
+  }
+  
+  .other-works--button:hover svg {
+    fill: #111;
+  }
+  
+  .other-works--button:hover .btn-background {
+    width: 100%;
+  }
