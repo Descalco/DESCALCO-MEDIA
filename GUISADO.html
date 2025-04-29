@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guisado - Original Short Movie – Descalco Media</title>
+  <title>GUISADO – Descalco Media</title>
   <link rel="stylesheet" href="assets/css/main.css" />
   <style>
     body {
@@ -12,12 +12,12 @@
       font-family: 'Open Sans', sans-serif;
       margin: 0;
       padding: 0;
+      line-height: 1.6;
     }
     .container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 4rem 1.5rem;
-      text-align: center;
     }
     a.back-link {
       display: inline-block;
@@ -37,26 +37,120 @@
       width: 100%;
       max-width: 960px;
       height: 540px;
-      margin: 2rem 0;
+      margin: 2rem auto;
       border: none;
+      display: block;
     }
     .image-grid {
       display: grid;
-      gap: 1rem;
-      margin: 2rem 0;
+      gap: 1.5rem;
+      margin: 3rem 0;
     }
     @media (min-width: 768px) {
       .image-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
     }
     .image-grid img {
       width: 100%;
       height: auto;
       border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
     }
-    p, h2 {
-      margin-bottom: 2rem;
+    .image-grid img:hover {
+      transform: scale(1.02);
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #fff;
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin: 3rem 0 1.5rem;
+      color: #fff;
+      border-bottom: 2px solid #444;
+      padding-bottom: 0.5rem;
+    }
+    p, ul {
+      margin-bottom: 1.5rem;
+      color: #ddd;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 2rem 0;
+      justify-content: center;
+    }
+    .meta-item {
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      min-width: 200px;
+    }
+    .meta-item h3 {
+      margin-top: 0;
+      color: #fff;
+    }
+    .section {
+      background: rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+    .team-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .team-member {
+      background: rgba(255,255,255,0.05);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .techniques-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .technique {
+      background: rgba(255,255,255,0.05);
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+    .technique h4 {
+      margin-top: 0;
+      color: #fff;
+    }
+    .quote {
+      font-style: italic;
+      padding: 1.5rem;
+      border-left: 3px solid #fff;
+      background: rgba(255,255,255,0.05);
+      margin: 2rem 0;
+    }
+    .concept-art {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .concept-art img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .concept-art p {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #aaa;
     }
   </style>
 </head>
@@ -65,39 +159,127 @@
   <div class="container">
     <a class="back-link" href="index.html">← Back to Home</a>
 
-    <h1>Guisado - Curta Original</h1>
-
-    <!-- Embedded video (replace with your real video link) -->
-    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
-
-    <!-- Image grid -->
-    <div class="image-grid">
-      <img src="assets/img/CidadeDoFuturo.jpeg" alt="Cidade do Futuro 1" />
-      <img src="assets/img/work-alex-nowak.jpg" alt="Cidade do Futuro 2" />
-      <img src="assets/img/CidadeDoFuturo.jpeg" alt="Cidade do Futuro 3" />
+    <h1>GUISADO</h1>
+    
+    <div class="project-meta">
+      <div class="meta-item">
+        <h3>Project Type</h3>
+        <p>3D Animated Short Film</p>
+      </div>
+      <div class="meta-item">
+        <h3>Duration</h3>
+        <p>4 minutes</p>
+      </div>
+      <div class="meta-item">
+        <h3>Role</h3>
+        <p>Lead Animator, Environment Artist, Post-Production</p>
+      </div>
+      <div class="meta-item">
+        <h3>Software</h3>
+        <p>Maya, MotionBuilder, After Effects</p>
+      </div>
     </div>
 
-    <!-- Descriptive text -->
-    <h2>Descrição do Projeto</h2>
-    <p>
-      Trabalho académico em parceria com a empresa, desenvolvido no contexto da exposição <strong>"Immersivus X – A Cidade do Futuro"</strong>, na Alfândega do Porto.
-    </p>
-    <p>
-      A peça <strong>“Ambivalência”</strong> foi concebida para projeção nas paredes do espaço expositivo, explorando contrastes urbanos e elementos conceptuais sobre a dualidade da cidade moderna.
-    </p>
+    <!-- Embedded video -->
+    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
 
-    <h2>Responsabilidades e Contribuições</h2>
-    <p>
-      Atuei nas seguintes áreas ao longo do desenvolvimento do projeto:
-      <ul style="text-align:left; margin-top: 1rem;">
-        <li>Gestão da equipa</li>
-        <li>Arte conceptual e narrativa</li>
-        <li>Pós-produção</li>
-        <li>Animação de personagens</li>
-        <li>Criação sonora</li>
-        <li>Desenvolvimento e animação de elementos 2D</li>
+    <div class="section">
+      <h2>Project Overview</h2>
+      <p>
+        <strong>"GUISADO"</strong> is a 4-minute 3D animated short film exploring themes of loneliness, superficial relationships, and the illusion of happiness. Created as part of the Animation III curriculum at ESMAD, this atmospheric piece combines motion capture performance with stylized 3D animation to tell a surreal gothic tale.
+      </p>
+      
+      <div class="quote">
+        "The film examines how we project our dissatisfaction onto external factors, using the metaphor of a steaming stew that remains unsatisfying despite its apparent warmth."
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Visual Style & Concept</h2>
+      
+      <div class="image-grid">
+        <div class="concept-art">
+          <img src="assets/img/guisado1.jpg" alt="Main character at dining table" />
+          <p>The protagonist in her lonely dining hall</p>
+        </div>
+        <div class="concept-art">
+          <img src="assets/img/guisado2.jpg" alt="Rabbit butlers concept" />
+          <p>The anthropomorphic rabbit butlers</p>
+        </div>
+      </div>
+      
+      <p>
+        Drawing inspiration from <em>Alice in Wonderland</em> and the surreal pop art of Mark Ryden, the film features a distinctive gothic aesthetic with checkerboard floors, stained glass windows, and aristocratic furnishings. The visual contrast between the cold, expansive environments and the intimate moments of emotional turmoil creates a powerful tension throughout the narrative.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Technical Approach</h2>
+      
+      <div class="techniques-grid">
+        <div class="technique">
+          <h4>Motion Capture</h4>
+          <p>Utilized Xsens system for performance capture, with extensive cleanup and refinement in MotionBuilder to achieve nuanced character animation.</p>
+        </div>
+        <div class="technique">
+          <h4>3D Environment</h4>
+          <p>Created detailed gothic interiors with realistic lighting effects, including a custom fireplace simulation using Maya Fluid Effects.</p>
+        </div>
+        <div class="technique">
+          <h4>Character Animation</h4>
+          <p>Developed 18 blend shapes for facial animation and hair movement, enabling subtle emotional expressions during key scenes.</p>
+        </div>
+        <div class="technique">
+          <h4>Post-Production</h4>
+          <p>Enhanced atmosphere with added rain effects, steam from the stew, and careful color grading to unify all scenes tonally.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Key Scenes</h2>
+      
+      <div class="image-grid">
+        <img src="assets/img/guisado3.jpg" alt="Dining scene" />
+        <img src="assets/img/guisado4.jpg" alt="Proposal scene" />
+        <img src="assets/img/guisado5.jpg" alt="Bedroom scene" />
+        <img src="assets/img/guisado6.jpg" alt="Final shot" />
+      </div>
+      
+      <p>
+        The film's narrative unfolds in three acts: establishing the protagonist's loneliness, her impulsive attempt to solve it through marriage, and the revelation that her emotional void persists despite this superficial solution. Each act features carefully composed shots that emphasize the emotional distance between characters.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>My Contributions</h2>
+      
+      <ul>
+        <li>Modeled and lit the bedroom environment, including fireplace effects</li>
+        <li>Created facial blend shapes and refined character rigging</li>
+        <li>Animated all dialogue sequences for the female protagonist</li>
+        <li>Developed the eating animation sequence with disappearing food effect</li>
+        <li>Created the final bedroom scene with camera move</li>
+        <li>Led post-production including color grading and visual effects</li>
+        <li>Rendered approximately 3,000 frames</li>
+        <li>Created the making-of documentary</li>
       </ul>
-    </p>
+      
+      <div class="quote">
+        "The project possessed an incredible level of complexity that pushed my technical and creative skills. The amount of learning and development packed into this single project was immense."
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Production Stills</h2>
+      
+      <div class="image-grid">
+        <img src="assets/img/guisado-wip1.jpg" alt="Wireframe view" />
+        <img src="assets/img/guisado-wip2.jpg" alt="Mocap session" />
+        <img src="assets/img/guisado-wip3.jpg" alt="Lighting setup" />
+        <img src="assets/img/guisado-wip4.jpg" alt="Post-production" />
+      </div>
+    </div>
 
     <a class="back-link" href="index.html">← Back to Home</a>
   </div>
