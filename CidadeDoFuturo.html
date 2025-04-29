@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cidade do Futuro – Descalco Media</title>
+  <title>Ambivalência – Descalco Media</title>
   <link rel="stylesheet" href="assets/css/main.css" />
   <style>
     body {
@@ -12,12 +12,12 @@
       font-family: 'Open Sans', sans-serif;
       margin: 0;
       padding: 0;
+      line-height: 1.6;
     }
     .container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 4rem 1.5rem;
-      text-align: center;
     }
     a.back-link {
       display: inline-block;
@@ -37,26 +37,130 @@
       width: 100%;
       max-width: 960px;
       height: 540px;
-      margin: 2rem 0;
+      margin: 2rem auto;
       border: none;
+      display: block;
     }
     .image-grid {
       display: grid;
-      gap: 1rem;
-      margin: 2rem 0;
+      gap: 1.5rem;
+      margin: 3rem 0;
     }
     @media (min-width: 768px) {
       .image-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
     }
     .image-grid img {
       width: 100%;
       height: auto;
       border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
     }
-    p, h2 {
-      margin-bottom: 2rem;
+    .image-grid img:hover {
+      transform: scale(1.02);
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #fff;
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin: 3rem 0 1.5rem;
+      color: #fff;
+      border-bottom: 2px solid #444;
+      padding-bottom: 0.5rem;
+    }
+    p, ul {
+      margin-bottom: 1.5rem;
+      color: #ddd;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 2rem 0;
+      justify-content: center;
+    }
+    .meta-item {
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      min-width: 200px;
+    }
+    .meta-item h3 {
+      margin-top: 0;
+      color: #fff;
+    }
+    .section {
+      background: rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+    .team-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .team-member {
+      background: rgba(255,255,255,0.05);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .techniques-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .technique {
+      background: rgba(255,255,255,0.05);
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+    .technique h4 {
+      margin-top: 0;
+      color: #fff;
+    }
+    .quote {
+      font-style: italic;
+      padding: 1.5rem;
+      border-left: 3px solid #fff;
+      background: rgba(255,255,255,0.05);
+      margin: 2rem 0;
+    }
+    .concept-art {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .concept-art img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .concept-art p {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    .award-badge {
+      background: linear-gradient(135deg, #ffd700, #c5a600);
+      color: #111;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      margin: 2rem 0;
+      font-weight: bold;
+      font-size: 1.2rem;
     }
   </style>
 </head>
@@ -65,39 +169,183 @@
   <div class="container">
     <a class="back-link" href="index.html">← Back to Home</a>
 
-    <h1>Cidade do Futuro</h1>
-
-    <!-- Embedded video (replace with your real video link) -->
-    <iframe src="https://youtu.be/7d4Iwsw6BiU" allowfullscreen></iframe>
-
-    <!-- Image grid -->
-    <div class="image-grid">
-      <img src="assets/img/CidadeDoFuturo.jpeg" alt="Cidade do Futuro 1" />
-      <img src="assets/img/work-alex-nowak.jpg" alt="Cidade do Futuro 2" />
-      <img src="assets/img/CidadeDoFuturo.jpeg" alt="Cidade do Futuro 3" />
+    <h1>Ambivalência</h1>
+    
+    <div class="award-badge">
+      🏆 Winner of Public Choice Award - Best Project at OCUBO Shows 🏆
+    </div>
+    
+    <div class="project-meta">
+      <div class="meta-item">
+        <h3>Project Type</h3>
+        <p>Immersive 2D Animation</p>
+      </div>
+      <div class="meta-item">
+        <h3>Duration</h3>
+        <p>2023-2024 (6 months)</p>
+      </div>
+      <div class="meta-item">
+        <h3>Role</h3>
+        <p>Team Manager, Animator, Sound Designer</p>
+      </div>
+      <div class="meta-item">
+        <h3>Collaboration</h3>
+        <p>ESMAD × OCUBO</p>
+      </div>
     </div>
 
-    <!-- Descriptive text -->
-    <h2>Descrição do Projeto</h2>
-    <p>
-      Trabalho académico em parceria com a empresa, desenvolvido no contexto da exposição <strong>"Immersivus X – A Cidade do Futuro"</strong>, na Alfândega do Porto.
-    </p>
-    <p>
-      A peça <strong>“Ambivalência”</strong> foi concebida para projeção nas paredes do espaço expositivo, explorando contrastes urbanos e elementos conceptuais sobre a dualidade da cidade moderna.
-    </p>
+    <!-- Embedded video -->
+    <iframe src="https://www.youtube.com/embed/7d4Iwsw6BiU" allowfullscreen></iframe>
 
-    <h2>Responsabilidades e Contribuições</h2>
-    <p>
-      Atuei nas seguintes áreas ao longo do desenvolvimento do projeto:
-      <ul style="text-align:left; margin-top: 1rem;">
-        <li>Gestão da equipa</li>
-        <li>Arte conceptual e narrativa</li>
-        <li>Pós-produção</li>
-        <li>Animação de personagens</li>
-        <li>Criação sonora</li>
-        <li>Desenvolvimento e animação de elementos 2D</li>
+    <div class="section">
+      <h2>Project Overview</h2>
+      <p>
+        <strong>"Ambivalência"</strong> is an award-winning 3-minute immersive animation created for large-scale projection at the Alfândega Congress Center in Porto. Developed as part of the "Multimedia I" course at ESMAD in collaboration with OCUBO, this visually striking project explores the contrast between utopian dreams and dystopian reality through the journey of a young girl.
+      </p>
+      
+      <div class="quote">
+        "The fundamental concept behind 'Ambivalência' is to create an immersive experience that plunges participants into a universe contrasting the utopian beauty of a dream and the dystopian cruelty of lived reality."
+      </div>
+      
+      <p>
+        Recognized by public vote as the best project showcased at OCUBO, our animation stood out for its compelling narrative, distinctive visual style, and emotional impact.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Concept & Narrative</h2>
+      <p>
+        The animation follows a dreamer navigating between two worlds - a lush, hopeful utopia and a harsh dystopian reality. The narrative unfolds through stunning visuals that contrast these two realities, with subtle references to Porto's iconic architecture woven throughout both worlds.
+      </p>
+      
+      <div class="image-grid">
+        <div class="concept-art">
+          <img src="assets/img/luso-utopia.jpg" alt="Character 'Luso' in Utopia" />
+          <p>Character in Utopia - Vibrant and hopeful</p>
+        </div>
+        <div class="concept-art">
+          <img src="assets/img/luso-dystopia.jpg" alt="Character 'Luso' in Dystopia" />
+          <p>Character in Dystopia - Dark and somber</p>
+        </div>
+      </div>
+      
+      <p>
+        The Porto cityscape plays a complementary role, with elements like the Luís I Bridge and Clérigos Tower reimagined in both utopian and dystopian versions, creating a powerful connection with local audiences while remaining universally compelling.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Visual Style</h2>
+      <p>
+        The project features two distinct visual languages that create immediate emotional contrast:
+      </p>
+      
+      <div class="image-grid">
+        <div>
+          <img src="assets/img/utopia-scene.jpg" alt="Utopian Scene" />
+          <p>Utopia: Flowing organic shapes, glowing light effects, vibrant nature-inspired palette</p>
+        </div>
+        <div>
+          <img src="assets/img/dystopia-scene.jpg" alt="Dystopian Scene" />
+          <p>Dystopia: Angular mechanical forms, static compositions, muted industrial colors</p>
+        </div>
+      </div>
+      
+      <p>
+        This deliberate stylistic contrast was achieved through careful animation techniques and post-processing effects that enhanced each world's distinctive atmosphere while maintaining visual cohesion.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Creative Approach</h2>
+      
+      <div class="techniques-grid">
+        <div class="technique">
+          <h4>Dynamic Animation</h4>
+          <p>Combined puppet animation for organic elements with hierarchical animation for mechanical objects, creating distinct movement languages for each world.</p>
+        </div>
+        <div class="technique">
+          <h4>Atmospheric Effects</h4>
+          <p>Implemented glow and distortion effects to enhance the dreamlike quality of utopian scenes, contrasting with the stark realism of dystopia.</p>
+        </div>
+        <div class="technique">
+          <h4>Immersive Transitions</h4>
+          <p>Developed innovative eye-closing transitions that smoothly guide viewers between realities while reinforcing the narrative.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Team & My Role</h2>
+      
+      <p>This collaborative project brought together diverse talents from ESMAD:</p>
+      
+      <div class="team-list">
+        <div class="team-member">
+          <h4>Ana Araújo</h4>
+          <p>Utopia Illustration</p>
+        </div>
+        <div class="team-member">
+          <h4>Pedro Costa</h4>
+          <p>Animation Lead, Sound Design, Team Management</p>
+        </div>
+        <div class="team-member">
+          <h4>Matilde Ribeiro</h4>
+          <p>Dystopia Illustration</p>
+        </div>
+        <div class="team-member">
+          <h4>Nuno Faria</h4>
+          <p>Dystopia Animation</p>
+        </div>
+      </div>
+      
+      <h3>My Key Contributions</h3>
+      <ul>
+        <li>Led team coordination and project management</li>
+        <li>Developed primary animation sequences for utopian world</li>
+        <li>Created immersive soundscapes that enhanced both realities</li>
+        <li>Designed seamless transitions between worlds</li>
+        <li>Contributed to visual effects implementation</li>
+        <li>Collaborated on promotional materials including the award-winning poster</li>
       </ul>
-    </p>
+    </div>
+
+    <div class="section">
+      <h2>Project Gallery</h2>
+      
+      <h3>Final Animation Stills</h3>
+      <div class="image-grid">
+        <img src="assets/img/ambivalencia1.jpg" alt="Underwater utopia scene" />
+        <img src="assets/img/ambivalencia2.jpg" alt="Train arriving in utopia" />
+        <img src="assets/img/ambivalencia3.jpg" alt="Dystopian cityscape" />
+        <img src="assets/img/ambivalencia4.jpg" alt="Character awakening" />
+      </div>
+      
+      <h3>Production Materials</h3>
+      <div class="image-grid">
+        <img src="assets/img/storyboard1.jpg" alt="Storyboard sample" />
+        <img src="assets/img/color-studies.jpg" alt="Color studies" />
+        <img src="assets/img/poster-design.jpg" alt="Award-winning poster" />
+        <img src="assets/img/installation-view.jpg" alt="Projection at Alfândega" />
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Recognition & Impact</h2>
+      <p>
+        "Ambivalência" was recognized by public vote as the best project showcased at OCUBO, standing out among numerous competing works. The project successfully:
+      </p>
+      <ul>
+        <li>Created an emotionally engaging experience that resonated with diverse audiences</li>
+        <li>Demonstrated innovative use of 2D animation techniques for large-scale projection</li>
+        <li>Balanced artistic vision with technical execution</li>
+        <li>Delivered a powerful environmental and social message through visual storytelling</li>
+      </ul>
+      
+      <div class="quote">
+        "The work was a tremendous success, and the result demonstrates the dedication of our entire team. I'm incredibly proud of what we achieved together and the recognition we received from the public."
+      </div>
+    </div>
 
     <a class="back-link" href="index.html">← Back to Home</a>
   </div>
