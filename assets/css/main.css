@@ -1971,7 +1971,7 @@ body {
 }
 
 .logos-container img {
-    height: 100px; /* 50px height (was 45px) - ~11% increase */
+    height: 70px; /* 50px height (was 45px) - ~11% increase */
     width: auto;
     max-width: 140px; /* Slightly wider max */
     opacity: 0.7;
