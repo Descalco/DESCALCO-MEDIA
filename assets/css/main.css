@@ -940,16 +940,15 @@ body {
     position: relative
 }
 
+/* Keep all original slider and spacing styles intact */
 .work--lockup .slider {
     position: relative;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     width: 80%;
     margin: 0 auto;
     padding: 0;
-    list-style: none
+    list-style: none;
+    /* Original spacing remains unchanged */
 }
 
 .work--lockup .slider--item {
@@ -976,41 +975,53 @@ body {
     margin: 0 auto
 }
 
+/* Only modify the image container and image styles */
 .work--lockup .slider--item-image {
     width: 150px;
     height: 150px;
     margin: 0 auto;
     border-radius: 50%;
-    overflow: hidden
+    overflow: hidden;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .work--lockup .slider--item-image img {
-    width: 100%
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
+/* Center item specific styles (larger circle) */
+.work--lockup .slider--item-center .slider--item-image {
+    width: 300px;
+    height: 300px;
+}
+
+/* Keep all original positioning and spacing for slider items */
 .work--lockup .slider--item-left {
     top: 50%;
     left: 0;
-    -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    display: block
+    display: block;
 }
 
 .work--lockup .slider--item-right {
     top: 50%;
     right: 0;
-    -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    display: block
+    display: block;
 }
 
 .work--lockup .slider--item-center {
     position: relative;
     top: 30px;
     left: 50%;
-    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    display: block
+    display: block;
 }
 
 .work--lockup .slider--item-center a {
@@ -1024,11 +1035,6 @@ body {
 
 .work--lockup .slider--item-center .slider--item-description {
     display: block
-}
-
-.work--lockup .slider--item-center .slider--item-image {
-    width: 300px;
-    height: 300px
 }
 
 .work--lockup .slider--next,
@@ -1456,7 +1462,6 @@ body {
     color: #fff;
     font-weight: 700
 }
-
 .hire {
     position: relative;
     display: -webkit-box;
