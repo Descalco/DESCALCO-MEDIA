@@ -1923,3 +1923,93 @@ body {
     fill: #fff;
     transform: translateX(3px);
   }
+/* Client Trust Section - Dark Theme */
+.trust-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 0 20px;
+    text-align: center;
+    background-color: #0c0c0c; /* Match your dark background */
+  }
+  
+  .trust-heading {
+    font-size: 2.2rem;
+    margin-bottom: 60px;
+    color: #fff;
+    font-weight: 400;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .trust-heading:after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 2px;
+    background-color: #400000; /* Your accent color */
+    margin: 20px auto 0;
+  }
+  
+  .client-logos {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  .logos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 20px 0;
+  }
+  
+  .logos-container img {
+    height: 40px;
+    width: auto;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    filter: brightness(0) invert(1); /* Makes logos white */
+  }
+  
+  .logos-container img:hover {
+    opacity: 1;
+    filter: brightness(0) invert(0.8) sepia(1) hue-rotate(-10deg) saturate(5); /* Adds red tint on hover */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 900px) {
+    .trust-heading {
+      font-size: 1.8rem;
+      margin-bottom: 40px;
+    }
+    
+    .logos-container {
+      gap: 30px;
+    }
+    
+    .logos-container img {
+      height: 35px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .trust-heading {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+    
+    .logos-container {
+      gap: 20px;
+    }
+    
+    .logos-container img {
+      height: 25px;
+    }
+  }
