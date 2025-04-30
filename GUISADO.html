@@ -38,6 +38,30 @@
 
     <iframe width="100%" height="500" src="https://www.youtube.com/embed/8hKCg_XOJaY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+    <!-- GIF Grid Section -->
+    <div class="gif-grid">
+      <img src="guisado-titulo-gif.gif" alt="Animation process 1">
+      <img src="assets/gifs/guisado2.gif" alt="Animation process 2">
+      <img src="assets/gifs/guisado3.gif" alt="Animation process 3">
+      <img src="assets/gifs/guisado4.gif" alt="Animation process 4">
+      <img src="assets/gifs/guisado5.gif" alt="Animation process 5">
+      <img src="assets/gifs/guisado6.gif" alt="Animation process 6">
+    </div>
+
+    <!-- Scrollable Gallery Section -->
+    <div class="gallery-container">
+      <button class="gallery-nav prev" onclick="scrollGallery(-1)">❮</button>
+      <div class="gallery-scroll" id="imageGallery">
+        <img src="assets/img/GUISADO-CAPA.jpg" alt="Production still 1">
+        <img src="assets/img/guisado-castelo.jpg" alt="Production still 2">
+        <img src="assets/img/GUISADO-ALMOC.png" alt="Production still 3">
+        <img src="assets/img/GUISADO-FLOR.png" alt="Production still 4">
+        <img src="assets/img/GUISADO-RUA.jpg" alt="Production still 5">
+        <img src="assets/img/GUISADO-CANDEEIRO.jpg" alt="Production still 6">
+      </div>
+      <button class="gallery-nav next" onclick="scrollGallery(1)">❯</button>
+    </div>
+
     <div class="section">
       <h2>Project Overview</h2>
       <p>
@@ -95,7 +119,7 @@
       <h2>Key Scenes</h2>
       
       <div class="image-grid">
-        <img src="assets/img/guisado3.jpg" alt="Dining scene" />
+        <img src="assets/img/GUISADO-CAPA.jpg" alt="Dining scene" />
         <img src="assets/img/guisado4.jpg" alt="Proposal scene" />
         <img src="assets/img/guisado5.jpg" alt="Bedroom scene" />
         <img src="assets/img/guisado6.jpg" alt="Final shot" />
@@ -125,6 +149,15 @@
 
     <a class="back-link" href="index.html">← Back to Home</a>
   </div>
+
+  <script>
+    // Gallery navigation functionality
+    function scrollGallery(direction) {
+      const gallery = document.getElementById('imageGallery');
+      const scrollAmount = gallery.offsetWidth * 0.8 * direction;
+      gallery.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  </script>
 
 </body>
 </html>
