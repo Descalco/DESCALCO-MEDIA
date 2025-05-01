@@ -948,8 +948,14 @@ body {
     margin: 0 auto;
     padding: 0;
     list-style: none;
+    overflow-x: hidden;
+    /* clip any slides beyond the container */
+    position: relative;
+    /* ensure positioned context if needed */
+
     /* Original spacing remains unchanged */
 }
+
 
 .work--lockup .slider--item {
     position: absolute;
@@ -1966,14 +1972,17 @@ body {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 35px; /* More breathing room */
+    gap: 35px;
+    /* More breathing room */
     padding: 0;
 }
 
 .logos-container img {
-    height: 70px; /* 50px height (was 45px) - ~11% increase */
+    height: 70px;
+    /* 50px height (was 45px) - ~11% increase */
     width: auto;
-    max-width: 140px; /* Slightly wider max */
+    max-width: 140px;
+    /* Slightly wider max */
     opacity: 0.7;
     transition: all 0.3s ease;
     filter: brightness(0) invert(1);
@@ -1986,7 +1995,8 @@ body {
 
 /* Form heading adjustment */
 .collaborate-heading {
-    margin-top: 35px; /* Balanced spacing */
+    margin-top: 35px;
+    /* Balanced spacing */
 }
 
 /* Responsive adjustments */
@@ -2001,7 +2011,8 @@ body {
     }
 
     .logos-container img {
-        height: 42px; /* ~10% larger than previous 38px */
+        height: 42px;
+        /* ~10% larger than previous 38px */
     }
 
     .collaborate-heading {
@@ -2023,7 +2034,8 @@ body {
     }
 
     .logos-container img {
-        height: 35px; /* ~10% larger than previous 32px */
+        height: 35px;
+        /* ~10% larger than previous 32px */
     }
 
     .trust-heading:after {
