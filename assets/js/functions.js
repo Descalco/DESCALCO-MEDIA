@@ -176,98 +176,97 @@ $(document).ready(function () {
   }
 
   function workSlider() {
-
-    $('.slider--prev, .slider--next').click(function () {
-  
-      var $this = $(this),
-        curLeft = $('.slider').find('.slider--item-left'),
-        curLeftPos = $('.slider').children().index(curLeft),
-        curCenter = $('.slider').find('.slider--item-center'),
-        curCenterPos = $('.slider').children().index(curCenter),
-        curRight = $('.slider').find('.slider--item-right'),
-        curRightPos = $('.slider').children().index(curRight),
-        totalWorks = $('.slider').children().length,
-        $left = $('.slider--item-left'),
-        $center = $('.slider--item-center'),
-        $right = $('.slider--item-right'),
-        $item = $('.slider--item');
-  
-      $('.slider').animate({ opacity: 0 }, 400);
-  
-      setTimeout(function () {
-  
-        // Remove all positioning classes first
-        $item.removeClass('slider--item-left slider--item-center slider--item-right');
-  
-        if ($this.hasClass('slider--next')) {
-          // Calculate new positions
-          var newLeftPos = (curLeftPos + 1) % totalWorks;
-          var newCenterPos = (curCenterPos + 1) % totalWorks;
-          var newRightPos = (curRightPos + 1) % totalWorks;
-          
-          // Apply new positions
-          $item.eq(newLeftPos).addClass('slider--item-left');
-          $item.eq(newCenterPos).addClass('slider--item-center');
-          $item.eq(newRightPos).addClass('slider--item-right');
-        } 
-        else {
-          // Calculate new positions for previous
-          var newLeftPos = (curLeftPos - 1 + totalWorks) % totalWorks;
-          var newCenterPos = (curCenterPos - 1 + totalWorks) % totalWorks;
-          var newRightPos = (curRightPos - 1 + totalWorks) % totalWorks;
-          
-          // Apply new positions
-          $item.eq(newLeftPos).addClass('slider--item-left');
-          $item.eq(newCenterPos).addClass('slider--item-center');
-          $item.eq(newRightPos).addClass('slider--item-right');
-        }
-  
-      }, 400);
-  
-      $('.slider').animate({ opacity: 1 }, 400);
-    });
-  
-    // Force initial correct placement of slider items on page load
-    setTimeout(function () {
-      var $item = $('.slider--item');
-      var totalWorks = $item.length;
+    // Store related elements
+    const $slider = $('.slider');
+    const $sliderItems = $slider.find('.slider--item');
+    const $sliderNav = $('.slider--prev, .slider--next');
+    
+    // Initial setup - hide items temporarily to prevent flickering
+    $sliderItems.css('opacity', 0);
+    
+    // Force browser to calculate layouts before proceeding
+    setTimeout(function() {
+      // Clear any existing position classes
+      $sliderItems.removeClass('slider--item-left slider--item-center slider--item-right');
       
-      // Make sure we don't try to display more items than we have
-      if (totalWorks >= 3) {
-        $item.removeClass('slider--item-left slider--item-center slider--item-right');
-        $item.eq(0).addClass('slider--item-left');
-        $item.eq(1).addClass('slider--item-center');
-        $item.eq(2).addClass('slider--item-right');
-      } else if (totalWorks === 2) {
-        $item.removeClass('slider--item-left slider--item-center slider--item-right');
-        $item.eq(0).addClass('slider--item-left');
-        $item.eq(1).addClass('slider--item-center');
-      } else if (totalWorks === 1) {
-        $item.removeClass('slider--item-left slider--item-center slider--item-right');
-        $item.eq(0).addClass('slider--item-center');
+      // Initialize slider positions
+      initializeSliderPositions();
+      
+      // Fade items back in with properly applied positions
+      $sliderItems.animate({opacity: 1}, 300);
+    }, 50);
+    
+    // Function to set proper positions
+    function initializeSliderPositions() {
+      const total = $sliderItems.length;
+      
+      if (total < 3) {
+        // Handle case with fewer than 3 items
+        if (total === 1) {
+          $sliderItems.eq(0).addClass('slider--item-center');
+        } else if (total === 2) {
+          $sliderItems.eq(0).addClass('slider--item-left');
+          $sliderItems.eq(1).addClass('slider--item-center');
+        }
+        return;
       }
-    }, 100);
-  }
-
-  function transitionLabels() {
-
-    $('.work-request--information input').focusout(function () {
-
-      var textVal = $(this).val();
-
-      if (textVal === "") {
-        $(this).removeClass('has-value');
+      
+      // Set initial positions for 3+ items
+      $sliderItems.eq(0).addClass('slider--item-left');
+      $sliderItems.eq(1).addClass('slider--item-center');
+      $sliderItems.eq(2).addClass('slider--item-right');
+    }
+    
+    // Handle click events for slider navigation
+    $sliderNav.on('click', function() {
+      const $this = $(this);
+      const $curLeft = $slider.find('.slider--item-left');
+      const $curCenter = $slider.find('.slider--item-center');
+      const $curRight = $slider.find('.slider--item-right');
+      
+      const total = $sliderItems.length;
+      const curLeftIndex = $sliderItems.index($curLeft);
+      const curCenterIndex = $sliderItems.index($curCenter);
+      const curRightIndex = $sliderItems.index($curRight);
+      
+      // Remove current position classes
+      $sliderItems.removeClass('slider--item-left slider--item-center slider--item-right');
+      
+      // Calculate new positions based on navigation direction
+      let newLeftIndex, newCenterIndex, newRightIndex;
+      
+      if ($this.hasClass('slider--prev')) {
+        // Previous button clicked
+        newLeftIndex = (curLeftIndex - 1 + total) % total;
+        newCenterIndex = curLeftIndex;
+        newRightIndex = curCenterIndex;
+      } else {
+        // Next button clicked
+        newLeftIndex = curCenterIndex;
+        newCenterIndex = curRightIndex;
+        newRightIndex = (curRightIndex + 1) % total;
       }
-      else {
-        $(this).addClass('has-value');
-      }
-
-      // correct mobile device window position
-      window.scrollTo(0, 0);
-
+      
+      // Apply new position classes
+      $sliderItems.eq(newLeftIndex).addClass('slider--item-left');
+      $sliderItems.eq(newCenterIndex).addClass('slider--item-center');
+      $sliderItems.eq(newRightIndex).addClass('slider--item-right');
     });
-
   }
+  
+  // Ensure proper initialization under various conditions
+  $(document).ready(function() {
+    // Initialize on document ready
+    workSlider();
+    
+    // Also initialize on window load for better reliability
+    $(window).on('load', function() {
+      workSlider();
+    });
+    
+    // Final fallback initialization with a longer delay
+    setTimeout(workSlider, 500);
+  });
 
   outerNav();
   workSlider();
