@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Let It Happen – Descalco Media</title>
+  <link rel="stylesheet" href="portfolio.css" />
+</head>
+<body>
+
+  <div class="container">
+    <a class="back-link" href="index.html">← Back to Home</a>
+
+    <h1>LET IT HAPPEN</h1>
+
+    <div class="project-meta">
+      <div class="meta-item">
+        <h3>Project Type</h3>
+        <p>Experimental 2D Animation</p>
+      </div>
+      <div class="meta-item">
+        <h3>Duration</h3>
+        <p>1 minute 47 seconds</p>
+      </div>
+      <div class="meta-item">
+        <h3>Author</h3>
+        <p>Pedro Costa</p>
+      </div>
+      <div class="meta-item">
+        <h3>Role</h3>
+        <p>Director, Editor, Animator, Compositor</p>
+      </div>
+      <div class="meta-item">
+        <h3>Software</h3>
+        <p>After Effects, Photoshop, Premiere</p>
+      </div>
+    </div>
+
+    <iframe width="100%" height="500" src="https://player.vimeo.com/video/783416629" frameborder="0" allowfullscreen></iframe>
+
+    <div class="section">
+      <h2>Project Overview</h2>
+      <p>
+        Este projeto experimental explora visualmente o tema da ansiedade, transformação e aceitação — inspirando-se na música <strong>"Let It Happen"</strong> dos Tame Impala. Através de uma narrativa simbólica dividida em três fases (Stress, Fluidez e Superação), esta curta-metragem anima as lutas internas de um sujeito que aprende a aceitar o fluxo da vida.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Visual Style & Story</h2>
+      <p>
+        A animação é dividida em três atos com paletas cromáticas distintas: roxos para representar o stress, azuis para a aceitação e tons quentes (vermelhos, amarelos, laranjas) para simbolizar a superação. A personagem principal é constantemente perseguida por uma luz roxa (ansiedade) enquanto tenta alcançar a luz amarela (esperança).
+      </p>
+      <p>
+        A história culmina num momento de paz ilusória, revelando-se apenas uma projeção imaginada durante um voo — um reflexo da pressa constante da vida moderna.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Techniques Used</h2>
+      <ul>
+        <li><strong>Rotoscopia:</strong> personagem a voar sobre um céu animado, com base em frames do videoclip original.</li>
+        <li><strong>Chroma Key:</strong> aplicação de efeitos e composição com fundos distintos.</li>
+        <li><strong>Metamorfose:</strong> transições suaves entre cenas e integração de elementos tipográficos com o ambiente.</li>
+        <li><strong>Tipografia animada:</strong> sincronização com a música para reforçar a mensagem emocional.</li>
+        <li><strong>Máscaras:</strong> criação do "plot twist" final e manipulação de cenas específicas para simular diferentes perspetivas.</li>
+        <li><strong>Efeitos visuais:</strong> uso de glitch, glow, blur e movimentos de câmara para enriquecer a narrativa visual.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>My Contributions</h2>
+      <ul>
+        <li>Desenvolvimento do guião e definição da storyline.</li>
+        <li>Criação das paletas de cor para cada fase emocional.</li>
+        <li>Escolha e edição da música, mantendo a coerência temática com as três fases.</li>
+        <li>Animação integral do segmento entre 1:00 e 1:47.</li>
+        <li>Pós-produção: montagem final, correções de cor, efeitos e sonoplastia.</li>
+        <li>Estabelecimento do relatório e articulação do projeto em grupo.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Gallery</h2>
+      <div class="gallery-container">
+        <button class="gallery-nav prev" onclick="scrollGallery(-1)">❮</button>
+        <div class="gallery-scroll" id="imageGallery">
+          <img src="assets/img/letithappen1.jpg" alt="Frame 1">
+          <img src="assets/img/letithappen2.jpg" alt="Frame 2">
+          <img src="assets/img/letithappen3.jpg" alt="Frame 3">
+          <img src="assets/img/letithappen4.jpg" alt="Frame 4">
+        </div>
+        <button class="gallery-nav next" onclick="scrollGallery(1)">❯</button>
+      </div>
+    </div>
+
+    <a class="back-link" href="index.html">← Back to Home</a>
+  </div>
+
+  <script>
+    // Gallery navigation functionality
+    function scrollGallery(direction) {
+      const gallery = document.getElementById('imageGallery');
+      const scrollAmount = gallery.offsetWidth * 0.8 * direction;
+      gallery.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
