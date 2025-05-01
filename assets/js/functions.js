@@ -178,7 +178,7 @@ $(document).ready(function () {
   function workSlider() {
 
     $('.slider--prev, .slider--next').click(function () {
-
+  
       var $this = $(this),
         curLeft = $('.slider').find('.slider--item-left'),
         curLeftPos = $('.slider').children().index(curLeft),
@@ -191,76 +191,62 @@ $(document).ready(function () {
         $center = $('.slider--item-center'),
         $right = $('.slider--item-right'),
         $item = $('.slider--item');
-
+  
       $('.slider').animate({ opacity: 0 }, 400);
-
+  
       setTimeout(function () {
-
+  
+        // Remove all positioning classes first
+        $item.removeClass('slider--item-left slider--item-center slider--item-right');
+  
         if ($this.hasClass('slider--next')) {
-          if (curLeftPos < totalWorks - 1 && curCenterPos < totalWorks - 1 && curRightPos < totalWorks - 1) {
-            $left.removeClass('slider--item-left').next().addClass('slider--item-left');
-            $center.removeClass('slider--item-center').next().addClass('slider--item-center');
-            $right.removeClass('slider--item-right').next().addClass('slider--item-right');
-          }
-          else {
-            if (curLeftPos === totalWorks - 1) {
-              $item.removeClass('slider--item-left').first().addClass('slider--item-left');
-              $center.removeClass('slider--item-center').next().addClass('slider--item-center');
-              $right.removeClass('slider--item-right').next().addClass('slider--item-right');
-            }
-            else if (curCenterPos === totalWorks - 1) {
-              $left.removeClass('slider--item-left').next().addClass('slider--item-left');
-              $item.removeClass('slider--item-center').first().addClass('slider--item-center');
-              $right.removeClass('slider--item-right').next().addClass('slider--item-right');
-            }
-            else {
-              $left.removeClass('slider--item-left').next().addClass('slider--item-left');
-              $center.removeClass('slider--item-center').next().addClass('slider--item-center');
-              $item.removeClass('slider--item-right').first().addClass('slider--item-right');
-            }
-          }
-        }
+          // Calculate new positions
+          var newLeftPos = (curLeftPos + 1) % totalWorks;
+          var newCenterPos = (curCenterPos + 1) % totalWorks;
+          var newRightPos = (curRightPos + 1) % totalWorks;
+          
+          // Apply new positions
+          $item.eq(newLeftPos).addClass('slider--item-left');
+          $item.eq(newCenterPos).addClass('slider--item-center');
+          $item.eq(newRightPos).addClass('slider--item-right');
+        } 
         else {
-          if (curLeftPos !== 0 && curCenterPos !== 0 && curRightPos !== 0) {
-            $left.removeClass('slider--item-left').prev().addClass('slider--item-left');
-            $center.removeClass('slider--item-center').prev().addClass('slider--item-center');
-            $right.removeClass('slider--item-right').prev().addClass('slider--item-right');
-          }
-          else {
-            if (curLeftPos === 0) {
-              $item.removeClass('slider--item-left').last().addClass('slider--item-left');
-              $center.removeClass('slider--item-center').prev().addClass('slider--item-center');
-              $right.removeClass('slider--item-right').prev().addClass('slider--item-right');
-            }
-            else if (curCenterPos === 0) {
-              $left.removeClass('slider--item-left').prev().addClass('slider--item-left');
-              $item.removeClass('slider--item-center').last().addClass('slider--item-center');
-              $right.removeClass('slider--item-right').prev().addClass('slider--item-right');
-            }
-            else {
-              $left.removeClass('slider--item-left').prev().addClass('slider--item-left');
-              $center.removeClass('slider--item-center').prev().addClass('slider--item-center');
-              $item.removeClass('slider--item-right').last().addClass('slider--item-right');
-            }
-          }
+          // Calculate new positions for previous
+          var newLeftPos = (curLeftPos - 1 + totalWorks) % totalWorks;
+          var newCenterPos = (curCenterPos - 1 + totalWorks) % totalWorks;
+          var newRightPos = (curRightPos - 1 + totalWorks) % totalWorks;
+          
+          // Apply new positions
+          $item.eq(newLeftPos).addClass('slider--item-left');
+          $item.eq(newCenterPos).addClass('slider--item-center');
+          $item.eq(newRightPos).addClass('slider--item-right');
         }
-
+  
       }, 400);
-
+  
       $('.slider').animate({ opacity: 1 }, 400);
-
     });
-
-      // Force initial correct placement of slider items on page load
-  setTimeout(function () {
-    var $item = $('.slider--item');
-    $item.removeClass('slider--item-left slider--item-center slider--item-right');
-    $item.eq(0).addClass('slider--item-left');
-    $item.eq(1).addClass('slider--item-center');
-    $item.eq(2).addClass('slider--item-right');
-  }, 100);
-
-
+  
+    // Force initial correct placement of slider items on page load
+    setTimeout(function () {
+      var $item = $('.slider--item');
+      var totalWorks = $item.length;
+      
+      // Make sure we don't try to display more items than we have
+      if (totalWorks >= 3) {
+        $item.removeClass('slider--item-left slider--item-center slider--item-right');
+        $item.eq(0).addClass('slider--item-left');
+        $item.eq(1).addClass('slider--item-center');
+        $item.eq(2).addClass('slider--item-right');
+      } else if (totalWorks === 2) {
+        $item.removeClass('slider--item-left slider--item-center slider--item-right');
+        $item.eq(0).addClass('slider--item-left');
+        $item.eq(1).addClass('slider--item-center');
+      } else if (totalWorks === 1) {
+        $item.removeClass('slider--item-left slider--item-center slider--item-right');
+        $item.eq(0).addClass('slider--item-center');
+      }
+    }, 100);
   }
 
   function transitionLabels() {
