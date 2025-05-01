@@ -251,6 +251,16 @@ $(document).ready(function () {
 
     });
 
+      // Force initial correct placement of slider items on page load
+  setTimeout(function () {
+    var $item = $('.slider--item');
+    $item.removeClass('slider--item-left slider--item-center slider--item-right');
+    $item.eq(0).addClass('slider--item-left');
+    $item.eq(1).addClass('slider--item-center');
+    $item.eq(2).addClass('slider--item-right');
+  }, 100);
+
+
   }
 
   function transitionLabels() {
