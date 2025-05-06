@@ -115,5 +115,14 @@
     <a class="back-link" href="index.html">← Voltar à Página Inicial</a>
   </div>
 
+  <script>
+    // Gallery navigation functionality
+    function scrollGallery(direction) {
+      const gallery = document.getElementById('imageGallery');
+      const scrollAmount = gallery.offsetWidth * 0.8 * direction;
+      gallery.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  </script>
+
 </body>
 </html>
