@@ -137,12 +137,14 @@
 
   <script>
     // Gallery navigation functionality
-    function scrollGallery(direction) {
-      const gallery = document.getElementById('imageGallery');
-      const scrollAmount = gallery.offsetWidth * 0.8 * direction;
-      gallery.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    function scrollGallery(button, direction) {
+      const galleryContainer = button.closest('.gallery-container');
+      const galleryScroll = galleryContainer.querySelector('.gallery-scroll');
+      const scrollAmount = galleryScroll.offsetWidth * 0.8 * direction;
+      galleryScroll.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   </script>
+  
 
 </body>
 </html>
