@@ -2,143 +2,162 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Other Projects – Descalco Media</title>
   <link rel="stylesheet" href="portfolio.css" />
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: #111;
+      color: #fff;
+    }
 
-.project-button {
-  display: inline-block;
-  margin-top: 1rem;
-  background-color: #fff;
-  color: #000;
-  padding: 0.4rem 1rem;
-  font-size: 0.85rem;
-  border-radius: 20px;
-  text-decoration: none;
-  transition: background 0.3s ease, color 0.3s ease;
-}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-.project-button:hover {
-  background-color: #000;
-  color: #fff;
-}
-    /* Additional styles specific to this page */
+    .back-link {
+      color: #aaa;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      display: inline-block;
+    }
+
     .projects-header {
       text-align: center;
       margin-bottom: 3rem;
     }
-    
+
     .projects-header h1 {
       font-size: 2.8rem;
       margin-bottom: 1rem;
     }
-    
+
     .projects-header p {
       max-width: 600px;
       margin: 0 auto;
       color: #aaa;
     }
-    
+
     .projects-grid {
       display: grid;
       gap: 2rem;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      margin: 3rem 0;
     }
-    
+
     .project-card {
       background: rgba(255,255,255,0.05);
       border-radius: 10px;
       overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
-    
+
     .project-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
-    
+
     .project-card-image {
       width: 100%;
       height: 200px;
       object-fit: cover;
     }
-    
+
     .project-card-content {
-      padding: 1.5rem;
+      padding: 1.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
-    
+
     .project-card h3 {
       margin-top: 0;
+      font-size: 1.2rem;
       margin-bottom: 0.5rem;
-      font-size: 1.4rem;
     }
-    
+
     .project-card p {
-      color: #aaa;
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
+      color: #ccc;
+      font-size: 0.9rem;
+      flex-grow: 1;
     }
-    
-    .project-card-meta {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      color: #777;
-    }
-    
+
     .project-tag {
-      display: inline-block;
       background: rgba(255,255,255,0.1);
       padding: 0.3rem 0.8rem;
       border-radius: 20px;
       font-size: 0.8rem;
-      margin-right: 0.5rem;
-      margin-bottom: 0.5rem;
+      margin-right: 0.4rem;
+      margin-top: 0.5rem;
+      display: inline-block;
     }
-    
-    @media (max-width: 768px) {
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
+
+    .project-card-meta {
+      font-size: 0.8rem;
+      color: #777;
+      display: flex;
+      justify-content: space-between;
+      margin: 0.5rem 0;
+    }
+
+    .project-button {
+      align-self: flex-start;
+      background-color: #fff;
+      color: #000;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .project-button:hover {
+      background-color: #000;
+      color: #fff;
     }
   </style>
 </head>
 <body>
-
   <div class="container">
     <a class="back-link" href="index.html">← Back to Home</a>
-    
+
     <div class="projects-header">
       <h1>Other Projects</h1>
       <p>Smaller experiments, academic work, and creative explorations that complement my main portfolio pieces.</p>
     </div>
 
-    <div class="project-card">
-      <img src="assets/img/placeholder.png" alt="Project 1" class="project-card-image">
-      <div class="project-card-content">
-        <h3>LIMIFIELD WORK</h3>
-        <p>Interactive sound installation mapping city noises to generative visuals.</p>
-        <div>
-          <span class="project-tag">Interactive</span>
-          <span class="project-tag">Sound Design</span>
-          <span class="project-tag">Max/MSP</span>
-        </div>
-        <div class="project-card-meta">
-          <span>2023</span>
-          <span>Academic Project</span>
-        </div>
-        <a href="https://www.youtube.com/watch?v=BgKK0P0Rjyo" target="_blank" class="project-button">Take me there</a>
-      </div>
-    </div>
+    <div class="projects-grid">
       
-      <!-- Project Card 2 -->
+      <!-- Project 1 -->
       <div class="project-card">
-        <img src="assets/img/OUTROS/queen.mp4" alt="Project 2" class="project-card-image">
+        <img src="assets/img/placeholder.png" alt="LIMIFIELD WORK" class="project-card-image">
         <div class="project-card-content">
-          <h3>Experimental Animation - QUEEN </h3>
-          <p>METAMORPHOSIS is a hand-drawn frame-by-frame animation exercise, developed for the Animation I module of the Multimedia degree.</p>
+          <h3>LIMIFIELD WORK</h3>
+          <p>Interactive sound installation mapping city noises to generative visuals.</p>
+          <div>
+            <span class="project-tag">Interactive</span>
+            <span class="project-tag">Sound Design</span>
+            <span class="project-tag">Max/MSP</span>
+          </div>
+          <div class="project-card-meta">
+            <span>2023</span>
+            <span>Academic Project</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=BgKK0P0Rjyo" target="_blank" class="project-button">Take me there</a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <img src="assets/img/OUTROS/queen-thumbnail.png" alt="QUEEN Animation" class="project-card-image">
+        <div class="project-card-content">
+          <h3>Experimental Animation – QUEEN</h3>
+          <p>METAMORPHOSIS is a hand-drawn frame-by-frame animation developed for the Animation I module.</p>
           <div>
             <span class="project-tag">Animation</span>
             <span class="project-tag">Frame-By-Frame</span>
@@ -151,12 +170,12 @@
           <a href="https://youtu.be/xAjgsekjEcI" target="_blank" class="project-button">Take me there</a>
         </div>
       </div>
-      
-      <!-- Project Card 3 -->
+
+      <!-- Project 3 -->
       <div class="project-card">
-        <img src="assets/img/placeholder.png" alt="Project 3" class="project-card-image">
+        <img src="assets/img/placeholder.png" alt="CURTA UTAD" class="project-card-image">
         <div class="project-card-content">
-          <h3>CURTA - UTAD </h3>
+          <h3>CURTA – UTAD</h3>
           <p>Generative art series visualizing personal data through abstract compositions.</p>
           <div>
             <span class="project-tag">Generative Art</span>
@@ -170,16 +189,13 @@
           <a href="https://www.youtube.com/watch?v=BgKK0P0Rjyo" target="_blank" class="project-button">Take me there</a>
         </div>
       </div>
-      
-      <!-- Project Card 4 -->
+
+      <!-- Project 4 -->
       <div class="project-card">
-        <img src="assets/img/placeholder.png" alt="Project 4" class="project-card-image">
-        <a href="" target="_blank">
-          <img src="caminho-da-imagem.jpg" alt="RASTROS DE UM LUGAR">
-        </a>
+        <img src="assets/img/placeholder.png" alt="Videoclip" class="project-card-image">
         <div class="project-card-content">
-          <h3>VIDEOCLIP - EMPRESTA O VERBO AMAR</h3>
-          <p>VIDEO CLIP para o Musico "Luis Sequeira" em ambito de Projeto académico.</p>
+          <h3>Videoclip – Empresta o Verbo Amar</h3>
+          <p>Videoclip for musician Luis Sequeira created in an academic context.</p>
           <div>
             <span class="project-tag">2D Animation</span>
             <span class="project-tag">After Effects</span>
@@ -192,13 +208,13 @@
           <a href="https://www.youtube.com/watch?v=BgKK0P0Rjyo" target="_blank" class="project-button">Take me there</a>
         </div>
       </div>
-      
-      <!-- Project Card 5 -->
+
+      <!-- Project 5 -->
       <div class="project-card">
-        <img src="assets/img/placeholder.png" alt="Project 5" class="project-card-image">
+        <img src="assets/img/placeholder.png" alt="RASTROS DE UM LUGAR" class="project-card-image">
         <div class="project-card-content">
           <h3>RASTROS DE UM LUGAR</h3>
-          <p>"RASTROS DE UM LUGAR" é uma intervenção artística que explora a relação entre o burnout universitário e o ato de fumar. Através de uma folha colocada num ponto habitual de fumadores, os estudantes deixaram marcas com cinzas e cigarros, criando um registo coletivo de desgaste, pausa e presença.</p>
+          <p>Art intervention exploring the connection between academic burnout and smoking rituals.</p>
           <div>
             <span class="project-tag">Art Intervention</span>
             <span class="project-tag">Contemporary Art</span>
@@ -206,15 +222,15 @@
           </div>
           <div class="project-card-meta">
             <span>2022</span>
-            <span>RASTROS DE UM LUGAR</span>
+            <span>Exhibition</span>
           </div>
           <a href="https://www.youtube.com/watch?v=BgKK0P0Rjyo" target="_blank" class="project-button">Take me there</a>
         </div>
       </div>
-      
-      <!-- Project Card 6 -->
+
+      <!-- Project 6 -->
       <div class="project-card">
-        <img src="assets/img/placeholder.png" alt="Project 6" class="project-card-image">
+        <img src="assets/img/placeholder.png" alt="Emotional Ocean" class="project-card-image">
         <div class="project-card-content">
           <h3>Emotional Ocean</h3>
           <p>Web-based interactive experience exploring digital impermanence.</p>
@@ -234,6 +250,5 @@
 
     <a class="back-link" href="index.html">← Back to Home</a>
   </div>
-
 </body>
 </html>
