@@ -740,7 +740,9 @@ body {
     font-size: 68px;
     font-weight: 900;
     line-height: 1;
-    z-index: 1
+    z-index: 1;
+    text-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
+    animation: titleGlow 4s ease-in-out infinite;
 }
 
 .intro--banner button {
@@ -1892,74 +1894,96 @@ body {
     transition-delay: .16s
 }
 
-/* Other Works Button - Subtle Version */
-.other-works {
-    text-align: center;
-    margin: 2rem 0 4rem;
-}
-
 .other-works--button {
+    position: fixed; /* Fixes the button to the viewport */
+    bottom: 40px;    /* Positions from the bottom */
+    right: 40px;     /* Positions from the right */
+    z-index: 15;     /* Ensures it appears above other page content */
+    background-color: #400000; /* Uses the site's main accent color */
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 50px; /* Creates a pill shape */
     display: inline-flex;
     align-items: center;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.9rem;
-    font-weight: 400;
     text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
     letter-spacing: 0.5px;
-    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Adds depth */
+    transform: translateY(0);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .other-works--button svg {
-    width: 16px;
-    height: 16px;
-    margin-left: 8px;
-    fill: rgba(255, 255, 255, 0.7);
-    transition: all 0.3s ease;
+    width: 18px;
+    height: 18px;
+    margin-left: 12px;
+    fill: #fff;
+    transition: transform 0.3s ease;
 }
 
 .other-works--button:hover {
-    color: #fff;
+    transform: translateY(-5px); /* Lifts the button on hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    background-color: #5a0000;
 }
 
 .other-works--button:hover svg {
-    fill: #fff;
-    transform: translateX(3px);
+    transform: translateX(5px); /* Moves arrow slightly on hover */
 }
 
 /* Compact Client Trust Section */
 .trust-section {
-    padding: 50px 0 20px;
-    /* Reduced padding */
     text-align: center;
-}
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0;
+    transition: all 0.3s ease-in-out;
+  }
 
-.trust-heading {
+  .trust-heading {
     font-size: 1.7rem;
-    margin-bottom: 15px;
-    color: #fff;
+    margin-bottom: 0;
+    color: var(--text-primary);
     font-weight: 400;
     position: relative;
     text-transform: uppercase;
     letter-spacing: 1px;
-}
+    cursor: default;
+    transition: transform 0.4s ease-in-out;
+    z-index: 2;
+  }
 
-.trust-heading:after {
+  .trust-heading::after {
     content: "";
     display: block;
     width: 60px;
     height: 2px;
-    background-color: #400000;
-    margin: 15px auto 30px;
-    /* Slightly more spacing */
-}
+    background-color: var(--dark-red);
+    margin: 15px auto 0;
+    transition: all 0.3s ease-in-out;
+  }
 
-.client-logos {
-    width: 100%;
-    max-width: 1000px;
-    /* Wider container for bigger logos */
-    margin: 0 auto 40px;
-    /* Adjusted spacing */
-}
+  .client-logos {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease-in-out;
+    z-index: 1;
+  }
+
+  .trust-section:hover .trust-heading {
+    transform: translateY(-30px);
+  }
+
+  .trust-section:hover .client-logos {
+    opacity: 1;
+    transform: translate(-50%, -10px);
+    pointer-events: auto;
+  }
 
 .logos-container {
     display: flex;
@@ -2035,3 +2059,8 @@ body {
         margin-top: 10px;
     }
 }
+
+  @keyframes titleGlow {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.1); }
+  }
