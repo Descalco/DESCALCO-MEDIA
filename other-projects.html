@@ -1,116 +1,482 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Descalco Media | Motion Designer</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="Motion Designer & Digital Artist - Creating engaging visual experiences through motion, animation, and multimedia design">
-  <meta name="keywords" content="Motion Design, Animation, Video Editing, 3D Design, Multimedia, Visual Effects, Pedro Costa">
-  <meta name="author" content="Pedro Costa">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio – Descalco Media</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0a0a0a;
+      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .portfolio-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.75rem 1.5rem;
+      margin-bottom: 3rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(10px);
+    }
+
+    .back-link:hover {
+      background: #dc2626;
+      border-color: #dc2626;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(220, 38, 38, 0.3);
+    }
+
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 5rem;
+      padding: 2rem 0;
+    }
+
+    .portfolio-header h1 {
+      font-size: clamp(3rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 0%, #dc2626 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .portfolio-header p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: #a1a1aa;
+      font-size: 1.2rem;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+      gap: 2.5rem;
+      margin-top: 4rem;
+    }
+
+    .project-item {
+      position: relative;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      aspect-ratio: 16/11;
+      backdrop-filter: blur(20px);
+    }
+
+    .project-item:hover {
+      border-color: rgba(220, 38, 38, 0.4);
+      background: rgba(255, 255, 255, 0.04);
+      transform: translateY(-8px);
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(220, 38, 38, 0.2);
+    }
+
+    .project-media {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.4s ease;
+      filter: brightness(0.8) contrast(1.1);
+    }
+
+    .project-item:hover .project-media {
+      filter: brightness(0.4) contrast(1.2);
+      transform: scale(1.05);
+    }
+
+    .project-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(220, 38, 38, 0.1) 100%
+      );
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 3rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .project-item:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .project-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .project-description {
+      font-size: 1rem;
+      color: #d1d5db;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      font-weight: 400;
+      /* Removed all height constraints and overflow hidden */
+      display: block;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .project-tag {
+      background: rgba(220, 38, 38, 0.15);
+      border: 1px solid rgba(220, 38, 38, 0.3);
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: #fca5a5;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+    }
+
+    .project-link {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      color: #ffffff;
+      padding: 0.8rem 1.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+    }
+
+    .project-link:hover {
+      background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+    }
+
+    .project-meta {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.8)
+      );
+      padding: 2rem 2rem 1.5rem;
+      transition: opacity 0.4s ease;
+    }
+
+    .project-item:hover .project-meta {
+      opacity: 0;
+    }
+
+    .project-meta h3 {
+      margin: 0;
+      font-size: 1.3rem;
+      color: #ffffff;
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .project-year {
+      font-size: 0.9rem;
+      color: #dc2626;
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-container {
+        padding: 1.5rem;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .portfolio-header {
+        margin-bottom: 3rem;
+      }
+      
+      .portfolio-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .portfolio-header p {
+        font-size: 1.1rem;
+      }
+      
+      .project-overlay {
+        padding: 2rem;
+      }
+
+      .project-title {
+        font-size: 1.5rem;
+      }
+
+      .project-description {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .portfolio-container {
+        padding: 1rem;
+      }
+      
+      .project-overlay {
+        padding: 1.5rem;
+      }
+      
+      .project-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+      
+      .project-description {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .project-tags {
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .project-tag {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.7rem;
+      }
+    }
+
+    /* Focus on visual impact */
+    .project-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(220, 38, 38, 0.05) 50%,
+        transparent 100%
+      );
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .project-item:hover::before {
+      opacity: 1;
+    }
+  </style>
 </head>
+<body>
+  <div class="portfolio-container">
+    <a class="back-link" href="index.html">← Back to Home</a>
 
-<body class="index-home">
-  <div class="device-notification">
-    <a class="device-notification--logo" href="index.html">
-      <img src="assets/img/logo-branco.png" alt="Descalco">
-      <p>Descalco</p>
-    </a>
-    <p class="device-notification--message">For the best experience with Descalco's portfolio, please switch to portrait mode or use a larger screen.</p>
-  </div>
+    <div class="portfolio-header">
+      <h1>Portfolio</h1>
+      <p>A collection of my creative work spanning interactive media, animation, sound design, and digital art. Hover over each project to explore the full story behind each creation.</p>
+    </div>
 
-  <div class="perspective effect-rotate-left">
-    <div class="container">
-      <div class="outer-nav--return"></div>
-      <div id="viewport" class="l-viewport">
-        <div class="l-wrapper">
-          <header class="header">
-            <a class="header--logo" href="index.html">
-              <img src="assets/img/logo-horizontal-colorido.svg" alt="Descalco">
-              <p>DESCALCO MEDIA</p>
-            </a>
-            <button class="header--cta cta">Hire Me</button>
-            <div class="header--nav-toggle">
-              <span></span>
-            </div>
-          </header>
-
-          <nav class="l-side-nav">
-            <ul class="side-nav">
-              <li class="is-active"><span>Home</span></li>
-              <li><span>Works</span></li>
-              <li><span>About</span></li>
-              <li><span>Contact</span></li>
-              <li><span>Hire me</span></li>
-            </ul>
-          </nav>
-
-          <ul class="l-main-content main-content">
-            <li class="l-section section section--is-active">
-              <div class="intro">
-                <div class="intro--banner">
-                  <h1 class="gradient-title">Motion by design<br> Impact <br> By default</h1>
-                  <button class="cta">Hire Me
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 150 118">
-                      <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                        <path d="M870,1167c-34-17-55-57-46-90..."/>
-                      </g>
-                    </svg>
-                    <span class="btn-background"></span>
-                  </button>
-                  <img src="assets/img/LOGO-COLORIDO.svg" alt="Descalco Media" class="intro-logo">
-                </div>
-                <div class="intro--options intro--highlighted">
-                  <a href="CidadeDoFuturo.html">
-                    <h3>Cidade do Futuro</h3>
-                    <p>Featured Exhibition: Showcased "Ambivalência" at Alfândega do Porto with PortugalAgenda and OCUBO.</p>
-                  </a>
-                  <a href="GUISADO.html">
-                    <h3>GUISADO</h3>
-                    <p>3D Animation: An abstract short exploring texture and emotional contrast.</p>
-                  </a>
-                  <a href="showreel.html">
-                    <h3>SHOWREEL</h3>
-                    <p>Catch a glimpse of my best motion work.</p>
-                  </a>
-                </div>
-              </div>
-            </li>
-            <!-- Sections unchanged -->
-            <li class="l-section section">
-              <!-- Work Section remains intact -->
-            </li>
-            <li class="l-section section">
-              <!-- About Section remains intact -->
-            </li>
-            <li class="l-section section">
-              <!-- Contact Section remains intact -->
-            </li>
-            <li class="l-section section">
-              <!-- Hire Me Section remains intact -->
-            </li>
-          </ul>
+    <div class="portfolio-grid">
+      
+      <!-- Project 1: LIMIFIELD WORK -->
+      <div class="project-item">
+        <img src="assets/img/placeholder.png" alt="LIMIFIELD WORK" class="project-media">
+        <div class="project-meta">
+          <h3>LIMIFIELD WORK</h3>
+          <div class="project-year">2023</div>
+        </div>
+        <div class="project-overlay">
+          <div class="project-title">LIMIFIELD WORK</div>
+          <div class="project-description">
+            Interactive sound installation that maps city noises to generative visuals, creating an immersive audiovisual experience that responds to urban environments in real-time. This project explores the relationship between sound and space, transforming everyday urban cacophony into beautiful, ever-changing visual compositions.
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Interactive</span>
+            <span class="project-tag">Sound Design</span>
+            <span class="project-tag">Max/MSP</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=BgKK0P0Rjyo" target="_blank" class="project-link">View Project</a>
         </div>
       </div>
+
+      <!-- Project 2: Experimental Animation QUEEN -->
+      <div class="project-item">
+        <video class="project-media" autoplay loop muted playsinline>
+          <source src="assets/img/OUTROS/queen.mp4" type="video/mp4" />
+        </video>
+        <div class="project-meta">
+          <h3>Experimental Animation – QUEEN</h3>
+          <div class="project-year">2021</div>
+        </div>
+        <div class="project-overlay">
+          <div class="project-title">Experimental Animation – QUEEN</div>
+          <div class="project-description">
+            METAMORPHOSIS is a hand-drawn frame-by-frame animation exploring transformation and identity. Created using traditional animation techniques with modern digital tools, this piece delves into the concept of personal evolution and the fluid nature of self-perception through abstract visual storytelling.
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Animation</span>
+            <span class="project-tag">Frame-By-Frame</span>
+            <span class="project-tag">Adobe Animate</span>
+          </div>
+          <a href="https://youtu.be/xAjgsekjEcI" target="_blank" class="project-link">View Project</a>
+        </div>
+      </div>
+
+      <!-- Project 3: CURTA UTAD -->
+      <div class="project-item">
+        <img src="assets/img/placeholder.png" alt="CURTA UTAD" class="project-media">
+        <div class="project-meta">
+          <h3>CURTA – UTAD</h3>
+          <div class="project-year">2023</div>
+        </div>
+        <div class="project-overlay">
+          <div class="project-title">CURTA – UTAD</div>
+          <div class="project-description">
+            Generative art series that visualizes personal data through abstract compositions, exploring the intersection of digital identity and artistic expression. This project transforms mundane digital traces into compelling visual narratives, questioning how our online presence shapes our understanding of self.
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Generative Art</span>
+            <span class="project-tag">Processing</span>
+            <span class="project-tag">Data Visualization</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=BgKK0P0Rjyo" target="_blank" class="project-link">View Project</a>
+        </div>
+      </div>
+
+      <!-- Project 4: Videoclip -->
+      <div class="project-item">
+        <img src="assets/img/placeholder.png" alt="Videoclip" class="project-media">
+        <div class="project-meta">
+          <h3>Empresta o Verbo Amar</h3>
+          <div class="project-year">2022</div>
+        </div>
+        <div class="project-overlay">
+          <div class="project-title">Empresta o Verbo Amar</div>
+          <div class="project-description">
+            Music video for musician Luis Sequeira featuring 2D animation and storytelling. A collaborative piece that combines visual narrative with musical expression, creating an emotional journey that complements and enhances the musical composition through carefully crafted visual metaphors and artistic interpretation.
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">2D Animation</span>
+            <span class="project-tag">After Effects</span>
+            <span class="project-tag">Storytelling</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=BgKK0P0Rjyo" target="_blank" class="project-link">View Project</a>
+        </div>
+      </div>
+
+      <!-- Project 5: RASTROS DE UM LUGAR -->
+      <div class="project-item">
+        <img src="assets/img/placeholder.png" alt="RASTROS DE UM LUGAR" class="project-media">
+        <div class="project-meta">
+          <h3>RASTROS DE UM LUGAR</h3>
+          <div class="project-year">2022</div>
+        </div>
+        <div class="project-overlay">
+          <div class="project-title">RASTROS DE UM LUGAR</div>
+          <div class="project-description">
+            Art intervention exploring the connection between academic burnout and smoking rituals, examining how spaces hold memory and meaning in student life. This conceptual piece investigates the psychological geography of university environments and the coping mechanisms students develop within these spaces.
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Art Intervention</span>
+            <span class="project-tag">Contemporary Art</span>
+            <span class="project-tag">Installation</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=BgKK0P0Rjyo" target="_blank" class="project-link">View Project</a>
+        </div>
+      </div>
+
+      <!-- Project 6: Emotional Ocean -->
+      <div class="project-item">
+        <img src="assets/img/placeholder.png" alt="Emotional Ocean" class="project-media">
+        <div class="project-meta">
+          <h3>Emotional Ocean</h3>
+          <div class="project-year">2024</div>
+        </div>
+        <div class="project-overlay">
+          <div class="project-title">Emotional Ocean</div>
+          <div class="project-description">
+            Web-based interactive experience exploring digital impermanence and emotional landscapes through immersive WebGL environments and user interaction. This project creates a poetic interface between human emotion and digital space, allowing users to navigate through abstract emotional territories that respond to their presence and actions.
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Interactive</span>
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">WebGL</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=BgKK0P0Rjyo" target="_blank" class="project-link">View Project</a>
+        </div>
+      </div>
+
     </div>
-    <ul class="outer-nav">
-      <li class="is-active">Home</li>
-      <li>Works</li>
-      <li>About</li>
-      <li>Contact</li>
-      <li>Hire me</li>
-    </ul>
+
+    <div style="margin-top: 4rem; text-align: center;">
+      <a class="back-link" href="index.html">← Back to Home</a>
+    </div>
   </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-  <script>window.jQuery || document.write('<script src=\"assets/js/vendor/jquery-2.2.4.min.js\"><\/script>')</script>
-  <script src="assets/js/functions.js"></script>
 </body>
-
 </html>
