@@ -68,9 +68,7 @@ $(document).ready(function () {
     mc = new Hammer(targetElement);
   mc.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
   mc.on('swipeup swipedown', function (e) {
-
     updateHelper(e);
-
   });
 
   $(document).keyup(function (e) {
@@ -175,103 +173,38 @@ $(document).ready(function () {
 
   }
 
-  function workSlider() {
-    // Store related elements
-    const $slider = $('.slider');
-    const $sliderItems = $slider.find('.slider--item');
-    const $sliderNav = $('.slider--prev, .slider--next');
-    
-    // Initial setup - hide items temporarily to prevent flickering
-    $sliderItems.css('opacity', 0);
-    
-    // Force browser to calculate layouts before proceeding
-    setTimeout(function() {
-      // Clear any existing position classes
-      $sliderItems.removeClass('slider--item-left slider--item-center slider--item-right');
-      
-      // Initialize slider positions
-      initializeSliderPositions();
-      
-      // Fade items back in with properly applied positions
-      $sliderItems.animate({opacity: 1}, 300);
-    }, 50);
-    
-    // Function to set proper positions
-    function initializeSliderPositions() {
-      const total = $sliderItems.length;
-      
-      if (total < 3) {
-        // Handle case with fewer than 3 items
-        if (total === 1) {
-          $sliderItems.eq(0).addClass('slider--item-center');
-        } else if (total === 2) {
-          $sliderItems.eq(0).addClass('slider--item-left');
-          $sliderItems.eq(1).addClass('slider--item-center');
-        }
-        return;
-      }
-      
-      // Set initial positions for 3+ items
-      $sliderItems.eq(0).addClass('slider--item-left');
-      $sliderItems.eq(1).addClass('slider--item-center');
-      $sliderItems.eq(2).addClass('slider--item-right');
-    }
-    
-    // Handle click events for slider navigation
-    $sliderNav.on('click', function() {
-      const $this = $(this);
-      const $curLeft = $slider.find('.slider--item-left');
-      const $curCenter = $slider.find('.slider--item-center');
-      const $curRight = $slider.find('.slider--item-right');
-      
-      const total = $sliderItems.length;
-      const curLeftIndex = $sliderItems.index($curLeft);
-      const curCenterIndex = $sliderItems.index($curCenter);
-      const curRightIndex = $sliderItems.index($curRight);
-      
-      // Remove current position classes
-      $sliderItems.removeClass('slider--item-left slider--item-center slider--item-right');
-      
-      // Calculate new positions based on navigation direction
-      let newLeftIndex, newCenterIndex, newRightIndex;
-      
-      if ($this.hasClass('slider--prev')) {
-        // Previous button clicked
-        newLeftIndex = (curLeftIndex - 1 + total) % total;
-        newCenterIndex = curLeftIndex;
-        newRightIndex = curCenterIndex;
-      } else {
-        // Next button clicked
-        newLeftIndex = curCenterIndex;
-        newCenterIndex = curRightIndex;
-        newRightIndex = (curRightIndex + 1) % total;
-      }
-      
-      // Apply new position classes
-      $sliderItems.eq(newLeftIndex).addClass('slider--item-left');
-      $sliderItems.eq(newCenterIndex).addClass('slider--item-center');
-      $sliderItems.eq(newRightIndex).addClass('slider--item-right');
-    });
+  // Function for the contact form labels
+  function transitionLabels() {
+    $(".work-request--information input").focusout(function () {
+      var t = $(this).val();
+      "" === t ? $(this).removeClass("has-value") : $(this).addClass("has-value"), window.scrollTo(0, 0)
+    })
   }
-  
-  // Ensure proper initialization under various conditions
-  $(document).ready(function() {
-    // Initialize on document ready
-    workSlider();
-    
-    // Also initialize on window load for better reliability
-    $(window).on('load', function() {
-      workSlider();
-    });
-    
-    // Final fallback initialization with a longer delay
-    setTimeout(workSlider, 500);
-  });
 
+  // Initialize functions
   outerNav();
-  workSlider();
-  transitionLabels();
+  transitionLabels(); // This function is now needed for the hire form
 
 });
 
+// --- Showreel Toggle Logic ---
+// SET THIS VARIABLE TO TRUE TO SHOW "IN THE MAKING" AND HIDE VIDEO
+// SET THIS VARIABLE TO FALSE TO SHOW VIDEO AND HIDE "IN THE MAKING"
+const showreelInTheMaking = true; // Change to 'false' when video is ready
 
+const showreelVideoContainer = document.getElementById('showreelContainer');
+const showreelPlaceholder = document.getElementById('showreelPlaceholder');
+const myShowreelVideo = document.getElementById('myShowreelVideo');
+
+if (showreelInTheMaking) {
+    if (showreelVideoContainer) showreelVideoContainer.classList.add('hidden');
+    if (myShowreelVideo) {
+        myShowreelVideo.pause(); // Pause video if it's currently playing
+        myShowreelVideo.removeAttribute('autoplay'); // Remove autoplay when hidden
+    }
+    if (showreelPlaceholder) showreelPlaceholder.classList.remove('hidden');
+} else {
+    if (showreelVideoContainer) showreelVideoContainer.classList.remove('hidden');
+    if (myShowreelVideo) myShowreelVideo.setAttribute('autoplay', ''); // Re-add autoplay when visible
+    if (showreelPlaceholder) showreelPlaceholder.classList.add('hidden');
+}

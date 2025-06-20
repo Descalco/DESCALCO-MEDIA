@@ -296,10 +296,10 @@ body {
 
 .l-wrapper {
     position: relative;
-    width: 1440px;
-    max-width: 90%;
+    width: 100%; /* Changed from 1440px, allowing it to fill its parent */
+    max-width: 1600px; /* Increased max-width for larger screens, adjust as needed */
     height: 100%;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .l-side-nav {
@@ -689,8 +689,8 @@ body {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 900px;
-    max-width: 75%;
+    width: 100%; /* Changed from 900px */
+    max-width: 1200px; /* Increased from 75% or 900px, adjust as needed */
     height: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -701,7 +701,7 @@ body {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 @media (max-width: 1180px) {
@@ -911,8 +911,8 @@ body {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 960px;
-    max-width: 80%;
+    width: 100%; /* Changed from 960px */
+    max-width: 1200px; /* Increased from 80% or 960px, adjust as needed */
     height: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -923,7 +923,7 @@ body {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 @media (max-width: 1180px) {
@@ -1145,8 +1145,8 @@ body {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 900px;
-    max-width: 75%;
+    width: 100%; /* Changed from 900px */
+    max-width: 1200px; /* Increased from 75% or 900px, adjust as needed */
     height: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1157,7 +1157,7 @@ body {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 @media (max-width: 1180px) {
@@ -1485,8 +1485,8 @@ body {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 700px;
-    max-width: 75%;
+    width: 100%; /* Changed from 700px */
+    max-width: 900px; /* Increased from 75% or 700px, adjust as needed */
     height: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1497,7 +1497,7 @@ body {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 @media (max-width: 1180px) {
@@ -1581,13 +1581,13 @@ body {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 72%;
+    width: 60%; /* This is the key line to adjust */
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     -webkit-justify-content: space-around;
     -ms-flex-pack: distribute;
-    justify-content: space-around
+    justify-content: space-around;
 }
 
 .work-request--options label {
@@ -1693,8 +1693,8 @@ body {
 
     .work-request--options .options-a,
     .work-request--options .options-b {
-        display: block;
-        width: auto
+        display: block; /* This will make them stack vertically */
+        width: auto;
     }
 }
 
@@ -1895,21 +1895,18 @@ body {
 }
 
 .other-works--button {
-    position: fixed; /* Fixes the button to the viewport */
-    bottom: 40px;    /* Positions from the bottom */
-    right: 40px;     /* Positions from the right */
-    z-index: 15;     /* Ensures it appears above other page content */
-    background-color: #400000; /* Uses the site's main accent color */
+    /* Remove position: fixed, bottom, right, z-index */
+    background-color: #400000;
     color: #fff;
     padding: 15px 30px;
-    border-radius: 50px; /* Creates a pill shape */
+    border-radius: 50px;
     display: inline-flex;
     align-items: center;
     text-decoration: none;
     font-weight: 700;
     font-size: 1rem;
     letter-spacing: 0.5px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Adds depth */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     transform: translateY(0);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -2064,3 +2061,139 @@ body {
     0%, 100% { filter: brightness(1); }
     50% { filter: brightness(1.1); }
   }
+
+  .showreel-video-container {
+    max-width: 960px;
+    margin: 0 auto 3rem auto;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    background-color: #000;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+}
+
+.showreel-video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Updated styles for "In The Making" Placeholder */
+.showreel-placeholder {
+    max-width: 960px; /* Fixed width */
+    width: 100%; /* Responsive width */
+    aspect-ratio: 16 / 9; /* Ensures 16:9 aspect ratio */
+    margin: 0 auto 3rem auto; /* Center align and add bottom margin */
+    display: flex; /* Use flexbox for easy centering of text */
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    background: linear-gradient(145deg, rgba(220, 38, 38, 0.05), rgba(0, 0, 0, 0.7)); /* Subtle gradient background */
+    border: 1px solid rgba(220, 38, 38, 0.2); /* Soft border matching theme */
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
+    backdrop-filter: blur(5px); /* Gentle blur effect (modern browsers) */
+    text-align: center; /* Fallback for text centering */
+    color: rgba(255, 255, 255, 0.6); /* Softer white for text */
+    font-family: 'Inter', sans-serif; /* Use Inter font for consistency */
+    position: relative; /* Needed for pseudo-elements if desired later */
+    overflow: hidden; /* Ensure content stays within bounds */
+}
+
+.showreel-placeholder p {
+    font-size: clamp(1rem, 2vw, 1.5rem); /* Reduced font size */
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em; /* Slightly reduced letter spacing */
+    text-shadow: 0 0 8px rgba(220, 38, 38, 0.3); /* Adjusted glow effect */
+    animation: fadeInScale 2s ease-out forwards;
+}
+
+/* Optional: Add a subtle background pattern or element for more aesthetics */
+.showreel-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle at center, rgba(220, 38, 38, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    z-index: 0;
+    animation: rotateBackground 20s linear infinite; /* Slow rotation */
+}
+
+
+/* Utility class to hide elements */
+.hidden {
+    display: none !important;
+}
+
+/* Animations */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes rotateBackground {
+    from { transform: rotate(0deg) scale(1); }
+    to { transform: rotate(360deg) scale(1.05); }
+}
+
+/* Responsive adjustments for the placeholder */
+@media (max-width: 992px) {
+    .showreel-placeholder {
+        max-width: 80%; /* Adjust max-width for smaller desktops/large tablets */
+        height: 450px; /* Adjust height */
+    }
+}
+
+@media (max-width: 768px) {
+    .showreel-placeholder {
+        max-width: 90%; /* More width for tablets */
+        height: 350px; /* Adjust height for typical tablet size */
+        margin-bottom: 2rem;
+    }
+    .showreel-placeholder p {
+        font-size: clamp(0.9rem, 2vw, 1.2rem); /* Smaller font size for tablets */
+        letter-spacing: 0.06em;
+    }
+}
+
+@media (max-width: 576px) {
+    .showreel-placeholder {
+        height: 250px; /* Adjust height for mobile */
+        margin-bottom: 1.5rem;
+    }
+    .showreel-placeholder p {
+        font-size: clamp(0.8rem, 1.8vw, 1rem); /* Smaller font size for mobile */
+        letter-spacing: 0.05em;
+    }
+    .showreel-placeholder::before {
+        top: 10%;
+        left: 10%;
+        width: 80%;
+        height: 80%;
+    }
+}
+
+/* Adjust the margin of the .other-works div to bring the button closer if needed */
+.other-works {
+    margin-top: 2rem; /* Reduced from 3rem or 4rem if it feels too far */
+    text-align: center;
+}

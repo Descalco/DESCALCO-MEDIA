@@ -75,104 +75,21 @@
                   </button>
                   <img src="assets/img/LOGO-COLORIDO.svg" alt="Descalco Media" width="50%" height="100%">
                 </div>
-                <!-- Featured project highlights -->
-                <div class="intro--options">
-                  <a href="CidadeDoFuturo.html">
-                    <h3>Cidade do Futuro</h3>
-                    <p>Featured Exhibition: Showcased "Ambivalência" at Alfândega do Porto in collaboration with
-                      PortugalAgenda and OCUBO.</p>
-                  </a>
-                  <a href="GUISADO.html">
-                    <h3>GUISADO</h3>
-                    <p>3D Animation: An original short film exploring texture and movement through abstract
-                      visualization.</p>
-                  </a>
-                  <a href="showreel.html">
-                    <h3>SHOWREEL</h3>
-                    <p>My showreel</p>
-                  </a>
-                </div>
               </div>
             </li>
             <!-- WORKS SECTION -->
             <li class="l-section section">
               <div class="work">
-                <h2>Selected Projects</h2>
-                <!-- Project carousel with navigation controls -->
-                <div class="work--lockup">
-                  <ul class="slider">
-                    <li class="slider--item slider--item-left">
-                      <a href="DESISTIR.html">
-                        <div class="slider--item-image">
-                          <img src="assets/img/DESISTIR/MOTIVOS-PARA-DESISTIR-INDICE.jpg" alt="Book Design">
-                        </div>
-                        <p class="slider--item-title">DESISTIR - Typography art</p>
-                        <p class="slider--item-description">Book design with typography art illustrations.</p>
-                      </a>
-                    </li>
-                    <li class="slider--item slider--item-center">
-                      <a href="CidadeDoFuturo.html">
-                        <div class="slider--item-image">
-                          <img src="assets/img/CidadeDoFuturo.jpeg" alt="Exhibition Project">
-                        </div>
-                        <p class="slider--item-title">Cidade Do Futuro</p>
-                        <p class="slider--item-description">Exhibition at Alfândega do Porto featuring interactive
-                          projection art.</p>
-                      </a>
-                    </li>
-                    <li class="slider--item slider--item-right">
-                      <a href="GUISADO.html">
-                        <div class="slider--item-image">
-                          <img src="assets/img/GUISADO-CAPA.png" alt="3D Animation">
-                        </div>
-                        <p class="slider--item-title">Guisado</p>
-                        <p class="slider--item-description">Guisado is a 4-minute 3D animated short film exploring
-                          themes of loneliness, superficial relationships, and the illusion of happiness.</p>
-                      </a>
-                    </li>
-                    <li class="slider--item slider--item-right">
-                      <a href="LetItHappen.html">
-                        <div class="slider--item-image">
-                          <img src="assets/img/LETITHAPPEN/1.png" alt="2D ANIMATION">
-                        </div>
-                        <p class="slider--item-title">Let It Happen – Experimental Animation</p>
-                        <p class="slider--item-description">
-                          A symbolic and personal visual journey through stress, acceptance, and transformation — animated to the sound of Tame Impala.
-                        </p>
-                      </a>
-                    </li>                    
-                  </ul>
-                  <!-- Previous button for carousel navigation -->
-                  <div class="slider--prev">
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118"
-                      style="enable-background:new 0 0 150 118;" xml:space="preserve">
-                      <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                        <path d="M561,1169C525,1155,10,640,3,612c-3-13,1-36,8-52c8-15,134-145,281-289C527,41,562,10,590,10c22,0,41,9,61,29
-                    c55,55,49,64-163,278L296,510h575c564,0,576,0,597,20c46,43,37,109-18,137c-19,10-159,13-590,13l-565,1l182,180
-                    c101,99,187,188,193,199c16,30,12,57-12,84C631,1174,595,1183,561,1169z" />
-                      </g>
-                    </svg>
-                  </div>
-                  <!-- Next button for carousel navigation -->
-                  <div class="slider--next">
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118"
-                      style="enable-background:new 0 0 150 118;" xml:space="preserve">
-                      <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                        <path
-                          d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z" />
-                      </g>
-                    </svg>
-                  </div>
+                <div class="showreel-video-container hidden" id="showreelContainer">
+                    <video id="myShowreelVideo" controls autoplay loop muted playsinline preload="auto">
+                        <source src="assets/video/your-showreel.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
-                <!-- Add this right after the closing </div> of your work--lockup div -->
-                <!-- Add this right after the closing </div> of your work--lockup div -->
-                </br>
-                </br>
-                </br>
-                <div class="other-works">
-                  <a href="other-projects.html" class="other-works--button">
+                <div class="showreel-placeholder" id="showreelPlaceholder">
+                    <p>in the making...</p>
+                </div>
+                <div class="other-works"> <a href="other-projects.html" class="other-works--button">
                     View Entire Portfolio
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                       x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;"
