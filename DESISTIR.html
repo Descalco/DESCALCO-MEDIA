@@ -1,67 +1,48 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Desistir – Descalco Media</title>
-  <link rel="stylesheet" href="portfolio.css" />
-
-  <style>
-    .fancy-button {
-      display: inline-block;
-      padding: 12px 24px;
-      background: linear-gradient(135deg, #460015, #500085);
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-  
-    .fancy-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-      background: linear-gradient(135deg, #460015, #500085);
-    }
-  </style>
+  <title>DESISTIR – Descalco Media</title>
+  <link rel="stylesheet" href="assets/css/portfoliopages.css" />
   
 </head>
 <body>
 
   <div class="container">
-    <a class="back-link" href="index.html">← Voltar à Página Inicial</a>
+    <a class="back-link" href="index.html">← Back to Home Page</a>
 
     <h1>DESISTIR</h1>
 
     <div class="project-meta">
       <div class="meta-item">
-        <h3>Tipo de Projeto</h3>
-        <p>Livro impresso, projeto editorial</p>
+        <h3>Project Type</h3>
+        <p>Printed book, editorial project</p>
       </div>
       <div class="meta-item">
-        <h3>Duração</h3>
-        <p>3 Meses</p>
+        <h3>Duration</h3>
+        <p>3 Months</p>
+      
       </div>
       <div class="meta-item">
-        <h3>Autor</h3>
+        <h3>Author</h3>
         <p>Pedro Costa</p>
       </div>
       <div class="meta-item">
-        <h3>Unidade Curricular</h3>
-        <p>Design da Comunicação II</p>
+        <h3>Course Unit</h3>
+        <p>Communication Design II</p>
       </div>
       <div class="meta-item">
-        <h3>Instituição</h3>
+        <h3>Institution</h3>
         <p>ESMAD – P.PORTO</p>
       </div>
       <div class="meta-item">
-        <h3>Professor / Orientador</h3>
+        <h3>Professor / Advisor</h3>
         <p>Ana Farinha</p>
       </div>
       <div class="meta-item">
         <h3>Role</h3>
-        <p>Escritor, ilustrador, conceptualização e montagem física do livro</p>
+        <p>Writer, illustrator, conceptualization and physical assembly of the book</p>
       </div>
       <div class="meta-item">
         <h3>Software</h3>
@@ -69,71 +50,72 @@
       </div>
     </div>
 
-   <!-- Imagem de destaque -->
-<div class="highlight-image" style="text-align:center; margin: 2rem 0;">
-    <img src="assets/img/DESISTIR/MOCKUP CAPA-2.jpg" alt="Imagem de destaque do projeto Desistir" style="max-width: 100%; width: 600px; height: auto; border-radius: 12px;" />
-  </div>
+    <!-- Highlight Image -->
+    <div class="highlight-image" style="text-align:center; margin: 2rem 0;">
+      <img src="assets/img/DESISTIR/MOCKUP CAPA-2.jpg" alt="Desistir project highlight image" style="max-width: 100%; width: 600px; height: auto; border-radius: 12px;" />
+    </div>
 
     <div class="section">
-      <h2>Sinopse</h2>
+      <h2>Synopsis</h2>
       <p>
-        <strong>"DESISTIR"</strong> é um livro que explora a entrada de um adolescente na vida universitária. Apesar de inicialmente motivado, João rapidamente percebe o desafio e as dificuldades do caminho que escolheu.
+        <strong>"DESISTIR"</strong> is a book that explores a teenager's entry into university life. Despite initially being motivated, João quickly realizes the challenge and difficulties of the path he has chosen.
       </p>
       <p>
-        Este projeto foi desenvolvido por mim na Escola Superior de Media Artes e Design, do Instituto Politécnico do Porto. Foi realizado no âmbito da Unidade Curricular de Design da Comunicação II, onde fomos desafiados a criar um livro completo. O projeto envolveu todas as etapas do processo criativo e técnico: desde a criação da história, passando pelas ilustrações, até à montagem digital e física do livro, incluindo a costura manual.
+        This project was developed by me at the School of Media Arts and Design (ESMAD) of the Polytechnic Institute of Porto. It was carried out within the scope of the Communication Design II Course Unit, where we were challenged to create a complete book. The project involved all stages of the creative and technical process: from story creation, through illustrations, to the digital and physical assembly of the book, including manual binding.
       </p>
     </div>
 
-    <!-- Galeria de Processo & Montagem -->
-<div class="section">
-    <div class="gallery-container">
-      <button class="gallery-nav prev" onclick="scrollGallery(this, -1)">❮</button>
-      <div class="gallery-scroll">
-        <img src="assets/img/DESISTIR/COVER-1.jpg" alt="Indice Interior">
-        <img src="assets/img/DESISTIR/BOOK-MULTIPLE-PAGES.jpg" alt="Multiplas paginas">
-        <img src="assets/img/DESISTIR/STREET-POSTER-YOU-CAN-DO-IT.jpg" alt="Cartaz">
+    <!-- Process & Assembly Gallery -->
+    <div class="section">
+      <h2>Gallery: Process & Assembly</h2>
+      <div class="gallery-container">
+        <button class="gallery-nav prev" onclick="scrollGallery(this, -1)">❮</button>
+        <div class="gallery-scroll">
+          <img src="assets/img/DESISTIR/COVER-1.jpg" alt="Interior Index">
+          <img src="assets/img/DESISTIR/BOOK-MULTIPLE-PAGES.jpg" alt="Multiple pages">
+          <img src="assets/img/DESISTIR/STREET-POSTER-YOU-CAN-DO-IT.jpg" alt="Poster">
+        </div>
+        <button class="gallery-nav next" onclick="scrollGallery(this, 1)">❯</button>
       </div>
-      <button class="gallery-nav next" onclick="scrollGallery(this, 1)">❯</button>
     </div>
-  </div>
 
     <div class="section">
-      <h2>Estilo Visual</h2>
+      <h2>Visual Style</h2>
       <p>
-        Mais uma vez, tal como em outros projetos, foquei-me na ilustração tipográfica. A linha gráfica do livro baseia-se fortemente no uso de contrastes e distorções, que se tornam o elemento ilustrativo principal de toda a narrativa visual.
+        Once again, as in other projects, I focused on typographic illustration. The book's graphic line is heavily based on the use of contrasts and distortions, which become the main illustrative element of the entire visual narrative.
       </p>
     </div>
 
-   <!-- Galeria de Estilo Visual -->
-<div class="section">
-    <h2>Galeria: Estilo Visual & Tipografia</h2>
-    <div class="gallery-container">
-      <button class="gallery-nav prev" onclick="scrollGallery(this, -1)">❮</button>
-      <div class="gallery-scroll">
-        <img src="assets/img/DESISTIR/AINDA-TENHO-TEMPO.jpg" alt="Tipografia">
-        <img src="assets/img/DESISTIR/FUTURO.jpg" alt="Futuro">
-        <img src="assets/img/DESISTIR/NOITADAS.jpg" alt="Noitadas">
-        <img src="assets/img/DESISTIR/MASSACOMATUM.jpg" alt="Massa com atum">
-        <img src="assets/img/DESISTIR/SERA-QUE-VOU-CONSEGUIR.jpg" alt="Acumulação">
-        <img src="assets/img/DESISTIR/BOOK-1.jpg" alt="Tempo">
-        <img src="assets/img/DESISTIR/BUROCRACIA-2.jpg" alt="Burocracia">
-        <img src="assets/img/DESISTIR/CAFE-PRETO.png" alt="Cafe">
-        <img src="assets/img/DESISTIR/ODIO_PRETO.jpg" alt="ODIO">
+    <!-- Visual Style Gallery -->
+    <div class="section">
+      <h2>Gallery: Visual Style & Typography</h2>
+      <div class="gallery-container">
+        <button class="gallery-nav prev" onclick="scrollGallery(this, -1)">❮</button>
+        <div class="gallery-scroll">
+          <img src="assets/img/DESISTIR/AINDA-TENHO-TEMPO.jpg" alt="Typography">
+          <img src="assets/img/DESISTIR/FUTURO.jpg" alt="Future">
+          <img src="assets/img/DESISTIR/NOITADAS.jpg" alt="Late nights">
+          <img src="assets/img/DESISTIR/MASSACOMATUM.jpg" alt="Pasta with tuna">
+          <img src="assets/img/DESISTIR/SERA-QUE-VOU-CONSEGUIR.jpg" alt="Accumulation">
+          <img src="assets/img/DESISTIR/BOOK-1.jpg" alt="Time">
+          <img src="assets/img/DESISTIR/BUROCRACIA-2.jpg" alt="Bureaucracy">
+          <img src="assets/img/DESISTIR/CAFE-PRETO.png" alt="Black coffee">
+          <img src="assets/img/DESISTIR/ODIO_PRETO.jpg" alt="Hate">
+        </div>
+        <button class="gallery-nav next" onclick="scrollGallery(this, 1)">❯</button>
       </div>
-      <button class="gallery-nav next" onclick="scrollGallery(this, 1)">❯</button>
     </div>
-  </div>
 
-    <!-- Botão para o cartaz -->
-    <div class="button-group">
-        <a class="pdf-button fancy-button" href="assets/img/DESISTIR/poster.pdf" target="_blank">
-          🖼️ Ver Cartaz (PDF)
-        </a>
-      </div>
-      
-
-    <a class="back-link" href="index.html">← Voltar à Página Inicial</a>
+    <!-- Button for poster -->
+    <div class="button-group project-button-container">
+      <!-- The project-link class is already providing the desired styling -->
+      <a class="project-link" href="assets/img/DESISTIR/poster.pdf" target="_blank">
+        🖼️ View Poster (PDF)
+      </a>
   </div>
+    
+  <a class="back-link" href="index.html">← Back to Home Page</a>
+</div>
 
   <script>
     // Gallery navigation functionality
