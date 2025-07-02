@@ -139,11 +139,21 @@
   
   /* GIF Grid Section */
   .gif-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Flexible columns for GIFs */
-    gap: 1rem;
-    margin-bottom: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Adjusted minmax for slightly larger items */
+  gap: 1.5rem;
+  margin: 2.5rem auto;
+  justify-content: center; /* Centers the grid if items don't fill the row */
+  max-width: 1000px; /* Optional: Sets a max-width for the grid itself */
   }
+
+  .gif-grid video { /* TARGETING THE <video> TAG HERE */
+  width: 100%; /* Make video fill its grid cell */
+  height: 250px; /* Fixed height: Set the same consistent height as your images */
+  object-fit: cover; /* Crucial: This will crop the video to fit the fixed height/width ratio, preventing distortion and ensuring uniform appearance */
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
   
   .gif-grid img {
     width: 100%;
@@ -265,19 +275,21 @@
   
   /* Image Grid within sections (e.g., Visual Style & Concept) */
   .image-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Flexible image grid */
-    gap: 1.5rem;
-    margin: 2.5rem 0; /* Space around the image grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Adjusted minmax for slightly larger items */
+  gap: 1.5rem;
+  margin: 2.5rem auto;
+  justify-content: center; /* Centers the grid if items don't fill the row */
+  max-width: 1000px; /* Optional: Sets a max-width for the grid itself */
   }
   
-  .image-grid img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    object-fit: cover;
-  }
+ .image-grid img {
+  width: 100%; /* Make image fill its grid cell */
+  height: 250px; /* Fixed height: Set a consistent height for all images in the grid */
+  object-fit: cover; /* Crucial: This will crop the image to fit the fixed height/width ratio, maintaining aspect ratio without distortion */
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
   
   .concept-art {
     text-align: center; /* Center image and caption */
@@ -381,9 +393,13 @@
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 0.8rem;
     }
-    .gif-grid img {
-      height: 150px;
-    }
+   .gif-grid img {
+  width: 100%; /* Make image fill its grid cell */
+  height: 250px; /* **Fixed height**: Set a consistent height for all GIFs in the grid */
+  object-fit: cover; /* **Crucial**: This will crop the GIF to fit the fixed height/width ratio */
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
   
     .gallery-scroll {
       height: 300px; /* Smaller gallery height for tablets */
@@ -401,8 +417,8 @@
     }
   
     .image-grid {
-      grid-template-columns: 1fr; /* Stack images vertically on very small screens */
-      gap: 1rem;
+    grid-template-columns: 1fr; /* Stack items vertically on smaller screens */
+    gap: 1rem;
     }
   
     .techniques-grid {
@@ -424,8 +440,8 @@
       }
       /* Video wrapper will naturally scale with width due to aspect-ratio */
       .gif-grid {
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-          gap: 0.5rem;
+    grid-template-columns: 1fr; /* Stack items vertically on smaller screens */
+    gap: 1rem;
       }
       .gif-grid img {
           height: 120px;
@@ -451,7 +467,41 @@
       .technique p {
           font-size: 0.9rem;
       }
+
+
   }
+
+  .caption {
+  font-size: 0.9rem;
+  color: #a1a1aa; /* Muted color for captions */
+  margin-top: 0.8rem;
+  margin-bottom: 2rem; /* Add some space below the caption */
+  text-align: center; /* Center caption text */
+  font-style: italic; /* Optional: make captions italic */
+  }
+
+/* For GIF grids, you might want a specific layout */
+.gif-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust as needed */
+  gap: 1.5rem;
+  margin: 2.5rem 0; /* Space around the gif grid */
+  justify-content: center; /* Center items if they don't fill the grid */
+}
+
+.gif-grid img {
+  width: 100%;
+  height: auto; /* Or fixed height if you prefer consistent aspect ratio */
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .gif-grid {
+    grid-template-columns: 1fr; /* Stack on smaller screens */
+  }
+}
 
   /* Add this to your portfoliopages.css file */
 .project-button-container {
