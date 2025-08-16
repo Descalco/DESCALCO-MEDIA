@@ -297,9 +297,44 @@ body {
 .l-wrapper {
     position: relative;
     width: 100%; /* Changed from 1440px, allowing it to fill its parent */
-    max-width: none; /* Increased max-width for larger screens, adjust as needed */
+    max-width: 1600px; /* Increased max-width for larger screens, adjust as needed */
     height: 100%;
     margin: 0 auto;
+}
+
+.l-side-nav {
+    position: absolute;
+    left: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.l-side-nav::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 2px;
+    height: 70%;
+    max-height: 750px;
+    background-color: #555;
+    opacity: .35;
+    z-index: 10
+}
+
+@media (max-width: 1180px) {
+    .l-side-nav {
+        display: none
+    }
 }
 
 .l-main-content {
@@ -649,14 +684,13 @@ body {
 }
 
 .intro {
-    text-align: center;
     position: relative;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     width: 100%; /* Changed from 900px */
-    max-width: none; /* Increased from 75% or 900px, adjust as needed */
+    max-width: 1200px; /* Increased from 75% or 900px, adjust as needed */
     height: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -668,8 +702,6 @@ body {
     -ms-flex-pack: center;
     justify-content: center;
     margin: 0 auto;
-    padding-bottom: 80px;
-    overflow: hidden;
 }
 
 @media (max-width: 1180px) {
@@ -677,25 +709,40 @@ body {
         max-width: 100%
     }
 }
+
 .intro--banner {
     position: relative;
-    height: auto;
-    overflow: hidden;
-    width: 100%;
-    max-width: none;
-    padding: 0 20px;
+    height: 475px
+}
+
+.intro--banner::before {
+    content: "";
+    position: absolute;
+    bottom: 20px;
+    left: -15px;
+    right: 0;
+    height: 2px;
+    background-color: #282828
+}
+
+.intro--banner::after {
+    content: "";
+    position: absolute;
+    bottom: 18px;
+    left: 0;
+    width: 30px;
+    height: 4px;
+    background-color: #400000
 }
 
 .intro--banner h1 {
-    text-align: center;
-    padding: 0 40px;
-    position: static;
+    position: relative;
     font-size: 68px;
     font-weight: 900;
     line-height: 1;
+    z-index: 1;
+    text-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
     animation: titleGlow 4s ease-in-out infinite;
-    box-sizing: border-box;
-    word-wrap: break-word;
 }
 
 .intro--banner button {
