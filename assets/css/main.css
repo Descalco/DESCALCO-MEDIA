@@ -38,7 +38,10 @@ html {
 }
 
 body {
-    margin: 0
+    margin: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+
 }
 
 article,
@@ -296,8 +299,10 @@ body {
 
 .l-wrapper {
     position: relative;
-    width: 100%; /* Changed from 1440px, allowing it to fill its parent */
-    max-width: none; /* Increased max-width for larger screens, adjust as needed */
+    width: 100%;
+    /* Changed from 1440px, allowing it to fill its parent */
+    max-width: none;
+    /* Increased max-width for larger screens, adjust as needed */
     height: 100%;
     margin: 0 auto;
 }
@@ -655,8 +660,10 @@ body {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 100%; /* Changed from 900px */
-    max-width: none; /* Increased from 75% or 900px, adjust as needed */
+    width: 100%;
+    /* Changed from 900px */
+    max-width: none;
+    /* Increased from 75% or 900px, adjust as needed */
     height: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -677,6 +684,7 @@ body {
         max-width: 100%
     }
 }
+
 .intro--banner {
     position: relative;
     height: auto;
@@ -864,8 +872,10 @@ body {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 100%; /* Changed from 960px */
-    max-width: 1200px; /* Increased from 80% or 960px, adjust as needed */
+    width: 100%;
+    /* Changed from 960px */
+    max-width: 1200px;
+    /* Increased from 80% or 960px, adjust as needed */
     height: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1098,8 +1108,10 @@ body {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 100%; /* Changed from 900px */
-    max-width: 1200px; /* Increased from 75% or 900px, adjust as needed */
+    width: 100%;
+    /* Changed from 900px */
+    max-width: 1200px;
+    /* Increased from 75% or 900px, adjust as needed */
     height: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1438,8 +1450,10 @@ body {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 100%; /* Changed from 700px */
-    max-width: 900px; /* Increased from 75% or 700px, adjust as needed */
+    width: 100%;
+    /* Changed from 700px */
+    max-width: 900px;
+    /* Increased from 75% or 700px, adjust as needed */
     height: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1534,7 +1548,8 @@ body {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 60%; /* This is the key line to adjust */
+    width: 60%;
+    /* This is the key line to adjust */
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -1646,7 +1661,8 @@ body {
 
     .work-request--options .options-a,
     .work-request--options .options-b {
-        display: block; /* This will make them stack vertically */
+        display: block;
+        /* This will make them stack vertically */
         width: auto;
     }
 }
@@ -1873,13 +1889,15 @@ body {
 }
 
 .other-works--button:hover {
-    transform: translateY(-5px); /* Lifts the button on hover */
+    transform: translateY(-5px);
+    /* Lifts the button on hover */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
     background-color: #5a0000;
 }
 
 .other-works--button:hover svg {
-    transform: translateX(5px); /* Moves arrow slightly on hover */
+    transform: translateX(5px);
+    /* Moves arrow slightly on hover */
 }
 
 /* Compact Client Trust Section */
@@ -1889,9 +1907,9 @@ body {
     overflow: hidden;
     padding: 80px 0;
     transition: all 0.3s ease-in-out;
-  }
+}
 
-  .trust-heading {
+.trust-heading {
     font-size: 1.7rem;
     margin-bottom: 0;
     color: var(--text-primary);
@@ -1902,9 +1920,9 @@ body {
     cursor: default;
     transition: transform 0.4s ease-in-out;
     z-index: 2;
-  }
+}
 
-  .trust-heading::after {
+.trust-heading::after {
     content: "";
     display: block;
     width: 60px;
@@ -1912,9 +1930,9 @@ body {
     background-color: var(--dark-red);
     margin: 15px auto 0;
     transition: all 0.3s ease-in-out;
-  }
+}
 
-  .client-logos {
+.client-logos {
     position: absolute;
     top: 60%;
     left: 50%;
@@ -1923,31 +1941,34 @@ body {
     pointer-events: none;
     transition: all 0.5s ease-in-out;
     z-index: 1;
-  }
+}
 
-  .trust-section:hover .trust-heading {
+.trust-section:hover .trust-heading {
     transform: translateY(-30px);
-  }
+}
 
-  .trust-section:hover .client-logos {
+.trust-section:hover .client-logos {
     opacity: 1;
     transform: translate(-50%, -10px);
     pointer-events: auto;
-  }
+}
 
 .logos-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 35px; /* More breathing room */
+    gap: 35px;
+    /* More breathing room */
     padding: 0;
 }
 
 .logos-container img {
-    height: 70px; /* 50px height (was 45px) - ~11% increase */
+    height: 70px;
+    /* 50px height (was 45px) - ~11% increase */
     width: auto;
-    max-width: 140px; /* Slightly wider max */
+    max-width: 140px;
+    /* Slightly wider max */
     opacity: 0.7;
     transition: all 0.3s ease;
     filter: brightness(0) invert(1);
@@ -1960,7 +1981,8 @@ body {
 
 /* Form heading adjustment */
 .collaborate-heading {
-    margin-top: 35px; /* Balanced spacing */
+    margin-top: 35px;
+    /* Balanced spacing */
 }
 
 /* Responsive adjustments */
@@ -1975,7 +1997,8 @@ body {
     }
 
     .logos-container img {
-        height: 42px; /* ~10% larger than previous 38px */
+        height: 42px;
+        /* ~10% larger than previous 38px */
     }
 
     .collaborate-heading {
@@ -1997,7 +2020,8 @@ body {
     }
 
     .logos-container img {
-        height: 35px; /* ~10% larger than previous 32px */
+        height: 35px;
+        /* ~10% larger than previous 32px */
     }
 
     .trust-heading:after {
@@ -2010,16 +2034,24 @@ body {
     }
 }
 
-  @keyframes titleGlow {
-    0%, 100% { filter: brightness(1); }
-    50% { filter: brightness(1.1); }
-  }
+@keyframes titleGlow {
 
-  .showreel-video-container {
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.1);
+    }
+}
+
+.showreel-video-container {
     max-width: 960px;
     margin: 0 auto 3rem auto;
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    padding-bottom: 56.25%;
+    /* 16:9 Aspect Ratio */
     height: 0;
     overflow: hidden;
     background-color: #000;
@@ -2038,34 +2070,54 @@ body {
 
 /* Updated styles for "In The Making" Placeholder */
 .showreel-placeholder {
-    max-width: 960px; /* Fixed width */
-    width: 100%; /* Responsive width */
-    aspect-ratio: 16 / 9; /* Ensures 16:9 aspect ratio */
-    margin: 0 auto 3rem auto; /* Center align and add bottom margin */
-    display: flex; /* Use flexbox for easy centering of text */
+    max-width: 960px;
+    /* Fixed width */
+    width: 100%;
+    /* Responsive width */
+    aspect-ratio: 16 / 9;
+    /* Ensures 16:9 aspect ratio */
+    margin: 0 auto 3rem auto;
+    /* Center align and add bottom margin */
+    display: flex;
+    /* Use flexbox for easy centering of text */
     flex-direction: column;
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    background: linear-gradient(145deg, rgba(220, 38, 38, 0.05), rgba(0, 0, 0, 0.7)); /* Subtle gradient background */
-    border: 1px solid rgba(220, 38, 38, 0.2); /* Soft border matching theme */
-    border-radius: 12px; /* Slightly more rounded corners */
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
-    backdrop-filter: blur(5px); /* Gentle blur effect (modern browsers) */
-    text-align: center; /* Fallback for text centering */
-    color: rgba(255, 255, 255, 0.6); /* Softer white for text */
-    font-family: 'Inter', sans-serif; /* Use Inter font for consistency */
-    position: relative; /* Needed for pseudo-elements if desired later */
-    overflow: hidden; /* Ensure content stays within bounds */
+    justify-content: center;
+    /* Center vertically */
+    align-items: center;
+    /* Center horizontally */
+    background: linear-gradient(145deg, rgba(220, 38, 38, 0.05), rgba(0, 0, 0, 0.7));
+    /* Subtle gradient background */
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    /* Soft border matching theme */
+    border-radius: 12px;
+    /* Slightly more rounded corners */
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    /* Enhanced shadow for depth */
+    backdrop-filter: blur(5px);
+    /* Gentle blur effect (modern browsers) */
+    text-align: center;
+    /* Fallback for text centering */
+    color: rgba(255, 255, 255, 0.6);
+    /* Softer white for text */
+    font-family: 'Inter', sans-serif;
+    /* Use Inter font for consistency */
+    position: relative;
+    /* Needed for pseudo-elements if desired later */
+    overflow: hidden;
+    /* Ensure content stays within bounds */
 }
 
 .showreel-placeholder p {
-    font-size: clamp(1rem, 2vw, 1.5rem); /* Reduced font size */
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    /* Reduced font size */
     color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 0.08em; /* Slightly reduced letter spacing */
-    text-shadow: 0 0 8px rgba(220, 38, 38, 0.3); /* Adjusted glow effect */
+    letter-spacing: 0.08em;
+    /* Slightly reduced letter spacing */
+    text-shadow: 0 0 8px rgba(220, 38, 38, 0.3);
+    /* Adjusted glow effect */
     animation: fadeInScale 2s ease-out forwards;
 }
 
@@ -2082,7 +2134,8 @@ body {
     transform: rotate(45deg);
     opacity: 0.7;
     z-index: 0;
-    animation: rotateBackground 20s linear infinite; /* Slow rotation */
+    animation: rotateBackground 20s linear infinite;
+    /* Slow rotation */
 }
 
 
@@ -2097,6 +2150,7 @@ body {
         opacity: 0;
         transform: scale(0.95);
     }
+
     100% {
         opacity: 1;
         transform: scale(1);
@@ -2104,39 +2158,54 @@ body {
 }
 
 @keyframes rotateBackground {
-    from { transform: rotate(0deg) scale(1); }
-    to { transform: rotate(360deg) scale(1.05); }
+    from {
+        transform: rotate(0deg) scale(1);
+    }
+
+    to {
+        transform: rotate(360deg) scale(1.05);
+    }
 }
 
 /* Responsive adjustments for the placeholder */
 @media (max-width: 992px) {
     .showreel-placeholder {
-        max-width: 80%; /* Adjust max-width for smaller desktops/large tablets */
-        height: 450px; /* Adjust height */
+        max-width: 80%;
+        /* Adjust max-width for smaller desktops/large tablets */
+        height: 450px;
+        /* Adjust height */
     }
 }
 
 @media (max-width: 768px) {
     .showreel-placeholder {
-        max-width: 90%; /* More width for tablets */
-        height: 350px; /* Adjust height for typical tablet size */
+        max-width: 90%;
+        /* More width for tablets */
+        height: 350px;
+        /* Adjust height for typical tablet size */
         margin-bottom: 2rem;
     }
+
     .showreel-placeholder p {
-        font-size: clamp(0.9rem, 2vw, 1.2rem); /* Smaller font size for tablets */
+        font-size: clamp(0.9rem, 2vw, 1.2rem);
+        /* Smaller font size for tablets */
         letter-spacing: 0.06em;
     }
 }
 
 @media (max-width: 576px) {
     .showreel-placeholder {
-        height: 250px; /* Adjust height for mobile */
+        height: 250px;
+        /* Adjust height for mobile */
         margin-bottom: 1.5rem;
     }
+
     .showreel-placeholder p {
-        font-size: clamp(0.8rem, 1.8vw, 1rem); /* Smaller font size for mobile */
+        font-size: clamp(0.8rem, 1.8vw, 1rem);
+        /* Smaller font size for mobile */
         letter-spacing: 0.05em;
     }
+
     .showreel-placeholder::before {
         top: 10%;
         left: 10%;
@@ -2147,6 +2216,41 @@ body {
 
 /* Adjust the margin of the .other-works div to bring the button closer if needed */
 .other-works {
-    margin-top: 2rem; /* Reduced from 3rem or 4rem if it feels too far */
+    margin-top: 2rem;
+    /* Reduced from 3rem or 4rem if it feels too far */
     text-align: center;
+}
+
+/* Hide the site until video finishes */
+#siteContent {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0c0c0c;
+    /* or black */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    border: 5px solid red; /* DEBUG */
+}
+
+#preloader video {
+    max-width: 60%;
+    height: auto;
+}
+
+#introVideo {
+  object-fit: contain;
+}
+
+#introVideo::-webkit-media-controls {
+  display: none !important; /* hide controls if they appear */
 }

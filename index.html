@@ -18,6 +18,17 @@
 
 <body>
 
+<!-- Preloader -->
+<div id="preloader">
+  <video id="introVideo" autoplay playsinline muted preload="auto">
+  <source src="assets/video/OPENER.mp4" type="video/mp4">
+</video>
+
+</div>
+
+
+  <div id="siteContent">
+
   <!-- This notification appears only on small screens or landscape mode on phones -->
   <div class="device-notification">
     <a class="device-notification--logo" href="index.html">
@@ -54,6 +65,8 @@
                 </div>
               </div>
             </li>
+
+            </div>
             <!-- WORKS SECTION -->
             <li class="l-section section">
               <div class="work">
@@ -260,6 +273,62 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
   <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
   <script src="assets/js/functions.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const preloader = document.getElementById('preloader');
+  const introVideo = document.getElementById('introVideo');
+  const siteContent = document.getElementById('siteContent');
+
+  if (!introVideo) {
+    console.error("❌ Intro video not found!");
+    siteContent.style.opacity = 1;
+    preloader.style.display = 'none';
+    return;
+  }
+
+  // Ensure hidden initially
+  siteContent.style.opacity = 0;
+
+  introVideo.muted = true;
+  introVideo.playsInline = true;
+
+  introVideo.play().then(() => {
+    console.log("✅ Video started playing");
+
+    introVideo.addEventListener('ended', () => {
+      console.log("🎬 Video ended");
+      introVideo.pause();
+
+      // Fade in site
+      siteContent.style.transition = "opacity 1s ease";
+      siteContent.style.opacity = 1;
+
+      setTimeout(() => {
+        preloader.style.display = 'none';
+        console.log("✅ Preloader removed");
+      }, 1000);
+    }, { once: true });
+
+  }).catch(err => {
+    console.warn("⚠️ Autoplay blocked, skipping intro:", err);
+
+    // Skip video → fade in immediately
+    siteContent.style.transition = "opacity 1s ease";
+    siteContent.style.opacity = 1;
+
+    setTimeout(() => {
+      preloader.style.display = 'none';
+      console.log("✅ Preloader removed (no video)");
+    }, 1000);
+  });
+});
+</script>
+
+
+
+
+
 </body>
 
 </html>
