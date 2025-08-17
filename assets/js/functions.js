@@ -149,6 +149,10 @@ $(document).ready(function () {
 
   }
 
+  // Function to handle outer navigation 
+  // This function is used to toggle the outer navigation menu
+  // when the user clicks on the header navigation toggle button
+
   function outerNav() {
 
     $('.header--nav-toggle').click(function () {
@@ -208,3 +212,126 @@ if (showreelInTheMaking) {
     if (myShowreelVideo) myShowreelVideo.setAttribute('autoplay', ''); // Re-add autoplay when visible
     if (showreelPlaceholder) showreelPlaceholder.classList.add('hidden');
 }
+
+// --- Home Section Navigation Logic ---
+function goToHomeSection() {
+  // Simulate clicking the "Home" nav item
+  document.querySelectorAll('.side-nav li')[0].click();
+}
+
+// --- Logo Animation Video Logic ---
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const logoOverlay = document.getElementById('logoAnimationOverlay');
+      const logoVideo = document.getElementById('logoAnimationVideo');
+      const mainContent = document.querySelector('.perspective');
+      const loadingIndicator = document.getElementById('videoLoading');
+
+      console.log('Script loaded');
+      console.log('Video element:', logoVideo);
+      console.log('Video src:', logoVideo.currentSrc || 'No source set');
+
+      // Ensure main content is hidden initially
+      mainContent.style.opacity = '0';
+
+      // Test if video file exists by trying to load it
+      fetch('assets/video/OPENER.mp4')
+        .then(response => {
+          console.log('Video file response:', response.status, response.statusText);
+          if (!response.ok) {
+            throw new Error('Video file not found');
+          }
+          return response;
+        })
+        .catch(error => {
+          console.error('Video file fetch error:', error);
+          loadingIndicator.innerHTML = '<p style="color: white;">Video file not found. Check the path.</p>';
+          setTimeout(showMainContent, 2000);
+        });
+
+      // Video event listeners
+      logoVideo.addEventListener('loadstart', function () {
+        console.log('Video: loadstart event fired');
+      });
+
+      logoVideo.addEventListener('loadedmetadata', function () {
+        console.log('Video: metadata loaded');
+        console.log('Video duration:', logoVideo.duration);
+        console.log('Video dimensions:', logoVideo.videoWidth, 'x', logoVideo.videoHeight);
+      });
+
+      logoVideo.addEventListener('loadeddata', function () {
+        console.log('Video: data loaded');
+        loadingIndicator.style.display = 'none';
+
+        // Try to play the video
+        logoVideo.play().then(function () {
+          console.log('Video: playing successfully');
+          // Remove controls once it starts playing
+          logoVideo.removeAttribute('controls');
+        }).catch(function (error) {
+          console.error('Video: play error:', error);
+          showMainContent();
+        });
+      });
+
+      logoVideo.addEventListener('canplay', function () {
+        console.log('Video: can play');
+      });
+
+      logoVideo.addEventListener('playing', function () {
+        console.log('Video: playing event fired');
+      });
+
+      logoVideo.addEventListener('ended', function () {
+        console.log('Video: ended');
+        showMainContent();
+      });
+
+      logoVideo.addEventListener('error', function (e) {
+        console.error('Video: error event:', e);
+        console.error('Video error details:', logoVideo.error);
+        loadingIndicator.innerHTML = '<p style="color: white;">Video failed to load. Error: ' + (logoVideo.error ? logoVideo.error.message : 'Unknown') + '</p>';
+        setTimeout(showMainContent, 3000);
+      });
+
+      // Function to show main content
+      function showMainContent() {
+        console.log('Showing main content');
+        logoOverlay.style.opacity = '0';
+
+        setTimeout(function () {
+          logoOverlay.style.display = 'none';
+          mainContent.style.transition = 'opacity 1s ease-in-out';
+          mainContent.style.opacity = '1';
+        }, 500);
+      }
+
+      // Fallback timeout
+      setTimeout(function () {
+        if (logoOverlay.style.display !== 'none') {
+          console.log('Timeout reached, showing main content');
+          showMainContent();
+        }
+      }, 15000);
+    });
+
+    logoVideo.addEventListener('canplay', function () {
+      // Force play with multiple attempts
+      const playPromise = logoVideo.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(function () {
+          // Autoplay started
+          playOverlay.style.display = 'none';
+        }).catch(function (error) {
+          // Autoplay failed, try again after a short delay
+          setTimeout(function () {
+            logoVideo.play().catch(function () {
+              // Still failed, show play button
+              playOverlay.style.display = 'flex';
+            });
+          }, 100);
+        });
+      }
+    });

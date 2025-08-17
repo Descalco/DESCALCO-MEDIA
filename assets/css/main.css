@@ -1,3 +1,7 @@
+/* =========================
+   1. Fonts
+   ========================= */
+
 @font-face {
     font-family: 'Montserrat';
     src: url("fonts/Montserrat-Black.eot");
@@ -29,6 +33,10 @@
     font-weight: 300;
     font-style: normal
 }
+
+/* =========================
+   2. Normalize & Resets
+   ========================= */
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
@@ -291,8 +299,20 @@ body {
     width: 100%;
     height: 100vh;
     box-shadow: 0 0 45px 5px rgba(0, 0, 0, 0.85);
-    overflow: hidden
+    overflow: hidden;
 }
+
+.scroll-indicator {
+  position: fixed;
+  top: 85%;
+  right: 7%;
+  bottom: 10%;
+  font-size: 1rem;
+  color: #aaa;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 1000;
+  }
 
 .l-wrapper {
     position: relative;
@@ -592,6 +612,31 @@ body {
     .header--cta {
         display: none
     }
+}
+
+.back-to-top-btn {
+  position: fixed;
+  right: 7%;
+  bottom: 10%;
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #222;
+  cursor: pointer;
+  z-index: 1001;
+  border: none;
+  transition: background 0.2s;
+  pointer-events: auto; /* <-- Add this line */
+}
+
+.back-to-top-btn:hover {
+  background: #eee;
 }
 
 .side-nav {
