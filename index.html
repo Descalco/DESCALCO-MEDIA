@@ -3,7 +3,7 @@
 
 <head>
   <!-- Basic site metadata -->
-  <title>Descalco Media | Motion Designer</title>
+  <title>DESCALCO</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,17 +17,23 @@
 </head>
 
 <body>
+  <!-- Keep the logo animation overlay as is, but remove the display:none part -->
   <div class="logo-animation-overlay" id="logoAnimationOverlay">
     <video id="logoAnimationVideo" muted playsinline preload="metadata" autoplay style="pointer-events: none;">
-      <source src="assets/video/OPENER.webm" type="video/webm">
-      <source src="assets/video/OPENER.mp4" type="video/mp4">
+      <source src="assets/video/OPENER2.webm" type="video/webm">
       Your browser does not support the video tag.
     </video>
-    <!-- Loading indicator -->
+  </div>
+
+  <!-- Loading indicator -->
+
+  <!--
     <div class="video-loading" id="videoLoading">
       <div class="loading-spinner"></div>
       <p style="color: white; margin-top: 10px;">Loading video...</p>
-    </div>
+    </div> 
+    -->
+
   </div>
 
 
@@ -51,14 +57,70 @@
           <header class="header">
             <a class="header--logo" href="index.html">
               <img src="assets/img/logo-horizontal-colorido.svg" alt="Descalco">
-              <p>DESCALCO MEDIA</p>
+              <div class="header--logo-text">
+                <span class="header--author">by Pedro Costa</span>
+              </div>
             </a>
-            <button class="header--cta cta">Hire Me</button>
+
+            <!-- Availability Status -->
+
+            <script>
+              // Availability Status Manager
+              document.addEventListener('DOMContentLoaded', function () {
+                const availabilityDot = document.querySelector('.availability-dot');
+                const availabilityText = document.querySelector('.availability-text');
+
+                // Status options: 'available', 'busy', 'unavailable'
+                function setAvailabilityStatus(status) {
+                  // Remove all status classes
+                  availabilityDot.classList.remove('available', 'busy', 'unavailable');
+
+                  // Add new status class and update text
+                  switch (status) {
+                    case 'available':
+                      availabilityDot.classList.add('available');
+                      availabilityText.textContent = 'Available for work';
+                      break;
+                    case 'busy':
+                      availabilityDot.classList.add('busy');
+                      availabilityText.textContent = 'Currently busy';
+                      break;
+                    case 'unavailable':
+                      availabilityDot.classList.add('unavailable');
+                      availabilityText.textContent = 'Not available';
+                      break;
+                  }
+                }
+
+                // Set your current status here:
+                setAvailabilityStatus('available'); // Change to 'busy' or 'unavailable' as needed
+
+                // Optional: Click to cycle through statuses (for testing)
+                document.querySelector('.availability-indicator').addEventListener('click', function () {
+                  const currentStatus = availabilityDot.className.split(' ').find(cls =>
+                    ['available', 'busy', 'unavailable'].includes(cls)
+                  );
+
+                  const statuses = ['available', 'busy', 'unavailable'];
+                  const currentIndex = statuses.indexOf(currentStatus);
+                  const nextStatus = statuses[(currentIndex + 1) % statuses.length];
+
+                  setAvailabilityStatus(nextStatus);
+                });
+              });
+            </script>
+            <div class="header--availability">
+              <div class="availability-indicator">
+                <div class="availability-dot available"></div>
+                <span class="availability-text">Available for work</span>
+              </div>
+            </div>
             <div class="header--nav-toggle">
               <span></span>
             </div>
           </header>
           <!-- Side navigation - appears on the left side when scrolling between sections -->
+
           <nav class="l-side-nav">
             <ul class="side-nav">
               <li class="is-active"><span>Home</span></li>
@@ -68,25 +130,21 @@
               <li><span>Hire me</span></li>
             </ul>
           </nav>
+
           <!-- Main content sections -->
           <ul class="l-main-content main-content">
             <!-- HOME SECTION -->
             <li class="l-section section section--is-active">
+              <!-- Add video background container inside home section -->
+              <div class="home-video-background" id="homeVideoBackground" style="display: none;">
+                <video id="homeBackgroundVideo" muted playsinline style="pointer-events: none;">
+                  <source src="assets/video/OPENER2.webm" type="video/webm">
+                </video>
+              </div>
+
               <div class="intro">
                 <div class="intro--banner">
-                  <h1>Motion by design<br> Impact <br> By default</h1>
-                  <button class="cta">Hire Me
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118"
-                      style="enable-background:new 0 0 150 118;" xml:space="preserve">
-                      <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                        <path
-                          d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z" />
-                      </g>
-                    </svg>
-                    <span class="btn-background"></span>
-                  </button>
-                  <img src="assets/img/LOGO-COLORIDO.svg" alt="Descalco Media" width="50%" height="100%">
+                  <h1>Motion by design impact by default</h1>
                 </div>
               </div>
             </li>
@@ -298,121 +356,111 @@
   <script src="assets/js/functions.js"></script>
 
   <!-- LOGO ANIM INTRO -->
-  // Replace the existing logo animation script with this debug version:
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const logoOverlay = document.getElementById('logoAnimationOverlay');
       const logoVideo = document.getElementById('logoAnimationVideo');
       const mainContent = document.querySelector('.perspective');
-      const loadingIndicator = document.getElementById('videoLoading');
+      const homeVideoBackground = document.getElementById('homeVideoBackground');
+      const homeBackgroundVideo = document.getElementById('homeBackgroundVideo');
 
-      console.log('Script loaded');
-      console.log('Video element:', logoVideo);
-      console.log('Video src:', logoVideo.currentSrc || 'No source set');
+      let videoHasPlayed = false;
 
       // Ensure main content is hidden initially
       mainContent.style.opacity = '0';
 
-      // Test if video file exists by trying to load it
-      fetch('assets/video/OPENER.mp4')
-        .then(response => {
-          console.log('Video file response:', response.status, response.statusText);
-          if (!response.ok) {
-            throw new Error('Video file not found');
-          }
-          return response;
-        })
-        .catch(error => {
-          console.error('Video file fetch error:', error);
-          loadingIndicator.innerHTML = '<p style="color: white;">Video file not found. Check the path.</p>';
-          setTimeout(showMainContent, 2000);
-        });
-
-      // Video event listeners
-      logoVideo.addEventListener('loadstart', function () {
-        console.log('Video: loadstart event fired');
-      });
-
-      logoVideo.addEventListener('loadedmetadata', function () {
-        console.log('Video: metadata loaded');
-        console.log('Video duration:', logoVideo.duration);
-        console.log('Video dimensions:', logoVideo.videoWidth, 'x', logoVideo.videoHeight);
-      });
-
-      logoVideo.addEventListener('loadeddata', function () {
-        console.log('Video: data loaded');
-        loadingIndicator.style.display = 'none';
-
-        // Try to play the video
-        logoVideo.play().then(function () {
-          console.log('Video: playing successfully');
-          // Remove controls once it starts playing
-          logoVideo.removeAttribute('controls');
-        }).catch(function (error) {
-          console.error('Video: play error:', error);
-          showMainContent();
-        });
-      });
-
+      // When video can play, start it
       logoVideo.addEventListener('canplay', function () {
-        console.log('Video: can play');
+        if (!videoHasPlayed) {
+          logoVideo.play().catch(function (error) {
+            console.error('Video play error:', error);
+            showMainContent();
+          });
+        }
       });
 
-      logoVideo.addEventListener('playing', function () {
-        console.log('Video: playing event fired');
-      });
-
+      // When video ends, set up persistent background
       logoVideo.addEventListener('ended', function () {
-        console.log('Video: ended');
-        showMainContent();
-      });
+        console.log('Video ended, setting up persistent background');
+        videoHasPlayed = true;
 
-      logoVideo.addEventListener('error', function (e) {
-        console.error('Video: error event:', e);
-        console.error('Video error details:', logoVideo.error);
-        loadingIndicator.innerHTML = '<p style="color: white;">Video failed to load. Error: ' + (logoVideo.error ? logoVideo.error.message : 'Unknown') + '</p>';
-        setTimeout(showMainContent, 3000);
-      });
+        // Set home background video to the exact last frame and keep it there
+        homeBackgroundVideo.currentTime = logoVideo.duration;
+        homeBackgroundVideo.pause(); // Ensure it stays on the last frame
 
-      // Function to show main content
-      function showMainContent() {
-        console.log('Showing main content');
+        // Show home video background permanently
+        homeVideoBackground.style.display = 'flex';
+
+        // Start fading in main content immediately
+        mainContent.style.transition = 'opacity 1s ease-in-out';
+        mainContent.style.opacity = '1';
+
+        // Hide the fullscreen overlay
         logoOverlay.style.opacity = '0';
 
         setTimeout(function () {
           logoOverlay.style.display = 'none';
-          mainContent.style.transition = 'opacity 1s ease-in-out';
-          mainContent.style.opacity = '1';
         }, 500);
+      });
+
+      // Error handling
+      logoVideo.addEventListener('error', function (e) {
+        console.error('Video error:', e);
+        showMainContent();
+      });
+
+      // Function to show main content (fallback)
+      function showMainContent() {
+        videoHasPlayed = true;
+        logoOverlay.style.display = 'none';
+        mainContent.style.transition = 'opacity 1s ease-in-out';
+        mainContent.style.opacity = '1';
       }
+
+      // Navigation handling - ensure video background persists
+      function ensureHomeVideoBackground() {
+        if (videoHasPlayed && homeVideoBackground) {
+          homeVideoBackground.style.display = 'flex';
+          if (homeBackgroundVideo.readyState >= 1) {
+            homeBackgroundVideo.currentTime = homeBackgroundVideo.duration;
+            homeBackgroundVideo.pause();
+          }
+        }
+      }
+
+      // Listen for section changes (if your navigation system triggers these events)
+      document.addEventListener('sectionChanged', function (e) {
+        if (e.detail && e.detail.section === 'home') {
+          setTimeout(ensureHomeVideoBackground, 100);
+        }
+      });
+
+      // Alternative: Use MutationObserver to detect when home section becomes active
+      const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+            const target = mutation.target;
+            if (target.classList.contains('section--is-active') &&
+              target.querySelector('.intro')) {
+              // Home section is now active
+              setTimeout(ensureHomeVideoBackground, 100);
+            }
+          }
+        });
+      });
+
+      // Observe all sections for class changes
+      document.querySelectorAll('.l-section').forEach(function (section) {
+        observer.observe(section, { attributes: true, attributeFilter: ['class'] });
+      });
 
       // Fallback timeout
       setTimeout(function () {
-        if (logoOverlay.style.display !== 'none') {
+        if (!videoHasPlayed && logoOverlay.style.display !== 'none') {
           console.log('Timeout reached, showing main content');
           showMainContent();
         }
       }, 15000);
-    });
-
-    logoVideo.addEventListener('canplay', function () {
-      // Force play with multiple attempts
-      const playPromise = logoVideo.play();
-
-      if (playPromise !== undefined) {
-        playPromise.then(function () {
-          // Autoplay started
-          playOverlay.style.display = 'none';
-        }).catch(function (error) {
-          // Autoplay failed, try again after a short delay
-          setTimeout(function () {
-            logoVideo.play().catch(function () {
-              // Still failed, show play button
-              playOverlay.style.display = 'flex';
-            });
-          }, 100);
-        });
-      }
     });
   </script>
 </body>
