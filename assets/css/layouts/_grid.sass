@@ -1,3 +1,4 @@
+// CRITICAL: Do not modify .l-viewport - it controls scroll functionality
 .l-viewport
   position: relative
   width: 100%
@@ -5,13 +6,30 @@
   box-shadow: 0 0 45px 5px rgba(0,0,0,.85)
   overflow: hidden
 
+// Improved responsive wrapper - safer approach with better scaling
 .l-wrapper
   position: relative
-  width: 1440px
-  max-width: 90%
+  width: 100%
+  max-width: $container-xxl
   height: 100%
   margin: 0 auto
+  padding: 0 $space-sm
 
+  @media (max-width: $breakpoint-xl)
+    max-width: $container-xl
+    padding: 0 $space-md
+
+  @media (max-width: $breakpoint-lg)
+    max-width: $container-lg
+    padding: 0 $space-lg
+
+  @media (max-width: $breakpoint-md)
+    padding: 0 $space-md
+
+  @media (max-width: $breakpoint-sm)
+    padding: 0 $space-sm
+
+// CRITICAL: Do not modify .l-side-nav positioning - affects scroll navigation
 .l-side-nav
   position: absolute
   left: 0
@@ -31,11 +49,12 @@
     max-height: 750px
     background-color: #555
     opacity: .35
-    z-index: 10
+    z-index: $z-index-nav
 
-  @media (max-width: 1180px)
+  @media (max-width: $breakpoint-xl)
     display: none
 
+// CRITICAL: Do not modify .l-main-content - controls section transitions
 .l-main-content
   position: relative
   width: 100%
@@ -44,6 +63,7 @@
   padding: 0
   list-style: none
 
+// CRITICAL: Do not modify .l-section - controls section positioning
 .l-section
   position: absolute
   width: 100%

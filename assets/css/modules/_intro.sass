@@ -1,15 +1,23 @@
 .intro
   position: relative
   display: flex
-  width: 900px
-  max-width: 75%
+  width: 100%
+  max-width: $container-lg
   height: 100%
   flex-direction: column
   justify-content: center
   margin: 0 auto
+  padding: 0 $space-md
 
-  @media (max-width: 1180px)
+  @media (max-width: $breakpoint-xl)
     max-width: 100%
+    padding: 0 $space-lg
+
+  @media (max-width: $breakpoint-md)
+    padding: 0 $space-md
+
+  @media (max-width: $breakpoint-sm)
+    padding: 0 $space-sm
 
   &--banner
     position: relative
@@ -35,18 +43,27 @@
 
     h1
       position: relative
-      font-size: 68px
+      font-size: $heading-hero
       font-weight: 900
-      line-height: 1
+      line-height: 1.1
       z-index: 1
+      text-shadow: 0 0 15px rgba(220, 38, 38, 0.3)
+      animation: titleGlow 4s ease-in-out infinite
 
     button
       position: relative
-      padding: 5px 17px 5px 12px
+      padding: 12px 24px 12px 18px
       font-weight: 700
       text-transform: uppercase
       background-color: transparent
       border: none
+      min-height: $touch-target-comfortable
+      font-size: $text-base
+      
+      @media (max-width: $breakpoint-sm)
+        padding: 15px 30px 15px 24px
+        min-height: $touch-target-large
+        font-size: $text-large
 
       .btn-background
         position: absolute

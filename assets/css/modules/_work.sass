@@ -1,15 +1,25 @@
 .work
   position: relative
   display: flex
-  width: 960px
-  max-width: 80%
+  width: 100%
+  max-width: $container-lg
   height: 100%
   flex-direction: column
   justify-content: center
   margin: 0 auto
+  padding: 0 $space-md
 
-  @media (max-width: 1180px)
+  @media (max-width: $breakpoint-xl)
     max-width: 100%
+    padding: 0 $space-lg
+
+  @media (max-width: $breakpoint-md)
+    padding: 0 $space-md
+
+  @media (max-width: $breakpoint-sm)
+    padding: 0 $space-sm
+    justify-content: flex-start
+    padding-top: $space-xl
 
   h2
     margin: 0 0 20px 0

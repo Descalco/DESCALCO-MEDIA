@@ -303,118 +303,18 @@ body {
     max-width: 1600px; /* Increased max-width for larger screens, adjust as needed */
     height: 100%;
     margin: 0 auto;
+    padding: 0 1rem; /* Add base padding for mobile */
 }
 
-/* SAFE mobile margins - only add padding, don't change core layout */
 @media (max-width: 768px) {
-    .intro, .work, .about, .hire {
-        padding-left: 1.5rem !important;
-        padding-right: 1.5rem !important;
-        box-sizing: border-box;
-    }
-    
-    /* Also add padding to the header for consistency */
-    .header {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        box-sizing: border-box;
+    .l-wrapper {
+        padding: 0 1.5rem; /* More generous mobile margins */
     }
 }
 
 @media (max-width: 480px) {
-    .intro, .work, .about, .hire {
-        padding-left: 1.25rem !important;
-        padding-right: 1.25rem !important;
-    }
-    
-    .header {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-    }
-    
-    /* Make hamburger menu larger for better mobile UX */
-    .header--nav-toggle {
-        width: 60px;
-        height: 60px;
-    }
-}
-
-@media (max-width: 400px) {
-    .intro, .work, .about, .hire {
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-    }
-    
-    .header {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-}
-
-/* High-resolution mobile devices (like 1080x1920) - scale down content */
-@media (max-width: 480px) and (min-height: 800px) and (-webkit-min-device-pixel-ratio: 2) {
-    /* Scale down main title for high-res screens */
-    .intro--banner h1 {
-        font-size: 42px !important;
-        line-height: 1.1;
-    }
-    
-    /* Scale down about section title */
-    .about--banner h2 {
-        font-size: 42px !important;
-        line-height: 1.1;
-    }
-    
-    /* Adjust banner heights for better fit */
-    .intro--banner {
-        height: 320px !important;
-    }
-    
-    .about--banner {
-        height: 320px !important;
-    }
-    
-    /* Scale down form elements */
-    .work-request--options label {
-        width: 160px;
-        line-height: 45px;
-        font-size: 14px;
-    }
-    
-    /* Better text scaling for high-res */
-    body {
-        font-size: 13px;
-    }
-    
-    /* Adjust logo size */
-    .header--logo img {
-        height: 40px;
-    }
-}
-
-/* Extra high-resolution screens (1080p+ mobile) */
-@media (max-width: 480px) and (min-height: 1000px) {
-    .intro--banner h1 {
-        font-size: 38px !important;
-    }
-    
-    .about--banner h2 {
-        font-size: 38px !important;
-    }
-    
-    .intro--banner {
-        height: 300px !important;
-    }
-    
-    .about--banner {
-        height: 300px !important;
-    }
-    
-    /* Even smaller form elements for very tall screens */
-    .work-request--options label {
-        width: 150px;
-        line-height: 40px;
-        font-size: 13px;
+    .l-wrapper {
+        padding: 0 1.25rem; /* Professional mobile margins */
     }
 }
 
@@ -681,6 +581,39 @@ body {
 .header--nav-toggle::after {
     top: 5px;
     width: 23px
+}
+
+/* Better mobile hamburger menu */
+@media (max-width: 768px) {
+    .header--nav-toggle {
+        width: 60px;
+        height: 60px;
+        margin-right: 0.5rem;
+    }
+    
+    .header--nav-toggle span,
+    .header--nav-toggle::before,
+    .header--nav-toggle::after {
+        width: 20px;
+        height: 3px;
+    }
+    
+    .header--nav-toggle::before {
+        bottom: 6px;
+        width: 26px;
+    }
+    
+    .header--nav-toggle::after {
+        top: 6px;
+        width: 26px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header--nav-toggle {
+        width: 56px;
+        height: 56px;
+    }
 }
 
 .header--cta {
@@ -1025,15 +958,53 @@ body {
 
 @media (max-width: 600px) {
     .intro--banner {
-        height: 360px
+        height: 400px; /* Increased height for better spacing */
     }
 
     .intro--banner h1 {
-        font-size: 55px
+        font-size: 48px; /* Slightly smaller for better fit */
+        line-height: 1.1; /* Tighter line height for mobile */
+        margin-bottom: 1rem;
     }
 
     .intro--banner img {
-        display: none
+        width: 45%; /* Slightly smaller star */
+        height: auto;
+        right: -2%; /* Better positioning */
+        bottom: 15px;
+    }
+}
+
+/* Samsung A51/71 and similar tall mobile screens optimization */
+@media (max-width: 480px) and (min-height: 800px) {
+    .intro--banner {
+        height: 450px; /* More breathing room on tall screens */
+        padding: 2rem 0;
+    }
+
+    .intro--banner h1 {
+        font-size: 42px; /* Better size for narrow screens */
+        line-height: 1.05;
+        margin-bottom: 1.5rem;
+    }
+
+    .intro--banner img {
+        width: 40%;
+        right: 0%;
+        bottom: 20px;
+    }
+}
+
+/* Extra narrow screens (Samsung A series) */
+@media (max-width: 400px) {
+    .intro--banner h1 {
+        font-size: 38px;
+        line-height: 1.0;
+    }
+
+    .intro--banner img {
+        width: 38%;
+        right: 2%;
     }
 }
 
@@ -1494,7 +1465,8 @@ body {
 
 @media (max-width: 600px) {
     .about--banner {
-        height: auto
+        height: auto;
+        padding: 2rem 0;
     }
 
     .about--banner::before {
@@ -1507,7 +1479,9 @@ body {
 
     .about--banner h2 {
         margin-top: 0;
-        font-size: 55px
+        font-size: 48px; /* Better size for mobile */
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
     }
 
     .about--banner h2::before {
@@ -1526,6 +1500,39 @@ body {
 
     .about--options {
         display: none
+    }
+}
+
+/* Samsung A51/71 About section optimization */
+@media (max-width: 480px) and (min-height: 800px) {
+    .about--banner h2 {
+        font-size: 42px;
+        line-height: 1.05;
+        margin-bottom: 2rem;
+    }
+    
+    .about--banner::before {
+        left: 120px;
+    }
+    
+    .about--banner::after {
+        left: 280px;
+    }
+}
+
+/* Extra narrow screens */
+@media (max-width: 400px) {
+    .about--banner h2 {
+        font-size: 38px;
+        line-height: 1.0;
+    }
+    
+    .about--banner::before {
+        left: 100px;
+    }
+    
+    .about--banner::after {
+        left: 250px;
     }
 }
 
@@ -1752,7 +1759,62 @@ body {
     border: 2px solid #fff;
     cursor: pointer;
     -webkit-transition: background-color .2s ease-in-out, border-color .2s ease-in-out;
-    transition: background-color .2s ease-in-out, border-color .2s ease-in-out
+    transition: background-color .2s ease-in-out, border-color .2s ease-in-out;
+    /* Better mobile touch targets */
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Professional mobile form improvements */
+@media (max-width: 768px) {
+    .work-request--options label {
+        width: 180px;
+        min-height: 55px;
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .work-request--information .information-name,
+    .work-request--information .information-email {
+        font-size: 18px;
+        height: 55px;
+    }
+    
+    .work-request input[type="submit"] {
+        min-height: 55px;
+        font-size: 17px;
+        padding: 0 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .work-request--options label {
+        width: 160px;
+        min-height: 52px;
+        font-size: 14px;
+        margin-bottom: 18px;
+    }
+    
+    .work-request--information {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .work-request--information .information-name,
+    .work-request--information .information-email {
+        width: 100%;
+        font-size: 16px;
+        height: 50px;
+    }
+    
+    .work-request input[type="submit"] {
+        min-height: 52px;
+        font-size: 16px;
+        width: 100%;
+        max-width: 320px;
+    }
 }
 
 .work-request--options label svg {
