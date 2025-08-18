@@ -4,147 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pedro Costa | My Story</title>
-  <style>
-    /* Main Styles matching your portfolio */
-    body {
-      background-color: #111;
-      color: #fff;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-    }
-    
-    .back-button {
-      position: fixed;
-      top: 2rem;
-      left: 2rem;
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      transition: all 0.3s ease;
-      z-index: 100;
-    }
-    
-    .back-button:hover {
-      color: #fff;
-    }
-    
-    .back-button svg {
-      width: 16px;
-      height: 16px;
-      margin-right: 8px;
-      fill: currentColor;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-    
-    .story-content {
-      padding-right: 2rem;
-    }
-    
-    .story-image {
-      border-radius: 4px;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    }
-    
-    .story-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-    
-    .story-image:hover img {
-      transform: scale(1.02);
-    }
-    
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      position: relative;
-      display: inline-block;
-    }
-    
-    h1:after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: #fff;
-    }
-    
-    p {
-      margin-bottom: 1.5rem;
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.9);
-    }
-    
-    .highlight {
-      color: #fff;
-      font-weight: 500;
-    }
-    
-    .age {
-      display: inline-block;
-      background: rgba(255,255,255,0.1);
-      padding: 0.2rem 0.6rem;
-      border-radius: 12px;
-      font-size: 0.9rem;
-      margin-left: 0.5rem;
-      vertical-align: middle;
-    }
-    
-    .skills {
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
-    
-    .skill-tag {
-      background: rgba(255,255,255,0.1);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-    }
-    
-    @media (max-width: 768px) {
-      .container {
-        grid-template-columns: 1fr;
-        padding: 2rem 1.5rem;
-      }
-      
-      .story-content {
-        padding-right: 0;
-        margin-bottom: 3rem;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      .back-button {
-        top: 1rem;
-        left: 1rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/portfolio-unified.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <a href="index.html" class="back-button">
@@ -156,7 +19,7 @@
     Back
   </a>
   
-  <div class="container">
+  <div class="container mystory">
     <div class="story-content">
       <h1>My Story <span class="age">21 years</span></h1>
       
@@ -180,8 +43,7 @@
     </div>
     
     <div class="story-image">
-      <!-- Replace with your actual image path -->
-      <img src="/assets/img/FOTO-1-1.jpg" alt="Pedro Costa">
+      <img src="assets/img/FOTO-1-1.jpg" alt="Pedro Costa">
     </div>
   </div>
 
