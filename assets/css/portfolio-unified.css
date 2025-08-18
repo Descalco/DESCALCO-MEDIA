@@ -758,6 +758,26 @@ ul li::before {
   }
 }
 
+/* Universal touch/click overlay functionality - works at all screen sizes */
+/* Show overlay when project item is tapped/clicked */
+.project-item:active .project-overlay,
+.project-item.show-overlay .project-overlay {
+  opacity: 1;
+}
+
+/* Darken media when overlay is shown */
+.project-item:active .project-media,
+.project-item.show-overlay .project-media {
+  filter: brightness(0.4) contrast(1.2);
+}
+
+/* Hide bottom meta when overlay is shown */
+.project-item:active .project-meta,
+.project-item.show-overlay .project-meta {
+  opacity: 0;
+}
+
+/* Mobile-first approach for responsive design */
 @media (max-width: 768px) {
   /* Containers */
   .portfolio-container {
@@ -802,6 +822,86 @@ ul li::before {
     gap: 1.5rem;
   }
 
+  /* MOBILE PROJECT CARDS - Touch-based overlay activation */
+  .project-item {
+    aspect-ratio: 16/12; /* Slightly taller for mobile */
+    min-height: 400px; /* Ensure minimum height for content */
+  }
+
+  /* Mobile overlay styling */
+  .project-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.7) 40%,
+      rgba(0, 0, 0, 0.3) 70%,
+      transparent 100%
+    );
+    justify-content: flex-end;
+    padding: 1.5rem;
+    backdrop-filter: blur(5px);
+  }
+
+  /* Mobile-optimized overlay content */
+  .project-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+    /* Limit description length on mobile for better UX */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .project-tags {
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .project-tag {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    background: rgba(220, 38, 38, 0.2);
+    border: 1px solid rgba(220, 38, 38, 0.4);
+  }
+
+  /* Enhanced mobile button styling */
+  .project-link {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    min-height: 44px; /* Ensure proper touch target size */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Remove hover effects on mobile for project items */
+  .project-item:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .project-item:hover .project-media {
+    transform: none;
+  }
+
+  .project-item:hover .project-overlay {
+    opacity: 0; /* Ensure hover doesn't interfere with touch */
+  }
+
+  /* Other responsive elements */
   .project-meta {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -830,19 +930,6 @@ ul li::before {
     height: 300px;
   }
 
-  /* Project overlays */
-  .project-overlay {
-    padding: 2rem;
-  }
-
-  .project-title {
-    font-size: 1.5rem;
-  }
-
-  .project-description {
-    font-size: 0.95rem;
-  }
-
   /* Mystory specific */
   .story-content {
     padding-right: 0;
@@ -850,10 +937,38 @@ ul li::before {
   }
 }
 
+/* Medium screens - tablets and small laptops */
+@media (min-width: 769px) and (max-width: 1200px) {
+  /* Ensure touch functionality works on tablets */
+  .project-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.7) 40%,
+      rgba(0, 0, 0, 0.3) 70%,
+      transparent 100%
+    );
+    justify-content: flex-end;
+    padding: 2rem;
+    backdrop-filter: blur(5px);
+  }
+
+  .project-link {
+    min-height: 44px; /* Ensure proper touch target size */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 480px) {
   /* Containers */
   .container {
     padding: 1.5rem 0.8rem;
+  }
+
+  .portfolio-container {
+    padding: 1rem;
   }
 
   /* Typography */
@@ -877,6 +992,45 @@ ul li::before {
   /* Navigation */
   .back-link {
     margin-bottom: 2rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  /* SMALL MOBILE PROJECT CARDS */
+  .project-item {
+    min-height: 350px;
+    aspect-ratio: 16/13;
+  }
+
+  .project-overlay {
+    padding: 1.2rem;
+  }
+
+  .project-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .project-description {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    -webkit-line-clamp: 2; /* Reduce to 2 lines on very small screens */
+  }
+
+  .project-tags {
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-tag {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .project-link {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.85rem;
+    min-height: 42px;
   }
 
   /* Grids */
@@ -902,31 +1056,6 @@ ul li::before {
     margin-bottom: 3rem;
   }
 
-  /* Project overlays */
-  .project-overlay {
-    padding: 1.5rem;
-  }
-
-  .project-title {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-  }
-
-  .project-description {
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .project-tags {
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .project-tag {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.7rem;
-  }
-
   /* Techniques */
   .technique h4 {
     font-size: 1.1rem;
@@ -934,5 +1063,81 @@ ul li::before {
 
   .technique p {
     font-size: 0.9rem;
+  }
+}
+
+/* Ensure desktop hover effects are preserved for non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  /* Desktop/laptop hover effects - keep original behavior */
+  .project-overlay {
+    opacity: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(220, 38, 38, 0.1) 100%
+    );
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem;
+  }
+
+  .project-item:hover .project-overlay {
+    opacity: 1;
+  }
+
+  .project-item .project-media {
+    filter: brightness(0.8) contrast(1.1);
+  }
+
+  .project-item:hover .project-media {
+    filter: brightness(0.4) contrast(1.2);
+    transform: scale(1.05);
+  }
+
+  .project-meta {
+    opacity: 1;
+  }
+
+  .project-item:hover .project-meta {
+    opacity: 0;
+  }
+
+  .project-item:hover {
+    border-color: rgba(220, 38, 38, 0.4);
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-8px);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(220, 38, 38, 0.2);
+  }
+
+  /* Desktop overlay content styling */
+  .project-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    display: block;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+    overflow: visible;
+  }
+
+  .project-tags {
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .project-tag {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+  }
+
+  .project-link {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
   }
 }
