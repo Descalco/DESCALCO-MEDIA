@@ -31,6 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('admin'));
 app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Session configuration
 app.use(session({
@@ -202,30 +203,58 @@ app.get('/api/projects', (req, res) => {
     const data = getProjectsData();
     
     // Transform projects for the portfolio format
-    const portfolioProjects = data.projects.map(project => ({
-      id: project.id,
-      title: project.title,
-      year: project.year,
-      category: project.category,
-      description: project.description,
-      tags: project.tags || [],
-      projectType: project.projectType,
-      externalLink: project.externalLink,
-      featured: project.featured,
-      coverMedia: project.coverMedia ? `/backoffice${project.coverMedia.path}` : null,
-      mediaType: project.coverMedia ? project.coverMedia.type : 'image',
-      isStatic: false,
-      createdAt: project.createdAt,
-      updatedAt: project.updatedAt
-    }));
-    
+    const portfolioProjects = data.projects.map(project => {
+      let coverMedia = null;
+      let mediaType = 'image';
+
+      if (project.coverMedia) {
+        if (typeof project.coverMedia === 'string') {
+          // Se era um upload local, troca para a pasta de assets
+          if (project.coverMedia.startsWith('/uploads/')) {
+            const fileName = project.coverMedia.split('/').pop();
+            coverMedia = `assets/img/OUTROS/${fileName}`;
+            mediaType = fileName.endsWith('.mp4') ? 'video' : 'image';
+          } else {
+            coverMedia = project.coverMedia;
+            mediaType = coverMedia.endsWith('.mp4') ? 'video' : 'image';
+          }
+        } else if (typeof project.coverMedia === 'object') {
+          // Novos uploads em formato objeto
+          if (project.coverMedia.path.startsWith('/uploads/')) {
+            const fileName = project.coverMedia.path.split('/').pop();
+            coverMedia = `assets/img/OUTROS/${fileName}`;
+          } else {
+            coverMedia = project.coverMedia.path;
+          }
+          mediaType = project.coverMedia.type || 'image';
+        }
+      }
+
+      return {
+        id: project.id,
+        title: project.title,
+        year: project.year,
+        category: project.category,
+        description: project.description,
+        tags: project.tags || [],
+        projectType: project.projectType,
+        externalLink: project.externalLink,
+        featured: project.featured,
+        coverMedia,
+        mediaType,
+        isStatic: false,
+        createdAt: project.createdAt,
+        updatedAt: project.updatedAt
+      };
+    });
+
     // Sort projects: featured first, then by year (newest first)
     portfolioProjects.sort((a, b) => {
       if (a.featured && !b.featured) return -1;
       if (!a.featured && b.featured) return 1;
       return b.year - a.year;
     });
-    
+
     res.json(portfolioProjects);
   } catch (error) {
     console.error('Error fetching projects for portfolio:', error);

@@ -233,7 +233,7 @@
       "updatedAt": "2025-08-19T00:10:02.343Z"
     },
     {
-      "id": "9976d1bb-6982-46e5-9b85-613c4bda20b9",
+      "id": "8c542f54-a1f9-4d1b-b9dd-04726f60cb29",
       "slug": "limishop-promotional-ad",
       "title": "LIMISHOP – Promotional Ad",
       "year": 2025,
@@ -245,15 +245,15 @@
       "featured": true,
       "coverMedia": {
         "type": "video",
-        "filename": "coverMedia-1755573454079-838802493-limishop-ad-horizontal.mp4",
-        "path": "/uploads/limishop-promotional-ad/coverMedia-1755573454079-838802493-limishop-ad-horizontal.mp4"
+        "filename": "coverMedia-1755575298285-57165946-covermedia-1755573454079-838802493-limishop-ad-horizontal.mp4",
+        "path": "/uploads/limishop-promotional-ad/coverMedia-1755575298285-57165946-covermedia-1755573454079-838802493-limishop-ad-horizontal.mp4"
       },
       "gallery": {
         "images": [],
         "videos": []
       },
-      "createdAt": "2025-08-19T03:17:34.108Z",
-      "updatedAt": "2025-08-19T03:17:34.108Z"
+      "createdAt": "2025-08-19T03:48:18.329Z",
+      "updatedAt": "2025-08-19T03:48:18.329Z"
     }
   ]
 }
