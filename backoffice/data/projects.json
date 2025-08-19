@@ -231,6 +231,25 @@
       "coverMedia": "assets/img/OUTROS/EmprestaOVerboAmar.mp4",
       "createdAt": "2022-01-01T00:00:00.000Z",
       "updatedAt": "2025-08-19T00:10:02.343Z"
+    },
+    {
+      "id": "b9ed483a-fd55-4bc1-93f9-1412a33550e8",
+      "slug": "limishop-promotional-ad",
+      "title": "LIMISHOP – Promotional Ad",
+      "year": 2025,
+      "category": "Motion Design",
+      "projectType": "simple",
+      "description": "Advertising video created for LIMISHOP, a technology store. The project involved editing and motion design to present the brand and its products in a dynamic and clear way, optimized for digital platforms.",
+      "tags": [],
+      "externalLink": "https://youtu.be/DIXGXbFdbDI",
+      "featured": false,
+      "coverMedia": null,
+      "gallery": {
+        "images": [],
+        "videos": []
+      },
+      "createdAt": "2025-08-19T02:09:04.843Z",
+      "updatedAt": "2025-08-19T02:09:04.843Z"
     }
   ]
 }
