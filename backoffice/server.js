@@ -11,7 +11,19 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'https://*.netlify.app',
+    'https://*.netlify.com',
+    /https:\/\/.*\.netlify\.app$/,
+    /https:\/\/.*\.netlify\.com$/
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('admin'));
@@ -575,4 +587,5 @@ app.listen(PORT, () => {
   console.log(`📁 Admin panel: http://localhost:${PORT}/dashboard`);
   console.log(`🔑 Default password: descalco2025!`);
   console.log(`📊 Analytics tracking enabled`);
+  console.log(`🌐 CORS enabled for Netlify integration`);
 });
