@@ -7,6 +7,9 @@ const fs = require('fs-extra');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
+// Load environment variables
+require('dotenv').config();
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -31,7 +34,7 @@ app.use('/uploads', express.static('uploads'));
 
 // Session configuration
 app.use(session({
-  secret: 'descalco-portfolio-secret-key',
+  secret: process.env.SESSION_SECRET || 'descalco-portfolio-secret-key',
   resave: false,
   saveUninitialized: false,
   cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 } // 24 hours
@@ -60,6 +63,12 @@ const upload = multer({
     const allowedTypes = /jpeg|jpg|png|gif|mp4|mov|avi|webm|pdf/;
     const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = allowedTypes.test(file.mimetype);
+    
+    // Additional check for dangerous file types
+    const dangerousExtensions = /exe|bat|cmd|scr|pif|com|js|vbs|jar|app|deb|rpm/i;
+    if (dangerousExtensions.test(file.originalname)) {
+      return cb(new Error('Dangerous file type not allowed!'));
+    }
     
     if (mimetype && extname) {
       return cb(null, true);
@@ -145,8 +154,8 @@ app.get('/login.html', (req, res) => {
 app.post('/api/login', async (req, res) => {
   const { password } = req.body;
   
-  // Simple password check (in production, use proper authentication)
-  const adminPassword = 'descalco2025!'; // Change this to a secure password
+  // Use environment variable for admin password
+  const adminPassword = process.env.ADMIN_PASSWORD || 'descalco2025!';
   
   if (password === adminPassword) {
     req.session.authenticated = true;
