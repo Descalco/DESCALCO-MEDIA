@@ -43,14 +43,15 @@ app.use(session({
 // File upload configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const projectSlug = req.body.projectSlug || 'temp';
+    const projectSlug = req.body.projectSlug || req.body.title ? generateSlug(req.body.title) : 'temp';
     const uploadPath = path.join(__dirname, 'uploads', projectSlug);
     fs.ensureDirSync(uploadPath);
     cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+    const sanitizedName = file.originalname.toLowerCase().replace(/[^a-z0-9.]/g, '-');
+    cb(null, file.fieldname + '-' + uniqueSuffix + '-' + sanitizedName);
   }
 });
 
@@ -192,24 +193,110 @@ app.get('/media-manager', requireAuth, (req, res) => {
   res.redirect('/media-manager.html');
 });
 
-// Get all projects
-app.get('/api/projects', requireAuth, (req, res) => {
+// ===== PROJECT API ROUTES =====
+// These routes handle the dynamic portfolio system
+
+// Get all projects (PUBLIC ROUTE - no auth required for portfolio display)
+app.get('/api/projects', (req, res) => {
+  try {
+    const data = getProjectsData();
+    
+    // Transform projects for the portfolio format
+    const portfolioProjects = data.projects.map(project => ({
+      id: project.id,
+      title: project.title,
+      year: project.year,
+      category: project.category,
+      description: project.description,
+      tags: project.tags || [],
+      projectType: project.projectType,
+      externalLink: project.externalLink,
+      featured: project.featured,
+      coverMedia: project.coverMedia ? `/backoffice${project.coverMedia.path}` : null,
+      mediaType: project.coverMedia ? project.coverMedia.type : 'image',
+      isStatic: false,
+      createdAt: project.createdAt,
+      updatedAt: project.updatedAt
+    }));
+    
+    // Sort projects: featured first, then by year (newest first)
+    portfolioProjects.sort((a, b) => {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return b.year - a.year;
+    });
+    
+    res.json(portfolioProjects);
+  } catch (error) {
+    console.error('Error fetching projects for portfolio:', error);
+    res.status(500).json({ error: 'Failed to fetch projects' });
+  }
+});
+
+// Get single project (PUBLIC ROUTE)
+app.get('/api/projects/:id', (req, res) => {
+  try {
+    const data = getProjectsData();
+    const project = data.projects.find(p => p.id === req.params.id);
+    
+    if (!project) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+    
+    // Transform for portfolio format
+    const portfolioProject = {
+      id: project.id,
+      title: project.title,
+      year: project.year,
+      category: project.category,
+      description: project.description,
+      tags: project.tags || [],
+      projectType: project.projectType,
+      externalLink: project.externalLink,
+      featured: project.featured,
+      coverMedia: project.coverMedia ? `/backoffice${project.coverMedia.path}` : null,
+      mediaType: project.coverMedia ? project.coverMedia.type : 'image',
+      gallery: project.gallery,
+      isStatic: false
+    };
+    
+    res.json(portfolioProject);
+  } catch (error) {
+    console.error('Error fetching project:', error);
+    res.status(500).json({ error: 'Failed to fetch project' });
+  }
+});
+
+// Serve project cover media (PUBLIC ROUTE)
+app.get('/api/projects/:id/cover', (req, res) => {
+  try {
+    const data = getProjectsData();
+    const project = data.projects.find(p => p.id === req.params.id);
+    
+    if (!project || !project.coverMedia) {
+      return res.status(404).json({ error: 'Cover media not found' });
+    }
+    
+    const filePath = path.join(__dirname, project.coverMedia.path.replace(/^\/backoffice/, ''));
+    
+    if (fs.existsSync(filePath)) {
+      res.sendFile(filePath);
+    } else {
+      res.status(404).json({ error: 'Media file not found' });
+    }
+  } catch (error) {
+    console.error('Error serving cover media:', error);
+    res.status(500).json({ error: 'Failed to serve media' });
+  }
+});
+
+// Admin-only project management routes
+app.get('/api/admin/projects', requireAuth, (req, res) => {
   const data = getProjectsData();
   res.json(data.projects);
 });
 
-// Get single project
-app.get('/api/projects/:id', requireAuth, (req, res) => {
-  const data = getProjectsData();
-  const project = data.projects.find(p => p.id === req.params.id);
-  if (project) {
-    res.json(project);
-  } else {
-    res.status(404).json({ error: 'Project not found' });
-  }
-});
-
-// Create new project
+// Create new project (ADMIN ONLY)
 app.post('/api/projects', requireAuth, upload.fields([
   { name: 'coverMedia', maxCount: 1 },
   { name: 'galleryImages', maxCount: 20 },
@@ -226,6 +313,13 @@ app.post('/api/projects', requireAuth, upload.fields([
       externalLink,
       featured
     } = req.body;
+
+    // Validation
+    if (!title || !year || !category || !projectType || !description) {
+      return res.status(400).json({ 
+        error: 'Missing required fields: title, year, category, projectType, description' 
+      });
+    }
 
     const projectId = uuidv4();
     const slug = generateSlug(title);
@@ -244,9 +338,9 @@ app.post('/api/projects', requireAuth, upload.fields([
       category,
       projectType,
       description,
-      tags: tags ? tags.split(',').map(tag => tag.trim()) : [],
+      tags: tags ? tags.split(',').map(tag => tag.trim()).filter(t => t) : [],
       externalLink: projectType === 'simple' ? externalLink : null,
-      featured: featured === 'true',
+      featured: featured === 'true' || featured === 'on' || featured === true,
       coverMedia: coverMedia ? {
         type: coverMedia.mimetype.startsWith('video') ? 'video' : 'image',
         filename: coverMedia.filename,
@@ -271,19 +365,21 @@ app.post('/api/projects', requireAuth, upload.fields([
     data.projects.push(project);
     saveProjectsData(data);
 
-    // Update portfolio HTML if it's a simple project
-    if (projectType === 'simple') {
-      updatePortfolioHTML();
-    }
+    console.log(`✅ New project created: "${project.title}" (ID: ${project.id})`);
 
-    res.json({ success: true, project });
+    res.status(201).json({ 
+      success: true, 
+      message: 'Project created successfully',
+      project 
+    });
+    
   } catch (error) {
     console.error('Error creating project:', error);
-    res.status(500).json({ error: 'Failed to create project' });
+    res.status(500).json({ error: 'Failed to create project: ' + error.message });
   }
 });
 
-// Update project
+// Update project (ADMIN ONLY)
 app.put('/api/projects/:id', requireAuth, upload.fields([
   { name: 'coverMedia', maxCount: 1 },
   { name: 'galleryImages', maxCount: 20 },
@@ -308,11 +404,16 @@ app.put('/api/projects/:id', requireAuth, upload.fields([
       category: req.body.category || existingProject.category,
       projectType: req.body.projectType || existingProject.projectType,
       description: req.body.description || existingProject.description,
-      tags: req.body.tags ? req.body.tags.split(',').map(tag => tag.trim()) : existingProject.tags,
+      tags: req.body.tags ? req.body.tags.split(',').map(tag => tag.trim()).filter(t => t) : existingProject.tags,
       externalLink: req.body.externalLink || existingProject.externalLink,
-      featured: req.body.featured === 'true',
+      featured: req.body.featured === 'true' || req.body.featured === 'on' || req.body.featured === true,
       updatedAt: new Date().toISOString()
     };
+
+    // Update slug if title changed
+    if (req.body.title && req.body.title !== existingProject.title) {
+      updatedProject.slug = generateSlug(req.body.title);
+    }
 
     // Update cover media if new file uploaded
     if (files.coverMedia && files.coverMedia[0]) {
@@ -342,17 +443,21 @@ app.put('/api/projects/:id', requireAuth, upload.fields([
     data.projects[projectIndex] = updatedProject;
     saveProjectsData(data);
 
-    // Update portfolio HTML
-    updatePortfolioHTML();
+    console.log(`✅ Project updated: "${updatedProject.title}" (ID: ${updatedProject.id})`);
 
-    res.json({ success: true, project: updatedProject });
+    res.json({ 
+      success: true, 
+      message: 'Project updated successfully',
+      project: updatedProject 
+    });
+    
   } catch (error) {
     console.error('Error updating project:', error);
-    res.status(500).json({ error: 'Failed to update project' });
+    res.status(500).json({ error: 'Failed to update project: ' + error.message });
   }
 });
 
-// Delete project
+// Delete project (ADMIN ONLY)
 app.delete('/api/projects/:id', requireAuth, (req, res) => {
   try {
     const data = getProjectsData();
@@ -368,94 +473,27 @@ app.delete('/api/projects/:id', requireAuth, (req, res) => {
     const projectPath = path.join(__dirname, 'uploads', project.slug);
     if (fs.existsSync(projectPath)) {
       fs.removeSync(projectPath);
+      console.log(`🗑️ Removed project files: ${projectPath}`);
     }
 
     // Remove from data
     data.projects.splice(projectIndex, 1);
     saveProjectsData(data);
 
-    // Update portfolio HTML
-    updatePortfolioHTML();
+    console.log(`❌ Project deleted: "${project.title}" (ID: ${project.id})`);
 
-    res.json({ success: true });
+    res.json({ 
+      success: true,
+      message: 'Project deleted successfully' 
+    });
+    
   } catch (error) {
     console.error('Error deleting project:', error);
-    res.status(500).json({ error: 'Failed to delete project' });
+    res.status(500).json({ error: 'Failed to delete project: ' + error.message });
   }
 });
 
-// Function to update the main portfolio HTML
-const updatePortfolioHTML = () => {
-  try {
-    const data = getProjectsData();
-    const portfolioPath = path.join(__dirname, '..', 'other-projects.html');
-    
-    if (!fs.existsSync(portfolioPath)) {
-      console.error('Portfolio HTML file not found');
-      return;
-    }
-
-    let html = fs.readFileSync(portfolioPath, 'utf8');
-    
-    // Generate HTML for new projects
-    const newProjectsHTML = data.projects
-      .filter(project => project.projectType === 'simple')
-      .map(project => generateProjectHTML(project))
-      .join('\n\n');
-
-    // Find the insertion point (after the template)
-    const templateEnd = html.indexOf('</template>');
-    if (templateEnd !== -1) {
-      const insertionPoint = html.indexOf('\n', templateEnd) + 1;
-      
-      // Find the end of existing projects (before closing portfolio-grid div)
-      const gridEnd = html.indexOf('</div>', html.indexOf('<div class="portfolio-grid">'));
-      
-      // Replace the content between template and grid end
-      const beforeTemplate = html.substring(0, insertionPoint);
-      const afterGrid = html.substring(gridEnd);
-      
-      html = beforeTemplate + '\n' + newProjectsHTML + '\n    ' + afterGrid;
-      
-      fs.writeFileSync(portfolioPath, html);
-      console.log('Portfolio HTML updated successfully');
-    }
-  } catch (error) {
-    console.error('Error updating portfolio HTML:', error);
-  }
-};
-
-// Generate HTML for a project
-const generateProjectHTML = (project) => {
-  const mediaElement = project.coverMedia 
-    ? project.coverMedia.type === 'video'
-      ? `<video class="project-media" autoplay loop muted playsinline>
-          <source src="backoffice${project.coverMedia.path}" type="video/mp4" />
-        </video>`
-      : `<img src="backoffice${project.coverMedia.path}" alt="${project.title}" class="project-media" />`
-    : `<div class="project-media" style="background: #333; display: flex; align-items: center; justify-content: center; color: #666;">No Media</div>`;
-
-  const tagsHTML = project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('\n            ');
-
-  return `      <!-- ${project.title} - Generated by Backoffice -->
-      <div class="project-item">
-        ${mediaElement}
-        <div class="project-meta">
-          <h3>${project.title}</h3>
-          <div class="project-year">${project.year}</div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-title">${project.title}</div>
-          <div class="project-description">
-            ${project.description}
-          </div>
-          <div class="project-tags">
-            ${tagsHTML}
-          </div>
-          <a href="${project.externalLink}" target="_blank" class="project-link">View Project</a>
-        </div>
-      </div>`;
-};
+// ===== ANALYTICS ROUTES =====
 
 // Public Analytics Endpoints (no auth required)
 app.post('/api/analytics/track', (req, res) => {
@@ -597,4 +635,12 @@ app.listen(PORT, () => {
   console.log(`🔑 Default password: descalco2025!`);
   console.log(`📊 Analytics tracking enabled`);
   console.log(`🌐 CORS enabled for Netlify integration`);
+  console.log(`🎨 Dynamic Portfolio API available at /api/projects`);
+  
+  // Ensure required directories exist
+  fs.ensureDirSync(path.join(__dirname, 'data'));
+  fs.ensureDirSync(path.join(__dirname, 'uploads'));
+  
+  console.log(`📂 Data directory: ${path.join(__dirname, 'data')}`);
+  console.log(`📂 Uploads directory: ${path.join(__dirname, 'uploads')}`);
 });

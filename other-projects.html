@@ -5,11 +5,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio – Descalco Media</title>
-  <link rel="stylesheet" href="assets/css/portfolio-unified.css"> <!-- Link to unified CSS -->
+  <link rel="stylesheet" href="assets/css/portfolio-unified.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Additional styles to ensure consistency */
+    .loading-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #888;
+    }
 
+    .error-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #ff6b6b;
+    }
+
+    .project-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .project-item.loaded {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Ensure consistent styling for both static and dynamic projects */
+    .project-media {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .project-item:hover .project-media {
+      transform: scale(1.05);
+    }
+
+    /* Fix for featured projects */
+    .featured-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      z-index: 10;
+    }
+  </style>
 </head>
 
 <body>
@@ -22,315 +72,321 @@
         over each project to explore the full story behind each creation.</p>
     </div>
 
-    <div class="portfolio-grid">
+    <!-- Loading State -->
+    <div id="loading-state" class="loading-state">
+      <p>Loading projects...</p>
+    </div>
 
-      <!-- Template for new project items -->
-      <template id="project-template">
-        <div class="project-item">
-          <video class="project-media" autoplay loop muted playsinline>
-            <source src="assets/img/OUTROS/YOUR_NEW_VIDEO_FILENAME.mp4" type="video/mp4" />
-          </video>
-          <div class="project-meta">
-            <h3>[YOUR NEW PROJECT MAIN TITLE]</h3>
-            <div class="project-year">[YEAR]</div>
-          </div>
-          <div class="project-overlay">
-            <div class="project-title">[YOUR NEW PROJECT OVERLAY TITLE]</div>
-            <div class="project-description">
-              [TYPE YOUR FULL PROJECT DESCRIPTION HERE. Keep it concise but informative.]
-            </div>
-            <div class="project-tags">
-              <span class="project-tag">[Tag 1]</span>
-              <span class="project-tag">[Tag 2]</span>
-              <span class="project-tag">[Tag 3]</span>
-            </div>
-            <a href="YOUR_EXTERNAL_LINK_OR_PROJECT_PAGE_URL" target="_blank" class="project-link">View Project</a>
-          </div>
-        </div>
-      </template>
+    <!-- Error State -->
+    <div id="error-state" class="error-state" style="display: none;">
+      <p>Failed to load projects. Please try again later.</p>
+      <button onclick="loadProjects()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #dc2626; color: white; border: none; border-radius: 4px; cursor: pointer;">Retry</button>
+    </div>
 
-      <!-- SOF WEEK - PROJETO FINAL -->
-      <div class="project-item">
-        <video class="project-media" autoplay loop muted playsinline>
-          <source src="assets/img/OUTROS/SOF-WEEK.mp4" type="video/mp4" />
-        </video>
-        <div class="project-meta">
-          <h3>SOF WEEK: Motion Design for Military Events</h3>
-          <div class="project-year">2025</div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-title">SOF WEEK: Motion Design for Military Events</div>
-          <div class="project-description">
-            Final degree project aiming to modernize the visual identity of SOF Week, an event promoted by the Special Operations Forces Center, through strategic branding and motion design.
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Motion Design</span>
-            <span class="project-tag">Branding</span>
-            <span class="project-tag">Military Event</span>
-            <span class="project-tag">Final Project</span>
-          </div>
-          <a href="SOF-WEEK.html" target="_blank" class="project-link">View Project</a>
-        </div>
-      </div>
-
-      <!-- GUISADO -->
-      <div class="project-item">
-        <video class="project-media" autoplay loop muted playsinline>
-          <source src="assets/img/OUTROS/GUISADO-VIDEO.mp4#t=3" type="video/mp4" />
-        </video>
-        <div class="project-meta">
-          <h3>GUISADO - 3D SHORT MOVIE</h3>
-          <div class="project-year">2025</div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-title">GUISADO - 3D SHORT MOVIE</div>
-          <div class="project-description">
-            <strong>"GUISADO"</strong> is a 4-minute 3D animated short film exploring themes of loneliness, superficial
-            relationships, and the illusion of happiness. Created as part of the Animation III curriculum at ESMAD, this
-            atmospheric piece combines motion capture performance with stylized 3D animation to tell a surreal gothic
-            tale.
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">3D Animation</span>
-            <span class="project-tag">Character Animation</span>
-            <span class="project-tag">Motion Capture</span>
-          </div>
-          <a href="GUISADO.html" target="_blank" class="project-link">View Project</a>
-        </div>
-      </div>
-
-      <!-- CIDADE DO FUTURO -->
-      <div class="project-item">
-        <video class="project-media" autoplay loop muted playsinline>
-          <source src="assets/img/OUTROS/pa_-_immersivus_x_a_cidade_do_futuro (1080p) (online-video-cutter.com).mp4" type="video/mp4" />
-        </video>
-        <div class="project-meta">
-          <h3>AMBIVALÊNCIA - CITY OF THE FUTURE</h3>
-          <div class="project-year">2023</div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-title">AMBIVALÊNCIA - CITY OF THE FUTURE</div>
-          <div class="project-description">
-            <strong>"Ambivalência"</strong> is an animation/installation created for large-scale projection at the
-            Alfândega Congress Center in Porto. Developed as part of the "Multimedia I" course at ESMAD in collaboration
-            with OCUBO, this visually striking project explores the contrast between utopian dreams and dystopian
-            reality through a young girl's journey.
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">2D Animation</span>
-            <span class="project-tag">Character Animation</span>
-            <span class="project-tag">Video Mapping</span>
-          </div>
-          <a href="CidadeDoFuturo.html" target="_blank" class="project-link">View Project</a>
-        </div>
-      </div>
-
-      <!-- Project 6: MOTION JAM -->
-      <div class="project-item">
-        <video class="project-media" autoplay loop muted playsinline>
-          <source src="assets/img/OUTROS/Noushoe.mp4" type="video/mp4" />
-        </video>
-        <div class="project-meta">
-          <h3>"A Carne que Anda" — Winner of MOTION JAM 2025</h3>
-          <div class="project-year">2025</div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-title">"A Carne que Anda" — Winner of MOTION JAM 2025</div>
-          <div class="project-description">
-            Challenged to create an animation under the themes The Admirable Grotesque, Elevator, and Flash, we won 1st
-            place at MOTION JAM 2025 with our project 'A Carne que Anda' (The Flesh That Walks), as voted by renowned
-            Portuguese motion design jurors. Developed in 48 hours as team NOUSHOE (with Nuno Faria), the animation
-            blends frame-by-frame techniques, 2.5D animation in After Effects, and a narrative voice-over
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Award Winning</span>
-            <span class="project-tag">Motion Design</span>
-            <span class="project-tag">48H CHALLENGE</span>
-          </div>
-          <a href="https://youtu.be/P0jaOjuQ654" target="_blank" class="project-link">View Video</a>
-        </div>
-      </div>
-
-      <!-- Project 1: LIMIFIELD WORK -->
-      <div class="project-item">
-        <video class="project-media" autoplay loop muted playsinline>
-          <source src="assets/img/OUTROS/LIMIFIELD-INSTITUCIONAL.mp4" type="video/mp4" />
-        </video>
-        <div class="project-meta">
-          <h3>Limifield - Corporate Video</h3>
-          <div class="project-year">2024</div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-title">Limifield - Corporate Video</div>
-          <div class="project-description">
-            Corporate video created for Limifield.LDA, a company specializing in the import and distribution of IT
-            equipment since 2007. The project highlights the company's exclusive brands and extensive product portfolio,
-            conveying professionalism and trust. Featuring dynamic motion design, the video strengthens the brand's
-            visual identity and market presence in the tech industry.
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Corporate Video</span>
-            <span class="project-tag">Motion Design</span>
-            <span class="project-tag">Business Communication</span>
-          </div>
-          <a href="https://www.youtube.com/watch?v=ug4wro36A-o&t=2s" target="_blank" class="project-link">View Video</a>
-        </div>
-      </div>
-
-      <!-- Project 3: TYPE AD -->
-      <div class="project-item">
-        <video class="project-media" autoplay loop muted playsinline>
-          <source src="assets/img/OUTROS/limifield-type-ad.mp4" type="video/mp4" />
-        </video>
-        <div class="project-meta">
-          <h3>Type in Motion: Corporate Ad for Limifield</h3>
-          <div class="project-year">2023</div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-title">Type in Motion: Corporate Ad for Limifield</div>
-          <div class="project-description">
-            Full kinetic typography ad created for Limifield.LDA to attract new business partners. The project blends
-            animated type, voice-over, and minimalist motion design to deliver a clear and compelling message about
-            partnership opportunities with the brand.
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Kinetic Type</span>
-            <span class="project-tag">Business Communication</span>
-            <span class="project-tag">Motion Design</span>
-          </div>
-          <a href="https://www.youtube.com/watch?v=jBuUN4bA3YI" target="_blank" class="project-link">View Video</a>
-        </div>
-      </div>
-
-      <!-- LET IT HAPPEN -->
-      <div class="project-item">
-        <video class="project-media" autoplay loop muted playsinline>
-          <source src="assets/img/OUTROS/LETITHAPPEN.mp4" type="video/mp4" />
-        </video>
-        <div class="project-meta">
-          <h3>LET IT HAPPEN - EXPERIMENTAL ANIMATION</h3>
-          <div class="project-year">2022</div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-title">LET IT HAPPEN - EXPERIMENTAL ANIMATION</div>
-          <div class="project-description">
-            This experimental short film explores themes of anxiety, transformation, and acceptance — visually inspired
-            by the song <strong>"Let It Happen"</strong> by Tame Impala. Structured in three emotional phases (Stress,
-            Flow, and Overcoming), the film animates the inner struggles of someone learning to let go and embrace
-            change.
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Frame by frame</span>
-            <span class="project-tag">Motion Design</span>
-            <span class="project-tag">Animation</span>
-          </div>
-          <a href="LetItHappen.html" target="_blank" class="project-link">View Project</a>
-        </div>
-      </div>
-
-      <!-- Project 2: Experimental Animation QUEEN -->
-      <div class="project-item">
-        <video class="project-media" autoplay loop muted playsinline>
-          <source src="assets/img/OUTROS/queen.mp4" type="video/mp4" />
-        </video>
-        <div class="project-meta">
-          <h3>Experimental Animation – QUEEN</h3>
-          <div class="project-year">2022</div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-title">Experimental Animation – QUEEN</div>
-          <div class="project-description">
-            METAMORPHOSIS is a hand-drawn frame-by-frame animation exploring transformation and identity. Created using
-            traditional animation techniques with modern digital tools, this piece delves into the concept of personal
-            evolution and the fluid nature of self-perception through abstract visual storytelling.
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Animation</span>
-            <span class="project-tag">Frame-By-Frame</span>
-            <span class="project-tag">Adobe Animate</span>
-          </div>
-          <a href="https://youtu.be/xAjgsekjEcI" target="_blank" class="project-link">View Video</a>
-        </div>
-      </div>
-
-      <!-- Project 5: KINETIC DUALITY -->
-      <div class="project-item">
-        <video class="project-media" autoplay loop muted playsinline>
-          <source src="assets/img/OUTROS/KINETIC DUALITY.mp4" type="video/mp4" />
-        </video>
-        <div class="project-meta">
-          <h3>KINETIC DUALITY: Interactive Art Installation</h3>
-          <div class="project-year">2022</div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-title">KINETIC DUALITY: Interactive Art Installation</div>
-          <div class="project-description">
-            KINETIC DUALITY is an interactive art installation exploring the stark contrast between life and death
-            through projected posters, a central mirror, and Kinect sensors. Viewers trigger opposing animations and
-            sounds. Developed with TouchDesigner, Madmapper, and After Effects.
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Motion Design</span>
-            <span class="project-tag">Kinectic Type</span>
-            <span class="project-tag">Installation</span>
-          </div>
-          <a href="https://www.youtube.com/watch?v=o8OGEqCWxZ8" target="_blank" class="project-link">View Project</a>
-        </div>
-      </div>
-
-      <!-- DESISTIR -->
-      <div class="project-item">
-        <img src="assets/img/DESISTIR/DESISTIR-CAPA2.jpg" alt="Desistir - Conceptual Book Cover"
-          class="project-media" />
-        <div class="project-meta">
-          <h3>DESISTIR - CONCEPTUAL BOOK</h3>
-          <div class="project-year">2024</div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-title">DESISTIR - CONCEPTUAL BOOK</div>
-          <div class="project-description">
-            <strong>"DESISTIR"</strong> is a book that explores a teenager's entry into university life. Despite
-            initially being motivated, João quickly realizes the challenge and difficulties of the path he has chosen.
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Design</span>
-            <span class="project-tag">Graphic Design</span>
-            <span class="project-tag">Book</span>
-          </div>
-          <a href="DESISTIR.html" target="_blank" class="project-link">View Project</a>
-        </div>
-      </div>
-
-      <!-- Videoclip -->
-      <div class="project-item">
-        <video class="project-media" autoplay loop muted playsinline>
-          <source src="assets/img/OUTROS/EmprestaOVerboAmar.mp4" type="video/mp4" />
-        </video>
-        <div class="project-meta">
-          <h3>Empresta o Verbo Amar</h3>
-          <div class="project-year">2022</div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-title">Empresta o Verbo Amar</div>
-          <div class="project-description">
-            Music video for musician Luis Sequeira produced as a student exercise for college at Escola Superior de
-            Media Artes E Design.
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">VideoClip</span>
-            <span class="project-tag">Producing</span>
-            <span class="project-tag">Storytelling</span>
-          </div>
-          <a href="https://www.youtube.com/watch?v=BgKK0P0Rjyo" target="_blank" class="project-link">View Video</a>
-        </div>
-      </div>
-
+    <!-- Portfolio Grid -->
+    <div class="portfolio-grid" id="portfolio-grid" style="display: none;">
+      <!-- Projects will be loaded here dynamically -->
     </div>
 
     <div style="margin-top: 4rem; text-align: center;">
       <a class="back-link" href="index.html">← Back to Home</a>
     </div>
   </div>
+
+  <script>
+    // Static projects data - these are your existing projects
+    const STATIC_PROJECTS = [
+      {
+        id: 'sof-week-static',
+        title: 'SOF WEEK: Motion Design for Military Events',
+        year: 2025,
+        category: 'Motion Design',
+        description: 'Final degree project aiming to modernize the visual identity of SOF Week, an event promoted by the Special Operations Forces Center, through strategic branding and motion design.',
+        tags: ['Motion Design', 'Branding', 'Military Event', 'Final Project'],
+        coverMedia: 'assets/img/OUTROS/SOF-WEEK.mp4',
+        mediaType: 'video',
+        externalLink: 'SOF-WEEK.html',
+        featured: true,
+        isStatic: true
+      },
+      {
+        id: 'guisado-static',
+        title: 'GUISADO - 3D SHORT MOVIE',
+        year: 2025,
+        category: '3D Animation',
+        description: '"GUISADO" is a 4-minute 3D animated short film exploring themes of loneliness, superficial relationships, and the illusion of happiness. Created as part of the Animation III curriculum at ESMAD, this atmospheric piece combines motion capture performance with stylized 3D animation to tell a surreal gothic tale.',
+        tags: ['3D Animation', 'Character Animation', 'Motion Capture'],
+        coverMedia: 'assets/img/OUTROS/GUISADO-VIDEO.mp4#t=3',
+        mediaType: 'video',
+        externalLink: 'GUISADO.html',
+        featured: true,
+        isStatic: true
+      },
+      {
+        id: 'cidade-futuro-static',
+        title: 'AMBIVALÊNCIA - CITY OF THE FUTURE',
+        year: 2023,
+        category: '2D Animation',
+        description: '"Ambivalência" is an animation/installation created for large-scale projection at the Alfândega Congress Center in Porto. Developed as part of the "Multimedia I" course at ESMAD in collaboration with OCUBO, this visually striking project explores the contrast between utopian dreams and dystopian reality through a young girl\'s journey.',
+        tags: ['2D Animation', 'Character Animation', 'Video Mapping'],
+        coverMedia: 'assets/img/OUTROS/pa_-_immersivus_x_a_cidade_do_futuro (1080p) (online-video-cutter.com).mp4',
+        mediaType: 'video',
+        externalLink: 'CidadeDoFuturo.html',
+        featured: true,
+        isStatic: true
+      },
+      {
+        id: 'motion-jam-static',
+        title: '"A Carne que Anda" — Winner of MOTION JAM 2025',
+        year: 2025,
+        category: 'Motion Design',
+        description: 'Challenged to create an animation under the themes The Admirable Grotesque, Elevator, and Flash, we won 1st place at MOTION JAM 2025 with our project \'A Carne que Anda\' (The Flesh That Walks), as voted by renowned Portuguese motion design jurors. Developed in 48 hours as team NOUSHOE (with Nuno Faria), the animation blends frame-by-frame techniques, 2.5D animation in After Effects, and a narrative voice-over',
+        tags: ['Award Winning', 'Motion Design', '48H CHALLENGE'],
+        coverMedia: 'assets/img/OUTROS/Noushoe.mp4',
+        mediaType: 'video',
+        externalLink: 'https://youtu.be/P0jaOjuQ654',
+        featured: true,
+        isStatic: true
+      },
+      {
+        id: 'limifield-static',
+        title: 'Limifield - Corporate Video',
+        year: 2024,
+        category: 'Corporate Video',
+        description: 'Corporate video created for Limifield.LDA, a company specializing in the import and distribution of IT equipment since 2007. The project highlights the company\'s exclusive brands and extensive product portfolio, conveying professionalism and trust. Featuring dynamic motion design, the video strengthens the brand\'s visual identity and market presence in the tech industry.',
+        tags: ['Corporate Video', 'Motion Design', 'Business Communication'],
+        coverMedia: 'assets/img/OUTROS/LIMIFIELD-INSTITUCIONAL.mp4',
+        mediaType: 'video',
+        externalLink: 'https://www.youtube.com/watch?v=ug4wro36A-o&t=2s',
+        featured: false,
+        isStatic: true
+      },
+      {
+        id: 'type-ad-static',
+        title: 'Type in Motion: Corporate Ad for Limifield',
+        year: 2023,
+        category: 'Motion Design',
+        description: 'Full kinetic typography ad created for Limifield.LDA to attract new business partners. The project blends animated type, voice-over, and minimalist motion design to deliver a clear and compelling message about partnership opportunities with the brand.',
+        tags: ['Kinetic Type', 'Business Communication', 'Motion Design'],
+        coverMedia: 'assets/img/OUTROS/limifield-type-ad.mp4',
+        mediaType: 'video',
+        externalLink: 'https://www.youtube.com/watch?v=jBuUN4bA3YI',
+        featured: false,
+        isStatic: true
+      },
+      {
+        id: 'let-it-happen-static',
+        title: 'LET IT HAPPEN - EXPERIMENTAL ANIMATION',
+        year: 2022,
+        category: 'Animation',
+        description: 'This experimental short film explores themes of anxiety, transformation, and acceptance — visually inspired by the song "Let It Happen" by Tame Impala. Structured in three emotional phases (Stress, Flow, and Overcoming), the film animates the inner struggles of someone learning to let go and embrace change.',
+        tags: ['Frame by frame', 'Motion Design', 'Animation'],
+        coverMedia: 'assets/img/OUTROS/LETITHAPPEN.mp4',
+        mediaType: 'video',
+        externalLink: 'LetItHappen.html',
+        featured: false,
+        isStatic: true
+      },
+      {
+        id: 'queen-static',
+        title: 'Experimental Animation – QUEEN',
+        year: 2022,
+        category: 'Animation',
+        description: 'METAMORPHOSIS is a hand-drawn frame-by-frame animation exploring transformation and identity. Created using traditional animation techniques with modern digital tools, this piece delves into the concept of personal evolution and the fluid nature of self-perception through abstract visual storytelling.',
+        tags: ['Animation', 'Frame-By-Frame', 'Adobe Animate'],
+        coverMedia: 'assets/img/OUTROS/queen.mp4',
+        mediaType: 'video',
+        externalLink: 'https://youtu.be/xAjgsekjEcI',
+        featured: false,
+        isStatic: true
+      },
+      {
+        id: 'kinetic-duality-static',
+        title: 'KINETIC DUALITY: Interactive Art Installation',
+        year: 2022,
+        category: 'Interactive Art',
+        description: 'KINETIC DUALITY is an interactive art installation exploring the stark contrast between life and death through projected posters, a central mirror, and Kinect sensors. Viewers trigger opposing animations and sounds. Developed with TouchDesigner, Madmapper, and After Effects.',
+        tags: ['Motion Design', 'Kinetic Type', 'Installation'],
+        coverMedia: 'assets/img/OUTROS/KINETIC DUALITY.mp4',
+        mediaType: 'video',
+        externalLink: 'https://www.youtube.com/watch?v=o8OGEqCWxZ8',
+        featured: false,
+        isStatic: true
+      },
+      {
+        id: 'desistir-static',
+        title: 'DESISTIR - CONCEPTUAL BOOK',
+        year: 2024,
+        category: 'Graphic Design',
+        description: '"DESISTIR" is a book that explores a teenager\'s entry into university life. Despite initially being motivated, João quickly realizes the challenge and difficulties of the path he has chosen.',
+        tags: ['Design', 'Graphic Design', 'Book'],
+        coverMedia: 'assets/img/DESISTIR/DESISTIR-CAPA2.jpg',
+        mediaType: 'image',
+        externalLink: 'DESISTIR.html',
+        featured: false,
+        isStatic: true
+      },
+      {
+        id: 'videoclip-static',
+        title: 'Empresta o Verbo Amar',
+        year: 2022,
+        category: 'Music Video',
+        description: 'Music video for musician Luis Sequeira produced as a student exercise for college at Escola Superior de Media Artes E Design.',
+        tags: ['VideoClip', 'Producing', 'Storytelling'],
+        coverMedia: 'assets/img/OUTROS/EmprestaOVerboAmar.mp4',
+        mediaType: 'video',
+        externalLink: 'https://www.youtube.com/watch?v=BgKK0P0Rjyo',
+        featured: false,
+        isStatic: true
+      }
+    ];
+
+    let allProjects = [];
+
+    // Load projects on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      loadProjects();
+    });
+
+    async function loadProjects() {
+      const loadingState = document.getElementById('loading-state');
+      const errorState = document.getElementById('error-state');
+      const portfolioGrid = document.getElementById('portfolio-grid');
+
+      try {
+        // Show loading state
+        loadingState.style.display = 'block';
+        errorState.style.display = 'none';
+        portfolioGrid.style.display = 'none';
+
+        let dynamicProjects = [];
+
+        // Try to fetch dynamic projects from API
+        try {
+          const response = await fetch('/api/projects');
+          if (response.ok) {
+            dynamicProjects = await response.json();
+            console.log('Loaded', dynamicProjects.length, 'dynamic projects');
+          }
+        } catch (apiError) {
+          console.log('API not available, using only static projects');
+        }
+
+        // Combine static and dynamic projects
+        allProjects = [...STATIC_PROJECTS, ...dynamicProjects];
+
+        // Sort projects: featured first, then by year (newest first)
+        allProjects.sort((a, b) => {
+          if (a.featured && !b.featured) return -1;
+          if (!a.featured && b.featured) return 1;
+          return b.year - a.year;
+        });
+
+        // Render projects
+        renderProjects(allProjects);
+
+        // Hide loading and show portfolio
+        loadingState.style.display = 'none';
+        portfolioGrid.style.display = 'grid';
+
+        // Animate projects in
+        setTimeout(() => {
+          const projectItems = document.querySelectorAll('.project-item');
+          projectItems.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.add('loaded');
+            }, index * 100);
+          });
+        }, 100);
+
+      } catch (error) {
+        console.error('Error loading projects:', error);
+        
+        // Show error state
+        loadingState.style.display = 'none';
+        errorState.style.display = 'block';
+        portfolioGrid.style.display = 'none';
+      }
+    }
+
+    function renderProjects(projects) {
+      const portfolioGrid = document.getElementById('portfolio-grid');
+      portfolioGrid.innerHTML = '';
+
+      projects.forEach(project => {
+        const projectElement = createProjectElement(project);
+        portfolioGrid.appendChild(projectElement);
+      });
+    }
+
+    function createProjectElement(project) {
+      const projectDiv = document.createElement('div');
+      projectDiv.className = 'project-item';
+      projectDiv.style.position = 'relative';
+
+      // Create media element
+      let mediaElement;
+      const isVideo = project.mediaType === 'video' || 
+                     (project.coverMedia && (project.coverMedia.includes('.mp4') || project.coverMedia.includes('.mov')));
+
+      if (isVideo) {
+        mediaElement = document.createElement('video');
+        mediaElement.className = 'project-media';
+        mediaElement.autoplay = true;
+        mediaElement.loop = true;
+        mediaElement.muted = true;
+        mediaElement.playsInline = true;
+        
+        const source = document.createElement('source');
+        source.src = project.coverMedia || '/api/projects/' + project.id + '/cover';
+        source.type = 'video/mp4';
+        mediaElement.appendChild(source);
+      } else {
+        mediaElement = document.createElement('img');
+        mediaElement.className = 'project-media';
+        mediaElement.src = project.coverMedia || '/api/projects/' + project.id + '/cover';
+        mediaElement.alt = project.title;
+      }
+
+      // Featured badge
+      let featuredBadge = '';
+      if (project.featured) {
+        featuredBadge = '<div class="featured-badge">Featured</div>';
+      }
+
+      // Create project HTML
+      projectDiv.innerHTML = `
+        ${featuredBadge}
+        <div class="project-meta">
+          <h3>${project.title}</h3>
+          <div class="project-year">${project.year}</div>
+        </div>
+        <div class="project-overlay">
+          <div class="project-title">${project.title}</div>
+          <div class="project-description">
+            ${project.description}
+          </div>
+          <div class="project-tags">
+            ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+          </div>
+          <a href="${project.externalLink || '#'}" ${project.externalLink && project.externalLink.startsWith('http') ? 'target="_blank"' : ''} class="project-link">View Project</a>
+        </div>
+      `;
+
+      // Insert media element at the beginning
+      projectDiv.insertBefore(mediaElement, projectDiv.firstChild);
+
+      return projectDiv;
+    }
+
+    // Add some mobile-friendly interactions
+    if ('ontouchstart' in window) {
+      document.addEventListener('touchstart', function() {
+        // Enable hover states on mobile
+        document.body.classList.add('touch-device');
+      });
+    }
+  </script>
 
   <script src="assets/js/mobile-portfolio.js"></script>
   <script type="module" src="firebase-portfolio-analytics.js"></script>
