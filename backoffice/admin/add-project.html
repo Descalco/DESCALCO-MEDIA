@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Project - Descalco Media Backoffice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #d1d5db;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+        }
+
+        .form-header {
+            margin-bottom: 2rem;
+        }
+
+        .form-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: #a1a1aa;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            color: #d1d5db;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #dc2626;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.3s ease;
+            text-align: center;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .file-upload:hover .file-upload-label {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.05);
+        }
+
+        .file-upload-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-upload-text {
+            color: #d1d5db;
+            font-size: 0.9rem;
+        }
+
+        .file-upload-hint {
+            color: #6b7280;
+            font-size: 0.8rem;
+        }
+
+        .project-type-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .type-option {
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .type-option:hover {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.05);
+        }
+
+        .type-option.selected {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .type-option h4 {
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .type-option p {
+            color: #a1a1aa;
+            font-size: 0.85rem;
+        }
+
+        .conditional-field {
+            display: none;
+        }
+
+        .conditional-field.show {
+            display: block;
+        }
+
+        .tags-input {
+            position: relative;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            color: #fca5a5;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .tag-remove {
+            cursor: pointer;
+            color: #fca5a5;
+            font-weight: bold;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ffffff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .success-message {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .project-type-selector {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <h1>DESCALCO MEDIA</h1>
+        </div>
+        <div class="header-actions">
+            <a href="/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h2 id="formTitle">Add New Project</h2>
+                <p>Fill in the details below to add a new project to your portfolio.</p>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+
+            <form id="projectForm" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="title">Project Title *</label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="year">Year *</label>
+                            <input type="number" id="year" name="year" min="2000" max="2030" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="Motion Design">Motion Design</option>
+                            <option value="3D Animation">3D Animation</option>
+                            <option value="2D Animation">2D Animation</option>
+                            <option value="Graphic Design">Graphic Design</option>
+                            <option value="Video Production">Video Production</option>
+                            <option value="Branding">Branding</option>
+                            <option value="Web Design">Web Design</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Project Type *</label>
+                        <div class="project-type-selector">
+                            <div class="type-option" data-type="simple">
+                                <h4>🔗 Simple Project</h4>
+                                <p>External link to video, website, or other content</p>
+                            </div>
+                            <div class="type-option" data-type="case-study">
+                                <h4>📄 Case Study</h4>
+                                <p>Full project page with detailed content (you'll code this later)</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="projectType" name="projectType" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="description">Project Description *</label>
+                        <textarea id="description" name="description" placeholder="Describe your project..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tagsInput">Tags</label>
+                        <input type="text" id="tagsInput" placeholder="Type a tag and press Enter">
+                        <input type="hidden" id="tags" name="tags">
+                        <div class="tags-container" id="tagsContainer"></div>
+                    </div>
+
+                    <div class="form-group conditional-field" id="externalLinkField">
+                        <label for="externalLink">External Link *</label>
+                        <input type="url" id="externalLink" name="externalLink" placeholder="https://...">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="featured" name="featured" style="margin-right: 0.5rem;">
+                            Featured Project
+                        </label>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="coverMedia">Cover Media (Image or Video)</label>
+                        <div class="file-upload">
+                            <input type="file" id="coverMedia" name="coverMedia" accept="image/*,video/*">
+                            <div class="file-upload-label">
+                                <div class="file-upload-icon">📁</div>
+                                <div class="file-upload-text">Click to upload cover media</div>
+                                <div class="file-upload-hint">Images: JPG, PNG, GIF | Videos: MP4, MOV, AVI (Max 100MB)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="galleryImages">Gallery Images</label>
+                        <div class="file-upload">
+                            <input type="file" id="galleryImages" name="galleryImages" accept="image/*" multiple>
+                            <div class="file-upload-label">
+                                <div class="file-upload-icon">🖼️</div>
+                                <div class="file-upload-text">Click to upload gallery images</div>
+                                <div class="file-upload-hint">Multiple images allowed (Max 20 files)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="galleryVideos">Gallery Videos</label>
+                        <div class="file-upload">
+                            <input type="file" id="galleryVideos" name="galleryVideos" accept="video/*" multiple>
+                            <div class="file-upload-label">
+                                <div class="file-upload-icon">🎥</div>
+                                <div class="file-upload-text">Click to upload gallery videos</div>
+                                <div class="file-upload-hint">Multiple videos allowed (Max 10 files)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="/dashboard" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        <span id="submitText">Create Project</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let tags = [];
+        let isEditing = false;
+        let editingId = null;
+
+        // Initialize form
+        document.addEventListener('DOMContentLoaded', () => {
+            setupProjectTypeSelector();
+            setupTagsInput();
+            setupFileUploads();
+            
+            // Check if editing
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('id');
+            if (projectId) {
+                isEditing = true;
+                editingId = projectId;
+                loadProjectForEdit(projectId);
+            }
+        });
+
+        function setupProjectTypeSelector() {
+            const typeOptions = document.querySelectorAll('.type-option');
+            const projectTypeInput = document.getElementById('projectType');
+            const externalLinkField = document.getElementById('externalLinkField');
+
+            typeOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    typeOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    
+                    const type = option.dataset.type;
+                    projectTypeInput.value = type;
+                    
+                    if (type === 'simple') {
+                        externalLinkField.classList.add('show');
+                        document.getElementById('externalLink').required = true;
+                    } else {
+                        externalLinkField.classList.remove('show');
+                        document.getElementById('externalLink').required = false;
+                    }
+                });
+            });
+        }
+
+        function setupTagsInput() {
+            const tagsInput = document.getElementById('tagsInput');
+            const tagsContainer = document.getElementById('tagsContainer');
+            const hiddenTagsInput = document.getElementById('tags');
+
+            tagsInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const tag = tagsInput.value.trim();
+                    if (tag && !tags.includes(tag)) {
+                        tags.push(tag);
+                        updateTagsDisplay();
+                        tagsInput.value = '';
+                    }
+                }
+            });
+
+            function updateTagsDisplay() {
+                tagsContainer.innerHTML = tags.map(tag => `
+                    <span class="tag">
+                        ${tag}
+                        <span class="tag-remove" onclick="removeTag('${tag}')">×</span>
+                    </span>
+                `).join('');
+                hiddenTagsInput.value = tags.join(',');
+            }
+
+            window.removeTag = (tag) => {
+                tags = tags.filter(t => t !== tag);
+                updateTagsDisplay();
+            };
+        }
+
+        function setupFileUploads() {
+            const fileInputs = document.querySelectorAll('input[type="file"]');
+            
+            fileInputs.forEach(input => {
+                input.addEventListener('change', (e) => {
+                    const label = input.parentElement.querySelector('.file-upload-text');
+                    const files = e.target.files;
+                    
+                    if (files.length > 0) {
+                        if (files.length === 1) {
+                            label.textContent = files[0].name;
+                        } else {
+                            label.textContent = `${files.length} files selected`;
+                        }
+                    } else {
+                        // Reset to original text
+                        const originalTexts = {
+                            'coverMedia': 'Click to upload cover media',
+                            'galleryImages': 'Click to upload gallery images',
+                            'galleryVideos': 'Click to upload gallery videos'
+                        };
+                        label.textContent = originalTexts[input.name] || 'Click to upload files';
+                    }
+                });
+            });
+        }
+
+        async function loadProjectForEdit(projectId) {
+            try {
+                const response = await fetch(`/api/projects/${projectId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to load project');
+                }
+                
+                const project = await response.json();
+                
+                // Update form title
+                document.getElementById('formTitle').textContent = 'Edit Project';
+                document.getElementById('submitText').textContent = 'Update Project';
+                
+                // Fill form fields
+                document.getElementById('title').value = project.title;
+                document.getElementById('year').value = project.year;
+                document.getElementById('category').value = project.category;
+                document.getElementById('description').value = project.description;
+                document.getElementById('externalLink').value = project.externalLink || '';
+                document.getElementById('featured').checked = project.featured;
+                
+                // Set project type
+                const typeOption = document.querySelector(`[data-type="${project.projectType}"]`);
+                if (typeOption) {
+                    typeOption.click();
+                }
+                
+                // Set tags
+                tags = project.tags || [];
+                document.getElementById('tags').value = tags.join(',');
+                document.getElementById('tagsContainer').innerHTML = tags.map(tag => `
+                    <span class="tag">
+                        ${tag}
+                        <span class="tag-remove" onclick="removeTag('${tag}')">×</span>
+                    </span>
+                `).join('');
+                
+            } catch (error) {
+                showError('Failed to load project: ' + error.message);
+            }
+        }
+
+        document.getElementById('projectForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const originalText = submitText.textContent;
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitText.innerHTML = '<span class="loading"></span>' + (isEditing ? 'Updating...' : 'Creating...');
+            
+            try {
+                const formData = new FormData(e.target);
+                
+                // Add project slug for file organization
+                const title = formData.get('title');
+                const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                formData.append('projectSlug', slug);
+                
+                const url = isEditing ? `/api/projects/${editingId}` : '/api/projects';
+                const method = isEditing ? 'PUT' : 'POST';
+                
+                const response = await fetch(url, {
+                    method: method,
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to save project');
+                }
+                
+                showSuccess(isEditing ? 'Project updated successfully!' : 'Project created successfully!');
+                
+                // Redirect to dashboard after a short delay
+                setTimeout(() => {
+                    window.location.href = '/dashboard';
+                }, 1500);
+                
+            } catch (error) {
+                showError(error.message);
+                
+                // Reset button
+                submitBtn.disabled = false;
+                submitText.textContent = originalText;
+            }
+        });
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            
+            // Hide success message
+            document.getElementById('successMessage').style.display = 'none';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            
+            // Hide error message
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Descalco Media Backoffice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #dc2626;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #a1a1aa;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ffffff;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(220, 38, 38, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #dc2626;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #a1a1aa;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .charts-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #ffffff;
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-placeholder {
+            height: 300px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a1a1aa;
+            font-style: italic;
+        }
+
+        .projects-table {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            background: rgba(220, 38, 38, 0.1);
+            padding: 1rem 2rem;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            align-items: center;
+        }
+
+        .table-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .project-title {
+            font-weight: 500;
+        }
+
+        .project-type {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .type-case-study {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+
+        .type-simple {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+        }
+
+        .hardcoded-tag {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #dc2626;
+            border-color: #dc2626;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .table-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">DESCALCO MEDIA</div>
+            <nav class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="add-project.html">Add Project</a>
+                <a href="analytics.html" class="active">Analytics</a>
+                <a href="media-manager.html">Media Manager</a>
+            </nav>
+            <a href="dashboard.html" class="back-button">← Back to Dashboard</a>
+        </div>
+
+        <h1 class="section-title">Portfolio Analytics</h1>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalProjects">0</div>
+                <div class="stat-label">Total Projects</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="caseStudies">0</div>
+                <div class="stat-label">Case Studies</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="simpleProjects">0</div>
+                <div class="stat-label">Simple Projects</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="featuredProjects">0</div>
+                <div class="stat-label">Featured Projects</div>
+            </div>
+        </div>
+
+        <div class="charts-section">
+            <h2 class="section-title">Project Distribution</h2>
+            
+            <div class="chart-container">
+                <h3 style="margin-bottom: 1rem; color: #ffffff;">Projects by Category</h3>
+                <div class="chart-placeholder">
+                    Category distribution chart will be implemented here
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 style="margin-bottom: 1rem; color: #ffffff;">Projects by Year</h3>
+                <div class="chart-placeholder">
+                    Timeline chart will be implemented here
+                </div>
+            </div>
+        </div>
+
+        <div class="projects-table">
+            <div class="table-header">
+                <div class="table-row">
+                    <div>Project Title</div>
+                    <div>Type</div>
+                    <div>Category</div>
+                    <div>Year</div>
+                    <div>Status</div>
+                </div>
+            </div>
+            <div id="projectsList">
+                <!-- Projects will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load and display analytics data
+        async function loadAnalytics() {
+            try {
+                // Load analytics data
+                const analyticsResponse = await fetch('/api/analytics');
+                const analytics = await analyticsResponse.json();
+
+                // Load projects data
+                const projectsResponse = await fetch('/api/projects');
+                const projects = await projectsResponse.json();
+
+                // Update overview statistics
+                document.getElementById('totalProjects').textContent = projects.length;
+                document.getElementById('caseStudies').textContent = projects.filter(p => p.projectType === 'case-study').length;
+                document.getElementById('simpleProjects').textContent = projects.filter(p => p.projectType === 'simple').length;
+                document.getElementById('featuredProjects').textContent = projects.filter(p => p.featured).length;
+
+                // Update analytics statistics
+                if (analytics.overview) {
+                    // Add new stat cards for analytics
+                    const statsGrid = document.querySelector('.stats-grid');
+                    statsGrid.innerHTML += `
+                        <div class="stat-card">
+                            <h3>Total Views (30d)</h3>
+                            <div class="value">${analytics.overview.totalViews}</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Clicks (30d)</h3>
+                            <div class="value">${analytics.overview.totalClicks}</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Weekly Views</h3>
+                            <div class="value">${analytics.overview.weeklyViews}</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Weekly Clicks</h3>
+                            <div class="value">${analytics.overview.weeklyClicks}</div>
+                        </div>
+                    `;
+                }
+
+                // Populate projects table with analytics data
+                const projectsList = document.getElementById('projectsList');
+                projectsList.innerHTML = projects.map(project => {
+                    const projectAnalytics = analytics.projectStats ? analytics.projectStats[project.id] : null;
+                    return `
+                        <div class="table-row">
+                            <div class="project-title">
+                                ${project.title}
+                                ${project.source === 'hardcoded' ? '<span class="hardcoded-tag">(hardcoded)</span>' : ''}
+                                ${projectAnalytics ? `<br><small style="color: #a1a1aa;">Views: ${projectAnalytics.totalViews} | Clicks: ${projectAnalytics.totalClicks}</small>` : ''}
+                            </div>
+                            <div>
+                                <span class="project-type ${project.projectType === 'case-study' ? 'type-case-study' : 'type-simple'}">
+                                    ${project.projectType === 'case-study' ? 'Case Study' : 'Simple'}
+                                </span>
+                            </div>
+                            <div>${project.category}</div>
+                            <div>${project.year}</div>
+                            <div style="color: ${project.status === 'published' ? '#4ade80' : '#fbbf24'}">
+                                ${project.status || 'published'}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Update charts placeholders with real data
+                updateCharts(analytics);
+
+            } catch (error) {
+                console.error('Error loading analytics:', error);
+                // Fallback to basic project data
+                const projectsResponse = await fetch('/api/projects');
+                const projects = await projectsResponse.json();
+                
+                document.getElementById('totalProjects').textContent = projects.length;
+                document.getElementById('caseStudies').textContent = projects.filter(p => p.projectType === 'case-study').length;
+                document.getElementById('simpleProjects').textContent = projects.filter(p => p.projectType === 'simple').length;
+                document.getElementById('featuredProjects').textContent = projects.filter(p => p.featured).length;
+            }
+        }
+
+        // Update charts with analytics data
+        function updateCharts(analytics) {
+            // Update category chart placeholder
+            const categoryChart = document.querySelector('.chart-container:first-of-type .chart-placeholder');
+            if (analytics.projectStats) {
+                const categories = {};
+                Object.values(analytics.projectStats).forEach(project => {
+                    categories[project.category] = (categories[project.category] || 0) + project.totalViews + project.totalClicks;
+                });
+                
+                const categoryList = Object.entries(categories)
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([category, interactions]) => `${category}: ${interactions} interactions`)
+                    .join('<br>');
+                
+                categoryChart.innerHTML = `<div style="text-align: left; padding: 2rem;">${categoryList || 'No interaction data yet'}</div>`;
+            }
+
+            // Update timeline chart placeholder
+            const timelineChart = document.querySelector('.chart-container:last-of-type .chart-placeholder');
+            if (analytics.dailyStats) {
+                const dailyData = analytics.dailyStats
+                    .map(day => `${day.date}: ${day.views} views, ${day.clicks} clicks`)
+                    .join('<br>');
+                
+                timelineChart.innerHTML = `<div style="text-align: left; padding: 2rem;">${dailyData || 'No daily data yet'}</div>`;
+            }
+        }
+
+        // Load analytics on page load
+        loadAnalytics();
+    </script>
+</body>
+</html>
