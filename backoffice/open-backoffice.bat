@@ -10,25 +10,55 @@ echo.
 
 cd /d "%~dp0"
 
+REM Check if node is available
+where node >nul 2>&1
+if %ERRORLEVEL% neq 0 (
+    echo ❌ Node.js not found! Please install Node.js first.
+    echo 🌐 Download from: https://nodejs.org/
+    pause
+    exit /b 1
+)
+
+REM Check if package.json exists
+if not exist "package.json" (
+    echo ❌ package.json not found! Make sure you're in the right directory.
+    pause
+    exit /b 1
+)
+
 REM Start the server in background
-start /B npm start
+echo 📦 Starting Node.js server...
+start /B node server.js
 
 REM Wait a moment for server to start
-timeout /t 3 /nobreak >nul
+echo ⏳ Waiting for server to initialize...
+timeout /t 5 /nobreak >nul
 
-REM Open the backoffice in default browser
-start http://localhost:3001/admin/login.html
+REM Test if server is running
+powershell -Command "try { Invoke-WebRequest -Uri 'http://localhost:3001' -TimeoutSec 2 -UseBasicParsing | Out-Null; Write-Host '✅ Server is running!' } catch { Write-Host '❌ Server failed to start!' }"
+
+REM Open the backoffice in default browser (corrected URL)
+echo 🌐 Opening backoffice in browser...
+start http://localhost:3001/login.html
 
 echo.
-echo ✅ Backoffice opened in your browser!
-echo 🌐 URL: http://localhost:3001/admin/login.html
-echo 🔑 Login: admin / admin123
+echo ✅ Backoffice should now be open in your browser!
+echo 🌐 URL: http://localhost:3001/login.html
+echo 🔑 Default password: descalco2025!
 echo.
-echo Press any key to stop the server...
-pause >nul
+echo 📋 Available URLs:
+echo    • Login: http://localhost:3001/login.html
+echo    • Dashboard: http://localhost:3001/dashboard.html
+echo    • Add Project: http://localhost:3001/add-project.html
+echo.
+echo ⚠️  Keep this window open to keep the server running.
+echo 📝 Server logs will appear here...
+echo.
+echo Press Ctrl+C to stop the server, or close this window.
+echo.
 
-REM Kill the node process
-taskkill /f /im node.exe >nul 2>&1
-echo.
-echo ✅ Server stopped. You can close this window.
-pause
+REM Keep the window open and show server status
+:loop
+timeout /t 10 /nobreak >nul
+powershell -Command "try { Invoke-WebRequest -Uri 'http://localhost:3001' -TimeoutSec 1 -UseBasicParsing | Out-Null; Write-Host '[%date% %time%] Server OK' } catch { Write-Host '[%date% %time%] Server NOT responding!' }"
+goto loop
