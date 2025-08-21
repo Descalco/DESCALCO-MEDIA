@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+"<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,6 +41,84 @@
             display: flex;
             gap: 1rem;
             align-items: center;
+            position: relative;
+        }
+
+        .help-dropdown {
+            position: relative;
+        }
+
+        .help-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: #d1d5db;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .help-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .help-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 400px;
+            max-height: 500px;
+            overflow-y: auto;
+            z-index: 9999;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .help-content.show {
+            display: block;
+        }
+
+        .help-content h3 {
+            color: #dc2626;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .help-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .help-section h4 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .help-section p, .help-section li {
+            color: #d1d5db;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .help-section ul {
+            margin-left: 1rem;
+        }
+
+        .help-section code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #fbbf24;
+            font-size: 0.8rem;
         }
 
         .btn {
@@ -154,15 +232,72 @@
             border-radius: 8px;
             padding: 1.5rem;
             display: grid;
-            grid-template-columns: auto 1fr auto;
+            grid-template-columns: auto auto 1fr auto;
             gap: 1rem;
             align-items: center;
             transition: all 0.3s ease;
+            cursor: move;
         }
 
         .project-card:hover {
             background: rgba(255, 255, 255, 0.06);
             border-color: rgba(220, 38, 38, 0.3);
+        }
+
+        .project-card.dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+        }
+
+        .project-card.drag-over {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .drag-handle {
+            cursor: grab;
+            color: #666;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .drag-handle:hover {
+            color: #dc2626;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+
+        .visibility-toggle {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .visibility-toggle:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .visibility-toggle.visible {
+            color: #22c55e;
+        }
+
+        .visibility-toggle.hidden {
+            color: #ef4444;
+        }
+
+        .project-card.hidden {
+            opacity: 0.6;
+            background: rgba(239, 68, 68, 0.05);
         }
 
         .project-media-preview {
@@ -218,6 +353,56 @@
         .project-actions {
             display: flex;
             gap: 0.5rem;
+            align-items: center;
+        }
+
+        .visibility-toggle {
+            background: none;
+            border: none;
+            color: #a1a1aa;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.25rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .visibility-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .visibility-toggle.visible {
+            color: #22c55e;
+        }
+
+        .visibility-toggle.hidden {
+            color: #ef4444;
+        }
+
+        .drag-handle {
+            cursor: grab;
+            color: #6b7280;
+            font-size: 1.2rem;
+            padding: 0.25rem;
+            margin-right: 0.5rem;
+        }
+
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+
+        .project-card.dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+        }
+
+        .project-card.drag-over {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .projects-grid.sortable {
+            min-height: 200px;
         }
 
         .empty-state {
@@ -322,11 +507,98 @@
             <a href="add-project.html" class="btn btn-primary">+ Add Project</a>
             <a href="analytics.html" class="btn btn-secondary">📊 Analytics</a>
             <a href="media-manager.html" class="btn btn-secondary">🎬 Media</a>
+            
+            <!-- Help Dropdown -->
+            <div class="help-dropdown">
+                <button class="help-button" onclick="toggleHelp()">
+                    ❓ Help
+                </button>
+                <div class="help-content" id="helpContent">
+                    <h3>🎯 Backoffice Guide</h3>
+                    
+                    <div class="help-section">
+                        <h4>📋 Project Management</h4>
+                        <ul>
+                            <li><strong>Add Project:</strong> Click "+ Add Project" to create new projects</li>
+                            <li><strong>Edit Project:</strong> Click "Edit" on any non-hardcoded project</li>
+                            <li><strong>Delete Project:</strong> Click "Delete" to remove projects permanently</li>
+                            <li><strong>Drag & Drop:</strong> Drag projects to reorder them in your portfolio</li>
+                        </ul>
+                    </div>
+
+                    <div class="help-section">
+                        <h4>👁️ Visibility Control</h4>
+                        <ul>
+                            <li><strong>Show/Hide:</strong> Toggle project visibility with the eye icon</li>
+                            <li><strong>Featured:</strong> Mark important projects as featured</li>
+                            <li><strong>Order:</strong> Drag projects to change display order</li>
+                        </ul>
+                    </div>
+
+                    <div class="help-section">
+                        <h4>🔧 Project Types</h4>
+                        <ul>
+                            <li><strong>Simple:</strong> External links (YouTube, etc.)</li>
+                            <li><strong>Case Study:</strong> Full detailed pages you create</li>
+                            <li><strong>Hardcoded:</strong> Original projects (read-only)</li>
+                        </ul>
+                    </div>
+
+                    <div class="help-section">
+                        <h4>🚀 Publishing Workflow</h4>
+                        <ul>
+                            <li>1. Add/edit projects in backoffice</li>
+                            <li>2. Close backoffice when done</li>
+                            <li>3. Run <code>update-portfolio.bat</code></li>
+                            <li>4. Your portfolio updates automatically!</li>
+                        </ul>
+                    </div>
+
+                    <div class="help-section">
+                        <h4>📊 Analytics & Media</h4>
+                        <ul>
+                            <li><strong>Analytics:</strong> View project performance stats</li>
+                            <li><strong>Media Manager:</strong> Upload and manage files</li>
+                            <li><strong>File Types:</strong> Images, videos, PDFs supported</li>
+                        </ul>
+                    </div>
+
+                    <div class="help-section">
+                        <h4>💡 Pro Tips</h4>
+                        <ul>
+                            <li>Use descriptive titles and tags for better SEO</li>
+                            <li>Upload high-quality cover media</li>
+                            <li>Keep descriptions concise but informative</li>
+                            <li>Regular backups are automatically created</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
             <button onclick="logout()" class="btn btn-secondary">Logout</button>
         </div>
     </div>
 
-    <div class="container">
+        <div class="container">
+        <!-- Portfolio Update Instructions -->
+        <div class="instruction-box" style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+            <h3 style="color: #86efac; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                📋 How to Update Your Portfolio
+            </h3>
+            <div style="color: #d1d5db; line-height: 1.6;">
+                <p style="margin-bottom: 1rem;"><strong>After adding or editing projects:</strong></p>
+                <ol style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li style="margin-bottom: 0.5rem;">Close the backoffice when you're done</li>
+                    <li style="margin-bottom: 0.5rem;">Run the <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.4rem; border-radius: 4px; color: #fbbf24;">update-portfolio.bat</code> file in your main folder</li>
+                    <li style="margin-bottom: 0.5rem;">Your portfolio will automatically include all new projects</li>
+                    <li>No need to keep the backoffice running!</li>
+                </ol>
+                <p style="font-size: 0.9rem; color: #a1a1aa; background: rgba(0,0,0,0.2); padding: 0.75rem; border-radius: 6px; margin-top: 1rem;">
+                    💡 <strong>Tip:</strong> Your portfolio works independently of this backoffice. The update script copies your projects to a static file that loads instantly.
+                </p>
+            </div>
+        </div>
+
         <div class="stats-grid">
             <div class="stat-card">
                 <h3>Total Projects</h3>
@@ -346,7 +618,7 @@
             </div>
         </div>
 
-        <div class="projects-section">
+<div class="projects-section" id="projectsSection">
             <div class="section-header">
                 <h2>All Projects</h2>
                 <button onclick="refreshProjects()" class="btn btn-secondary">Refresh</button>
@@ -384,7 +656,7 @@
 
         async function loadProjects() {
             try {
-                const response = await fetch('/api/projects');
+                const response = await fetch('/api/admin/projects');
                 if (!response.ok) {
                     if (response.status === 401) {
                         window.location.href = '/';
@@ -394,6 +666,15 @@
                 }
                 
                 projects = await response.json();
+                
+                // Sort projects by displayOrder if available, otherwise by creation date
+                projects.sort((a, b) => {
+                    if (a.displayOrder !== undefined && b.displayOrder !== undefined) {
+                        return a.displayOrder - b.displayOrder;
+                    }
+                    return new Date(a.createdAt) - new Date(b.createdAt);
+                });
+                
                 updateStats();
                 renderProjects();
             } catch (error) {
@@ -433,8 +714,16 @@
                 return;
             }
 
-            const projectsHTML = projects.map(project => `
-                <div class="project-card">
+            const projectsHTML = projects.map((project, index) => `
+                <div class="project-card ${project.visible === false ? 'hidden' : ''}" 
+                     data-project-id="${project.id}" 
+                     draggable="true">
+                    <div class="drag-handle" title="Drag to reorder">⋮⋮</div>
+                    <button class="visibility-toggle ${project.visible !== false ? 'visible' : 'hidden'}" 
+                            onclick="toggleVisibility('${project.id}')" 
+                            title="${project.visible !== false ? 'Hide project' : 'Show project'}">
+                        ${project.visible !== false ? '👁️' : '🙈'}
+                    </button>
                     <div class="project-media-preview">
                         ${project.coverMedia 
                             ? project.coverMedia.type === 'video' 
@@ -451,6 +740,7 @@
                             <span class="project-type ${project.projectType === 'case-study' ? 'case-study' : ''}">${project.projectType}</span>
                             ${project.featured ? '<span>⭐ Featured</span>' : ''}
                             ${project.source === 'hardcoded' ? '<span class="hardcoded-tag">(hardcoded)</span>' : ''}
+                            ${project.visible === false ? '<span style="color: #ef4444; font-size: 0.75rem;">Hidden</span>' : ''}
                         </div>
                     </div>
                     <div class="project-actions">
@@ -463,7 +753,10 @@
                 </div>
             `).join('');
 
-            container.innerHTML = `<div class="projects-grid">${projectsHTML}</div>`;
+            container.innerHTML = `<div class="projects-grid" id="projectsGrid">${projectsHTML}</div>`;
+            
+            // Initialize drag and drop
+            initializeDragAndDrop();
         }
 
         function editProject(id) {
@@ -513,6 +806,189 @@
                 window.location.href = '/';
             }
         }
+
+        // Visibility toggle functionality
+        async function toggleVisibility(projectId) {
+            try {
+                const project = projects.find(p => p.id === projectId);
+                if (!project) return;
+
+                const newVisibility = project.visible !== false ? false : true;
+                
+                const response = await fetch(`/api/projects/${projectId}/visibility`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ visible: newVisibility })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to update project visibility');
+                }
+
+                // Update local project data
+                project.visible = newVisibility;
+                renderProjects();
+                
+                console.log(`Project "${project.title}" ${newVisibility ? 'shown' : 'hidden'}`);
+            } catch (error) {
+                console.error('Error toggling visibility:', error);
+                alert('Failed to update project visibility: ' + error.message);
+            }
+        }
+
+        // Drag and drop functionality
+        function initializeDragAndDrop() {
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach(card => {
+                // Only add drag events to the drag handle, not the entire card
+                const dragHandle = card.querySelector('.drag-handle');
+                if (dragHandle) {
+                    dragHandle.addEventListener('mousedown', () => {
+                        card.setAttribute('draggable', 'true');
+                    });
+                }
+                
+                card.addEventListener('dragstart', handleDragStart);
+                card.addEventListener('dragover', handleDragOver);
+                card.addEventListener('drop', handleDrop);
+                card.addEventListener('dragend', handleDragEnd);
+                card.addEventListener('dragenter', handleDragEnter);
+                card.addEventListener('dragleave', handleDragLeave);
+            });
+        }
+
+        let draggedElement = null;
+        let draggedIndex = -1;
+
+        function handleDragStart(e) {
+            draggedElement = this;
+            draggedIndex = Array.from(this.parentNode.children).indexOf(this);
+            this.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', ''); // Required for Firefox
+            
+            console.log('Drag started:', this.dataset.projectId);
+        }
+
+        function handleDragEnter(e) {
+            e.preventDefault();
+            if (this !== draggedElement) {
+                this.classList.add('drag-over');
+            }
+        }
+
+        function handleDragLeave(e) {
+            // Only remove drag-over if we're actually leaving the element
+            if (!this.contains(e.relatedTarget)) {
+                this.classList.remove('drag-over');
+            }
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            return false;
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (draggedElement && draggedElement !== this) {
+                const draggedId = draggedElement.dataset.projectId;
+                const targetId = this.dataset.projectId;
+                
+                console.log('Dropping', draggedId, 'onto', targetId);
+                
+                // Find the indices of the dragged and target projects
+                const draggedProjectIndex = projects.findIndex(p => p.id === draggedId);
+                const targetProjectIndex = projects.findIndex(p => p.id === targetId);
+                
+                if (draggedProjectIndex !== -1 && targetProjectIndex !== -1) {
+                    // Reorder the projects array
+                    const draggedProject = projects.splice(draggedProjectIndex, 1)[0];
+                    projects.splice(targetProjectIndex, 0, draggedProject);
+                    
+                    console.log('New order:', projects.map(p => p.title));
+                    
+                    // Update the server with new order
+                    updateProjectOrder();
+                }
+            }
+
+            // Clean up
+            this.classList.remove('drag-over');
+            return false;
+        }
+
+        function handleDragEnd(e) {
+            console.log('Drag ended');
+            
+            if (this.classList.contains('dragging')) {
+                this.classList.remove('dragging');
+            }
+            
+            // Remove drag-over class from all cards
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.classList.remove('drag-over');
+                card.setAttribute('draggable', 'false');
+            });
+            
+            draggedElement = null;
+            draggedIndex = -1;
+        }
+
+        async function updateProjectOrder() {
+            try {
+                const projectIds = projects.map(p => p.id);
+                
+                console.log('Sending new order to server:', projectIds);
+                
+                const response = await fetch('/api/projects/reorder', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ projectIds })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Failed to update project order');
+                }
+
+                const result = await response.json();
+                console.log('Server response:', result);
+
+                // Re-render projects with new order
+                renderProjects();
+                console.log('✅ Project order updated successfully');
+            } catch (error) {
+                console.error('❌ Error updating project order:', error);
+                alert('Failed to update project order: ' + error.message);
+                // Reload projects to restore original order
+                loadProjects();
+            }
+        }
+
+        // Help dropdown functionality
+        function toggleHelp() {
+            const helpContent = document.getElementById('helpContent');
+            helpContent.classList.toggle('show');
+        }
+
+        // Close help dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            const helpDropdown = document.querySelector('.help-dropdown');
+            const helpContent = document.getElementById('helpContent');
+            
+            if (!helpDropdown.contains(e.target)) {
+                helpContent.classList.remove('show');
+            }
+        });
 
         // Close modal when clicking outside
         document.getElementById('deleteModal').addEventListener('click', (e) => {

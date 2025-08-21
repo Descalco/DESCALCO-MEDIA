@@ -1,0 +1,16 @@
+{
+  "ignore": [
+    "data/**/*",
+    "uploads/**/*",
+    "*.json",
+    "data/projects.json",
+    "data/analytics.json"
+  ],
+  "watch": [
+    "server.js",
+    "admin/**/*",
+    ".env"
+  ],
+  "ext": "js,html,css,env",
+  "verbose": true
+}

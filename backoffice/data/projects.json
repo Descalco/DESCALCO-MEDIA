@@ -20,7 +20,8 @@
       "htmlFile": "SOF-WEEK.html",
       "coverMedia": "assets/img/OUTROS/SOF-WEEK.mp4",
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-19T00:13:23.348Z"
+      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "displayOrder": 0
     },
     {
       "id": "guisado",
@@ -41,7 +42,9 @@
       "htmlFile": "GUISADO.html",
       "coverMedia": "assets/img/OUTROS/GUISADO-VIDEO.mp4#t=3",
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-19T00:10:02.343Z"
+      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "visible": true,
+      "displayOrder": 6
     },
     {
       "id": "cidade-do-futuro",
@@ -62,7 +65,8 @@
       "htmlFile": "CidadeDoFuturo.html",
       "coverMedia": "assets/img/OUTROS/pa_-_immersivus_x_a_cidade_do_futuro (1080p) (online-video-cutter.com).mp4",
       "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-19T00:10:02.343Z"
+      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "displayOrder": 4
     },
     {
       "id": "motion-jam-winner",
@@ -83,7 +87,8 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/Noushoe.mp4",
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-19T00:10:02.343Z"
+      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "displayOrder": 1
     },
     {
       "id": "limifield-corporate",
@@ -104,7 +109,8 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/LIMIFIELD-INSTITUCIONAL.mp4",
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-19T00:10:02.343Z"
+      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "displayOrder": 3
     },
     {
       "id": "limifield-type-ad",
@@ -125,7 +131,8 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/limifield-type-ad.mp4",
       "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-19T00:10:02.343Z"
+      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "displayOrder": 8
     },
     {
       "id": "let-it-happen",
@@ -146,7 +153,8 @@
       "htmlFile": "LetItHappen.html",
       "coverMedia": "assets/img/OUTROS/LETITHAPPEN.mp4",
       "createdAt": "2022-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-19T00:10:02.343Z"
+      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "displayOrder": 7
     },
     {
       "id": "queen-animation",
@@ -167,7 +175,8 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/queen.mp4",
       "createdAt": "2022-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-19T00:10:02.343Z"
+      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "displayOrder": 10
     },
     {
       "id": "kinetic-duality",
@@ -188,7 +197,8 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/KINETIC DUALITY.mp4",
       "createdAt": "2022-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-19T00:10:02.343Z"
+      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "displayOrder": 5
     },
     {
       "id": "desistir-book",
@@ -209,7 +219,8 @@
       "htmlFile": "DESISTIR.html",
       "coverMedia": "assets/img/DESISTIR/DESISTIR-CAPA2.jpg",
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-19T00:10:02.343Z"
+      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "displayOrder": 9
     },
     {
       "id": "empresta-verbo-amar",
@@ -230,7 +241,9 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/EmprestaOVerboAmar.mp4",
       "createdAt": "2022-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-19T00:10:02.343Z"
+      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "displayOrder": 11,
+      "visible": false
     },
     {
       "id": "8c542f54-a1f9-4d1b-b9dd-04726f60cb29",
@@ -253,7 +266,9 @@
         "videos": []
       },
       "createdAt": "2025-08-19T03:48:18.329Z",
-      "updatedAt": "2025-08-19T03:48:18.329Z"
+      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "visible": true,
+      "displayOrder": 2
     }
   ]
 }

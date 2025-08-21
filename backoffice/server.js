@@ -359,6 +359,9 @@ app.post('/api/projects', requireAuth, upload.fields([
     const galleryImages = files.galleryImages || [];
     const galleryVideos = files.galleryVideos || [];
 
+    // Get existing data first
+    const data = getProjectsData();
+
     const project = {
       id: projectId,
       slug,
@@ -370,6 +373,8 @@ app.post('/api/projects', requireAuth, upload.fields([
       tags: tags ? tags.split(',').map(tag => tag.trim()).filter(t => t) : [],
       externalLink: projectType === 'simple' ? externalLink : null,
       featured: featured === 'true' || featured === 'on' || featured === true,
+      visible: true, // Default to visible
+      displayOrder: data.projects.length, // Set order to end of list
       coverMedia: coverMedia ? {
         type: coverMedia.mimetype.startsWith('video') ? 'video' : 'image',
         filename: coverMedia.filename,
@@ -390,7 +395,6 @@ app.post('/api/projects', requireAuth, upload.fields([
     };
 
     // Save project data
-    const data = getProjectsData();
     data.projects.push(project);
     saveProjectsData(data);
 
@@ -405,6 +409,73 @@ app.post('/api/projects', requireAuth, upload.fields([
   } catch (error) {
     console.error('Error creating project:', error);
     res.status(500).json({ error: 'Failed to create project: ' + error.message });
+  }
+});
+
+// Update project order (ADMIN ONLY) - MUST be before the /:id route
+app.put('/api/projects/reorder', requireAuth, (req, res) => {
+  try {
+    const { projectIds } = req.body;
+    
+    if (!Array.isArray(projectIds)) {
+      return res.status(400).json({ error: 'projectIds must be an array' });
+    }
+
+    const data = getProjectsData();
+    
+    // Update display order for each project
+    projectIds.forEach((projectId, index) => {
+      const projectIndex = data.projects.findIndex(p => p.id === projectId);
+      if (projectIndex !== -1) {
+        data.projects[projectIndex].displayOrder = index;
+        data.projects[projectIndex].updatedAt = new Date().toISOString();
+      } else {
+        console.warn(`⚠️ Project not found for reordering: ${projectId}`);
+      }
+    });
+
+    saveProjectsData(data);
+
+    console.log(`✅ Project order updated for ${projectIds.length} projects`);
+
+    res.json({ 
+      success: true, 
+      message: 'Project order updated successfully'
+    });
+    
+  } catch (error) {
+    console.error('Error updating project order:', error);
+    res.status(500).json({ error: 'Failed to update project order: ' + error.message });
+  }
+});
+
+// Toggle project visibility (ADMIN ONLY) - MUST be before the /:id route
+app.put('/api/projects/:id/visibility', requireAuth, (req, res) => {
+  try {
+    const { visible } = req.body;
+    const data = getProjectsData();
+    const projectIndex = data.projects.findIndex(p => p.id === req.params.id);
+    
+    if (projectIndex === -1) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    data.projects[projectIndex].visible = visible;
+    data.projects[projectIndex].updatedAt = new Date().toISOString();
+    
+    saveProjectsData(data);
+
+    console.log(`✅ Project visibility updated: "${data.projects[projectIndex].title}" - ${visible ? 'Visible' : 'Hidden'}`);
+
+    res.json({ 
+      success: true, 
+      message: `Project ${visible ? 'shown' : 'hidden'} successfully`,
+      project: data.projects[projectIndex]
+    });
+    
+  } catch (error) {
+    console.error('Error updating project visibility:', error);
+    res.status(500).json({ error: 'Failed to update project visibility: ' + error.message });
   }
 });
 
@@ -436,6 +507,8 @@ app.put('/api/projects/:id', requireAuth, upload.fields([
       tags: req.body.tags ? req.body.tags.split(',').map(tag => tag.trim()).filter(t => t) : existingProject.tags,
       externalLink: req.body.externalLink || existingProject.externalLink,
       featured: req.body.featured === 'true' || req.body.featured === 'on' || req.body.featured === true,
+      visible: req.body.visible !== undefined ? req.body.visible === 'true' || req.body.visible === 'on' || req.body.visible === true : (existingProject.visible !== undefined ? existingProject.visible : true),
+      displayOrder: req.body.displayOrder !== undefined ? parseInt(req.body.displayOrder) : existingProject.displayOrder,
       updatedAt: new Date().toISOString()
     };
 
