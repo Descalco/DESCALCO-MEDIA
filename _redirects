@@ -1,0 +1,7 @@
+# Netlify redirects file
+
+# Form submissions - redirect to thank you page on success
+/success /index.html 200
+
+# SPA fallback for any other routes
+/* /index.html 200

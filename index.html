@@ -248,7 +248,11 @@
                 <h2>Let's collaborate on</h2>
                 <!-- Contact form with service options -->
                 <!-- You'll need to set up form submission handling - consider using formspree.io as suggested in the comment -->
-                <form class="work-request" action="https://formspree.io/your-formspree-endpoint" method="POST">
+                <form class="work-request" name="hire-me" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                  <!-- Hidden field for bot detection -->
+                  <p style="display: none;">
+                    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                  </p>
                   <div class="work-request--options">
                     <span class="options-a">
                       <input id="opt-1" type="checkbox" name="service" value="Video Editing">

@@ -185,9 +185,98 @@ $(document).ready(function () {
     })
   }
 
+  // Function to handle form submission
+  function handleFormSubmission() {
+    const form = document.querySelector('.work-request');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Show loading state
+      const submitBtn = form.querySelector('input[type="submit"]');
+      const originalText = submitBtn.value;
+      submitBtn.value = 'Sending...';
+      submitBtn.disabled = true;
+
+      // Get form data
+      const formData = new FormData(form);
+      
+      // Submit to Netlify
+      fetch('/', {
+        method: 'POST',
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => {
+        // Show success overlay
+        showSuccessOverlay();
+        // Reset form
+        form.reset();
+        // Remove has-value classes from inputs
+        $('.work-request--information input').removeClass('has-value');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        showErrorOverlay();
+      })
+      .finally(() => {
+        // Reset button
+        submitBtn.value = originalText;
+        submitBtn.disabled = false;
+      });
+    });
+  }
+
+  // Function to show success overlay
+  function showSuccessOverlay() {
+    const overlay = document.createElement('div');
+    overlay.className = 'form-overlay success-overlay';
+    overlay.innerHTML = `
+      <div class="overlay-content">
+        <div class="overlay-icon success-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+        </div>
+        <h3>Thank You!</h3>
+        <p>Your message has been successfully sent! I'll get back to you as soon as possible, usually within 24 hours.</p>
+        <button class="overlay-close-btn" onclick="closeOverlay()">Close</button>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    
+    // Auto close after 5 seconds
+    setTimeout(() => {
+      if (overlay.parentNode) {
+        closeOverlay();
+      }
+    }, 5000);
+  }
+
+  // Function to show error overlay
+  function showErrorOverlay() {
+    const overlay = document.createElement('div');
+    overlay.className = 'form-overlay error-overlay';
+    overlay.innerHTML = `
+      <div class="overlay-content">
+        <div class="overlay-icon error-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </div>
+        <h3>Oops! Something went wrong</h3>
+        <p>There was an error sending your message. Please try again or contact me directly at pedromdcostau@gmail.com</p>
+        <button class="overlay-close-btn" onclick="closeOverlay()">Close</button>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+  }
+
   // Initialize functions
   outerNav();
   transitionLabels(); // This function is now needed for the hire form
+  handleFormSubmission(); // Initialize form submission handling
 
 });
 
@@ -217,6 +306,19 @@ if (showreelInTheMaking) {
 function goToHomeSection() {
   // Simulate clicking the "Home" nav item
   document.querySelectorAll('.side-nav li')[0].click();
+}
+
+// --- Global function to close overlay ---
+function closeOverlay() {
+  const overlay = document.querySelector('.form-overlay');
+  if (overlay) {
+    overlay.style.opacity = '0';
+    setTimeout(() => {
+      if (overlay.parentNode) {
+        overlay.parentNode.removeChild(overlay);
+      }
+    }, 300);
+  }
 }
 
 // --- Logo Animation Video Logic ---

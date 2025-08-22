@@ -1999,3 +1999,210 @@ a:focus {
         border-width: 2px;
     }
 }
+
+/* =========================
+   FORM OVERLAY STYLES
+   ========================= */
+
+/* Form Overlay Styles */
+.form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.overlay-content {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    border: 2px solid rgba(220, 38, 38, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: overlaySlideIn 0.3s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.overlay-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.overlay-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.success-icon {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+}
+
+.error-icon {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: white;
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+}
+
+.overlay-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.overlay-content h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+}
+
+.overlay-content p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.overlay-close-btn {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.overlay-close-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.overlay-close-btn:hover::before {
+    left: 100%;
+}
+
+.overlay-close-btn:hover {
+    background: linear-gradient(135deg, #b91c1c, #991b1b);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+}
+
+@keyframes overlaySlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Success overlay specific styles */
+.success-overlay .overlay-content {
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.success-overlay .overlay-content::before {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, transparent 50%);
+}
+
+/* Error overlay specific styles */
+.error-overlay .overlay-content {
+    border-color: rgba(220, 38, 38, 0.5);
+}
+
+.error-overlay .overlay-content::before {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
+}
+
+@media (max-width: 768px) {
+    .overlay-content {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .overlay-content h3 {
+        font-size: 1.25rem;
+    }
+    
+    .overlay-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .overlay-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .overlay-close-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Accessibility improvements for overlay */
+@media (prefers-reduced-motion: reduce) {
+    .overlay-content {
+        animation: none !important;
+    }
+    
+    .overlay-close-btn:hover {
+        transform: none !important;
+    }
+}
+
+/* High contrast mode support for overlay */
+@media (prefers-contrast: high) {
+    .overlay-content {
+        border-width: 3px;
+        background: #000000;
+    }
+    
+    .overlay-content h3,
+    .overlay-content p {
+        color: #ffffff;
+    }
+}
