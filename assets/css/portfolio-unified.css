@@ -281,11 +281,20 @@ p {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
-  padding: 3rem;
+  padding: 2rem;
   backdrop-filter: blur(10px);
   z-index: 1;
+  overflow-y: auto;
+  /* Hide scrollbar but keep functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+.project-overlay::-webkit-scrollbar {
+  display: none;
 }
 
 .project-item:hover .project-overlay {
@@ -592,6 +601,8 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+  margin-top: auto;
+  flex-shrink: 0;
 }
 
 .project-link:hover {
