@@ -7,9 +7,10 @@ Write-Host "  DESCALCO MEDIA - Portfolio Backoffice" -ForegroundColor Yellow
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
-# Get the directory where this script is located
+# Get the directory where this script is located and navigate to backoffice
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-Set-Location $scriptDir
+$backofficeDir = Join-Path (Split-Path $scriptDir -Parent) "backoffice"
+Set-Location $backofficeDir
 
 Write-Host "🚀 Starting the backoffice server..." -ForegroundColor Green
 Write-Host ""

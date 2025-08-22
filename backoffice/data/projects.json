@@ -20,7 +20,7 @@
       "htmlFile": "SOF-WEEK.html",
       "coverMedia": "assets/img/OUTROS/SOF-WEEK.mp4",
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "updatedAt": "2025-08-22T01:51:05.037Z",
       "displayOrder": 0
     },
     {
@@ -42,9 +42,9 @@
       "htmlFile": "GUISADO.html",
       "coverMedia": "assets/img/OUTROS/GUISADO-VIDEO.mp4#t=3",
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "updatedAt": "2025-08-22T01:51:05.037Z",
       "visible": true,
-      "displayOrder": 6
+      "displayOrder": 4
     },
     {
       "id": "cidade-do-futuro",
@@ -65,8 +65,8 @@
       "htmlFile": "CidadeDoFuturo.html",
       "coverMedia": "assets/img/OUTROS/pa_-_immersivus_x_a_cidade_do_futuro (1080p) (online-video-cutter.com).mp4",
       "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-21T22:16:44.049Z",
-      "displayOrder": 4
+      "updatedAt": "2025-08-22T01:51:05.037Z",
+      "displayOrder": 3
     },
     {
       "id": "motion-jam-winner",
@@ -87,7 +87,7 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/Noushoe.mp4",
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "updatedAt": "2025-08-22T01:51:05.037Z",
       "displayOrder": 1
     },
     {
@@ -109,8 +109,8 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/LIMIFIELD-INSTITUCIONAL.mp4",
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-21T22:16:44.049Z",
-      "displayOrder": 3
+      "updatedAt": "2025-08-22T01:51:05.037Z",
+      "displayOrder": 5
     },
     {
       "id": "limifield-type-ad",
@@ -131,7 +131,7 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/limifield-type-ad.mp4",
       "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "updatedAt": "2025-08-22T01:51:05.037Z",
       "displayOrder": 8
     },
     {
@@ -153,7 +153,7 @@
       "htmlFile": "LetItHappen.html",
       "coverMedia": "assets/img/OUTROS/LETITHAPPEN.mp4",
       "createdAt": "2022-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "updatedAt": "2025-08-22T01:51:05.037Z",
       "displayOrder": 7
     },
     {
@@ -175,7 +175,7 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/queen.mp4",
       "createdAt": "2022-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "updatedAt": "2025-08-22T01:51:05.037Z",
       "displayOrder": 10
     },
     {
@@ -197,8 +197,8 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/KINETIC DUALITY.mp4",
       "createdAt": "2022-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-21T22:16:44.049Z",
-      "displayOrder": 5
+      "updatedAt": "2025-08-22T01:51:05.037Z",
+      "displayOrder": 6
     },
     {
       "id": "desistir-book",
@@ -219,7 +219,7 @@
       "htmlFile": "DESISTIR.html",
       "coverMedia": "assets/img/DESISTIR/DESISTIR-CAPA2.jpg",
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "updatedAt": "2025-08-22T01:51:05.037Z",
       "displayOrder": 9
     },
     {
@@ -241,7 +241,7 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/EmprestaOVerboAmar.mp4",
       "createdAt": "2022-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-21T22:16:44.049Z",
+      "updatedAt": "2025-08-22T01:51:05.037Z",
       "displayOrder": 11,
       "visible": false
     },
@@ -266,9 +266,30 @@
         "videos": []
       },
       "createdAt": "2025-08-19T03:48:18.329Z",
-      "updatedAt": "2025-08-21T23:21:54.986Z",
+      "updatedAt": "2025-08-22T01:51:05.037Z",
       "visible": true,
       "displayOrder": 2
+    },
+    {
+      "id": "31344f48-52fd-4fdb-9935-e12753e665b5",
+      "slug": "explainer-assitencia-tecnica-rma",
+      "title": "EXPLAINER - ASSITENCIA TECNICA RMA",
+      "year": 2025,
+      "category": "Motion Design",
+      "projectType": "simple",
+      "description": "Explainer",
+      "tags": [],
+      "externalLink": "https://youtu.be/32KpSg9Ebg4",
+      "featured": false,
+      "visible": false,
+      "displayOrder": 12,
+      "coverMedia": null,
+      "gallery": {
+        "images": [],
+        "videos": []
+      },
+      "createdAt": "2025-08-22T01:47:52.525Z",
+      "updatedAt": "2025-08-22T01:51:05.037Z"
     }
   ]
 }

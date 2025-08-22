@@ -8,7 +8,7 @@ echo.
 echo 🚀 Starting server and opening browser...
 echo.
 
-cd /d "%~dp0"
+cd /d "%~dp0..\backoffice"
 
 REM Check if node is available
 where node >nul 2>&1

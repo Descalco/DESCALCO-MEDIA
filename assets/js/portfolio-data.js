@@ -1,6 +1,6 @@
 // Auto-generated portfolio data from backoffice
-// Generated on: 2025-08-21T23:36:44.684Z
-// Total projects: 11 visible (1 hidden)
+// Generated on: 2025-08-22T01:51:13.672Z
+// Total projects: 11 visible (2 hidden)
 
 const PORTFOLIO_PROJECTS = [
   {
@@ -24,7 +24,7 @@ const PORTFOLIO_PROJECTS = [
     "isStatic": false,
     "displayOrder": 0,
     "createdAt": "2025-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-21T22:16:44.049Z"
+    "updatedAt": "2025-08-22T01:51:05.037Z"
   },
   {
     "id": "motion-jam-winner",
@@ -46,7 +46,7 @@ const PORTFOLIO_PROJECTS = [
     "isStatic": false,
     "displayOrder": 1,
     "createdAt": "2025-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-21T22:16:44.049Z"
+    "updatedAt": "2025-08-22T01:51:05.037Z"
   },
   {
     "id": "8c542f54-a1f9-4d1b-b9dd-04726f60cb29",
@@ -64,29 +64,7 @@ const PORTFOLIO_PROJECTS = [
     "isStatic": false,
     "displayOrder": 2,
     "createdAt": "2025-08-19T03:48:18.329Z",
-    "updatedAt": "2025-08-21T23:21:54.986Z"
-  },
-  {
-    "id": "limifield-corporate",
-    "title": "Limifield - Corporate Video",
-    "year": 2024,
-    "category": "Video Production",
-    "description": "Corporate video created for Limifield.LDA, a company specializing in the import and distribution of IT equipment since 2007. The project highlights the company's exclusive brands and extensive product portfolio, conveying professionalism and trust. Featuring dynamic motion design, the video strengthens the brand's visual identity and market presence in the tech industry.",
-    "tags": [
-      "Corporate Video",
-      "Motion Design",
-      "Business Communication"
-    ],
-    "projectType": "simple",
-    "externalLink": "https://www.youtube.com/watch?v=ug4wro36A-o&t=2s",
-    "htmlFile": null,
-    "featured": false,
-    "coverMedia": "assets/img/OUTROS/LIMIFIELD-INSTITUCIONAL.mp4",
-    "mediaType": "video",
-    "isStatic": false,
-    "displayOrder": 3,
-    "createdAt": "2024-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-21T22:16:44.049Z"
+    "updatedAt": "2025-08-22T01:51:05.037Z"
   },
   {
     "id": "cidade-do-futuro",
@@ -106,31 +84,9 @@ const PORTFOLIO_PROJECTS = [
     "coverMedia": "assets/img/OUTROS/pa_-_immersivus_x_a_cidade_do_futuro (1080p) (online-video-cutter.com).mp4",
     "mediaType": "video",
     "isStatic": false,
-    "displayOrder": 4,
+    "displayOrder": 3,
     "createdAt": "2023-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-21T22:16:44.049Z"
-  },
-  {
-    "id": "kinetic-duality",
-    "title": "KINETIC DUALITY: Interactive Art Installation",
-    "year": 2022,
-    "category": "Motion Design",
-    "description": "KINETIC DUALITY is an interactive art installation exploring the stark contrast between life and death through projected posters, a central mirror, and Kinect sensors. Viewers trigger opposing animations and sounds. Developed with TouchDesigner, Madmapper, and After Effects.",
-    "tags": [
-      "Motion Design",
-      "Kinectic Type",
-      "Installation"
-    ],
-    "projectType": "simple",
-    "externalLink": "https://www.youtube.com/watch?v=o8OGEqCWxZ8",
-    "htmlFile": null,
-    "featured": false,
-    "coverMedia": "assets/img/OUTROS/KINETIC DUALITY.mp4",
-    "mediaType": "video",
-    "isStatic": false,
-    "displayOrder": 5,
-    "createdAt": "2022-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-21T22:16:44.049Z"
+    "updatedAt": "2025-08-22T01:51:05.037Z"
   },
   {
     "id": "guisado",
@@ -150,9 +106,53 @@ const PORTFOLIO_PROJECTS = [
     "coverMedia": "assets/img/OUTROS/GUISADO-VIDEO.mp4#t=3",
     "mediaType": "image",
     "isStatic": false,
-    "displayOrder": 6,
+    "displayOrder": 4,
     "createdAt": "2025-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-21T22:16:44.049Z"
+    "updatedAt": "2025-08-22T01:51:05.037Z"
+  },
+  {
+    "id": "limifield-corporate",
+    "title": "Limifield - Corporate Video",
+    "year": 2024,
+    "category": "Video Production",
+    "description": "Corporate video created for Limifield.LDA, a company specializing in the import and distribution of IT equipment since 2007. The project highlights the company's exclusive brands and extensive product portfolio, conveying professionalism and trust. Featuring dynamic motion design, the video strengthens the brand's visual identity and market presence in the tech industry.",
+    "tags": [
+      "Corporate Video",
+      "Motion Design",
+      "Business Communication"
+    ],
+    "projectType": "simple",
+    "externalLink": "https://www.youtube.com/watch?v=ug4wro36A-o&t=2s",
+    "htmlFile": null,
+    "featured": false,
+    "coverMedia": "assets/img/OUTROS/LIMIFIELD-INSTITUCIONAL.mp4",
+    "mediaType": "video",
+    "isStatic": false,
+    "displayOrder": 5,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2025-08-22T01:51:05.037Z"
+  },
+  {
+    "id": "kinetic-duality",
+    "title": "KINETIC DUALITY: Interactive Art Installation",
+    "year": 2022,
+    "category": "Motion Design",
+    "description": "KINETIC DUALITY is an interactive art installation exploring the stark contrast between life and death through projected posters, a central mirror, and Kinect sensors. Viewers trigger opposing animations and sounds. Developed with TouchDesigner, Madmapper, and After Effects.",
+    "tags": [
+      "Motion Design",
+      "Kinectic Type",
+      "Installation"
+    ],
+    "projectType": "simple",
+    "externalLink": "https://www.youtube.com/watch?v=o8OGEqCWxZ8",
+    "htmlFile": null,
+    "featured": false,
+    "coverMedia": "assets/img/OUTROS/KINETIC DUALITY.mp4",
+    "mediaType": "video",
+    "isStatic": false,
+    "displayOrder": 6,
+    "createdAt": "2022-01-01T00:00:00.000Z",
+    "updatedAt": "2025-08-22T01:51:05.037Z"
   },
   {
     "id": "let-it-happen",
@@ -174,7 +174,7 @@ const PORTFOLIO_PROJECTS = [
     "isStatic": false,
     "displayOrder": 7,
     "createdAt": "2022-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-21T22:16:44.049Z"
+    "updatedAt": "2025-08-22T01:51:05.037Z"
   },
   {
     "id": "limifield-type-ad",
@@ -196,7 +196,7 @@ const PORTFOLIO_PROJECTS = [
     "isStatic": false,
     "displayOrder": 8,
     "createdAt": "2023-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-21T22:16:44.049Z"
+    "updatedAt": "2025-08-22T01:51:05.037Z"
   },
   {
     "id": "desistir-book",
@@ -218,7 +218,7 @@ const PORTFOLIO_PROJECTS = [
     "isStatic": false,
     "displayOrder": 9,
     "createdAt": "2024-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-21T22:16:44.049Z"
+    "updatedAt": "2025-08-22T01:51:05.037Z"
   },
   {
     "id": "queen-animation",
@@ -240,7 +240,7 @@ const PORTFOLIO_PROJECTS = [
     "isStatic": false,
     "displayOrder": 10,
     "createdAt": "2022-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-21T22:16:44.049Z"
+    "updatedAt": "2025-08-22T01:51:05.037Z"
   }
 ];
 

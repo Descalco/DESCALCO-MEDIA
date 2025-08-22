@@ -9,6 +9,7 @@ echo.
 pause
 echo.
 echo Generating portfolio data from backoffice...
+cd /d "%~dp0.."
 node generate-portfolio-data.js
 echo.
 if %errorlevel% equ 0 (

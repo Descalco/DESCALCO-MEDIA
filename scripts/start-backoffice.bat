@@ -8,7 +8,7 @@ echo.
 echo Starting the backoffice server...
 echo.
 
-cd /d "%~dp0"
+cd /d "%~dp0..\backoffice"
 npm start
 
 pause
