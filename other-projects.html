@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio – Descalco Media</title>
   <link rel="stylesheet" href="assets/css/portfolio-unified.css">
+  <link rel="stylesheet" href="assets/css/main-enhanced.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     /* Additional styles to ensure consistency */
     .loading-state {
@@ -62,13 +63,25 @@
   </style>
 </head>
 
-<body>
+<body class="portfolio-enhanced">
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="floating-shapes">
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+    </div>
+    <canvas id="particleCanvas"></canvas>
+  </div>
+
   <div class="portfolio-container">
     <a class="back-link" href="index.html">← Back to Home</a>
 
-    <div class="portfolio-header">
-      <h1>Portfolio</h1>
-      <p>A collection of my creative work spanning interactive media, animation, sound design, and digital art. Hover
+    <div class="portfolio-header enhanced">
+      <h1 class="enhanced-title">Portfolio</h1>
+      <p class="enhanced-subtitle">A collection of my creative work spanning interactive media, animation, sound design, and digital art. Hover
         over each project to explore the full story behind each creation.</p>
     </div>
 
@@ -256,6 +269,7 @@
   </script>
 
   <script src="assets/js/mobile-portfolio.js"></script>
+  <script src="assets/js/portfolio-enhanced.js"></script>
   <script type="module" src="firebase-portfolio-analytics.js"></script>
 </body>
 
