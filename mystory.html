@@ -7,61 +7,379 @@
   <link rel="stylesheet" href="assets/css/portfolio-unified.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
-  <a href="index.html" class="back-button">
+<body class="mystory-enhanced">
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="shape shape-5"></div>
+    </div>
+    <canvas id="particleCanvas"></canvas>
+  </div>
+
+  <!-- Back Button -->
+  <a href="index.html" class="back-button enhanced">
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
       <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
         <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
       </g>
     </svg>
-    Back
+    <span>Back to Portfolio</span>
   </a>
-  
-  <div class="container mystory">
-    <div class="story-content">
-      <h1>My Story <span class="age">21 years</span></h1>
-      
-      <p>I'm <span class="highlight">Pedro Costa</span>, a Multimedia student at ESMAD - School of Media Arts and Design (Politécnico do Porto). I specialize in motion design, video editing, with professional proficiency in Adobe Creative Suite, Unity and other different Multimedia Tools.</p>
-      
-      <p>My journey in multimedia began early - since I was 14, I've been working with video editing as both a freelancer and content creator. Over the years, I've expanded my skillset to include 3D modeling, game development, photography, and creating immersive spaces using tools like MadMapper and TouchDesigner.</p>
-      
-      <p>Beyond technical skills, I'm deeply committed to the multimedia community. I founded and served as president of NEME (Núcleo de Estudantes de Multimédia da ESMAD) and have been actively involved in the students' association of ESMAD, most recently as coordinator of the communication department.</p>
-      
-      <p>I'm always looking for new challenges and interesting projects where I can apply my diverse skill set. If you think we could work together or just want to talk about multimedia, feel free to reach out.</p>
-      
-      <div class="skills">
-        <div class="skill-tag">Video Editing</div>
-        <div class="skill-tag">Motion Design</div>
-        <div class="skill-tag">VFX</div>
-        <div class="skill-tag">3D Modeling</div>
-        <div class="skill-tag">Game Development</div>
-        <div class="skill-tag">Photography</div>
-        <div class="skill-tag">Immersive Spaces</div>
-      </div>
-    </div>
+
+  <!-- Main Container -->
+  <div class="mystory-container">
     
-    <div class="story-image">
-      <img src="assets/img/FOTO-1-1.jpg" alt="Pedro Costa">
-    </div>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="greeting">
+            <span class="wave">👋</span>
+            <h1 class="hero-title">
+              <span class="line">Olá, I'm</span>
+              <span class="line highlight-text">Pedro Costa</span>
+            </h1>
+          </div>
+          
+          <div class="age-badge">
+            <span class="age-number" id="dynamicAge">22</span>
+            <span class="age-text">years old</span>
+          </div>
+          
+          <div class="typing-container">
+            <p class="typing-text" id="typingText"></p>
+            <span class="cursor">|</span>
+          </div>
+          
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number" data-target="8">0</span>
+              <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number" data-target="1">0</span>
+              <span class="stat-label">Bachelor in Multimedia</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number" data-target="14">0</span>
+              <span class="stat-label">Software Mastered</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hero-visual">
+          <div class="photo-container">
+            <div class="photo-frame">
+              <img src="assets/img/FOTO-1-1.jpg" alt="Pedro Costa" class="hero-photo">
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="floating-icons">
+              <div class="icon icon-1">🎬</div>
+              <div class="icon icon-2">🎨</div>
+              <div class="icon icon-3">💡</div>
+              <div class="icon icon-4">🚀</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="scroll-indicator">
+        <div class="scroll-text">Scroll to explore</div>
+        <div class="scroll-arrow">↓</div>
+      </div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section class="timeline-section" id="timeline">
+      <div class="section-header">
+        <h2 class="section-title">My Creative Journey</h2>
+        <p class="section-subtitle">From curious teenager to multimedia specialist</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item" data-year="2017">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>The Beginning</h3>
+            <p>Started video editing at 14 - fell in love with storytelling through visuals</p>
+            <div class="timeline-tags">
+              <span class="tag">First Steps</span>
+              <span class="tag">Video Editing</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-year="2019">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>Freelance Adventures</h3>
+            <p>Started taking on freelance projects while studying and creating random stuff from gaming and stuff I enjoyed</p>
+            <div class="timeline-tags">
+              <span class="tag">Freelance</span>
+              <span class="tag">Gaming Content</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-year="2021">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>ESMAD Journey</h3>
+            <p>Entered Multimedia program - expanded into 3D, game dev, and immersive experiences</p>
+            <div class="timeline-tags">
+              <span class="tag">Education</span>
+              <span class="tag">Multimedia</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-year="2023">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>Leadership Role</h3>
+            <p>Founded and presided NEME, coordinated AEESMAD communication department</p>
+            <div class="timeline-tags">
+              <span class="tag">Leadership</span>
+              <span class="tag">Community</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-year="2024">
+          <div class="timeline-marker active"></div>
+          <div class="timeline-content">
+            <h3>Ready for the Future</h3>
+            <p>Graduated and ready to bring creative energy to amazing projects</p>
+            <div class="timeline-tags">
+              <span class="tag">Graduate</span>
+              <span class="tag">Future Ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Software Mastery Section -->
+    <section class="software-section" id="software">
+      <div class="section-header">
+        <h2 class="section-title">Software Arsenal</h2>
+        <p class="section-subtitle">Tools I've mastered in my creative journey</p>
+      </div>
+      
+      <div class="software-showcase">
+        <div class="software-orbit">
+          <div class="orbit-center">
+            <div class="center-icon">⚡</div>
+            <div class="center-text">Creative<br>Tools<br><small>(catch them)</small></div>
+          </div>
+          
+          <!-- Adobe Suite -->
+          <div class="software-item adobe featured" data-category="adobe" data-name="After Effects">
+            <div class="software-icon">Ae</div>
+            <div class="software-tooltip">After Effects<br><span class="proficiency">Master</span></div>
+          </div>
+          
+          <div class="software-item adobe" data-category="adobe" data-name="Photoshop">
+            <div class="software-icon">Ps</div>
+            <div class="software-tooltip">Photoshop<br><span class="proficiency">Expert</span></div>
+          </div>
+          
+          <div class="software-item adobe" data-category="adobe" data-name="Premiere Pro">
+            <div class="software-icon">Pr</div>
+            <div class="software-tooltip">Premiere Pro<br><span class="proficiency">Expert</span></div>
+          </div>
+          
+          <div class="software-item adobe" data-category="adobe" data-name="Illustrator">
+            <div class="software-icon">Ai</div>
+            <div class="software-tooltip">Illustrator<br><span class="proficiency">Advanced</span></div>
+          </div>
+          
+          <div class="software-item adobe" data-category="adobe" data-name="Adobe Animate">
+            <div class="software-icon">An</div>
+            <div class="software-tooltip">Adobe Animate<br><span class="proficiency">Advanced</span></div>
+          </div>
+          
+          <div class="software-item adobe" data-category="adobe" data-name="Lightroom">
+            <div class="software-icon">Lr</div>
+            <div class="software-tooltip">Lightroom<br><span class="proficiency">Advanced</span></div>
+          </div>
+          
+          <!-- Video Editing -->
+          <div class="software-item video" data-category="video" data-name="Sony Vegas">
+            <div class="software-icon">SV</div>
+            <div class="software-tooltip">Sony Vegas<br><span class="proficiency">Expert</span></div>
+          </div>
+          
+          <!-- Design Tools -->
+          <div class="software-item design" data-category="design" data-name="Figma">
+            <div class="software-icon">Fi</div>
+            <div class="software-tooltip">Figma<br><span class="proficiency">Advanced</span></div>
+          </div>
+          
+          <div class="software-item design" data-category="design" data-name="Canva">
+            <div class="software-icon">Ca</div>
+            <div class="software-tooltip">Canva<br><span class="proficiency">Expert</span></div>
+          </div>
+          
+          <!-- 3D & Animation -->
+          <div class="software-item threeDee" data-category="3d" data-name="Blender">
+            <div class="software-icon">Bl</div>
+            <div class="software-tooltip">Blender<br><span class="proficiency">Advanced</span></div>
+          </div>
+          
+          <div class="software-item threeDee" data-category="3d" data-name="Maya">
+            <div class="software-icon">Ma</div>
+            <div class="software-tooltip">Maya<br><span class="proficiency">Intermediate</span></div>
+          </div>
+          
+          <!-- Creative Coding -->
+          <div class="software-item creative" data-category="creative" data-name="TouchDesigner">
+            <div class="software-icon">TD</div>
+            <div class="software-tooltip">TouchDesigner<br><span class="proficiency">Advanced</span></div>
+          </div>
+          
+          <div class="software-item creative" data-category="creative" data-name="Processing">
+            <div class="software-icon">P5</div>
+            <div class="software-tooltip">Processing<br><span class="proficiency">Advanced</span></div>
+          </div>
+          
+          <div class="software-item creative" data-category="creative" data-name="MadMapper">
+            <div class="software-icon">MM</div>
+            <div class="software-tooltip">MadMapper<br><span class="proficiency">Advanced</span></div>
+          </div>
+        </div>
+        
+        <div class="software-categories">
+          <button class="category-btn active" data-filter="all">All Tools</button>
+          <button class="category-btn" data-filter="adobe">Adobe Suite</button>
+          <button class="category-btn" data-filter="video">Video Editing</button>
+          <button class="category-btn" data-filter="design">Design Tools</button>
+          <button class="category-btn" data-filter="3d">3D & Animation</button>
+          <button class="category-btn" data-filter="creative">Creative Coding</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Personality Matrix -->
+    <section class="personality-section" id="personality">
+      <div class="section-header">
+        <h2 class="section-title">Who Am I?</h2>
+        <p class="section-subtitle">The person behind the pixels</p>
+      </div>
+      
+      <div class="personality-grid">
+        <div class="personality-card" data-trait="organized">
+          <div class="card-front">
+            <div class="trait-icon">📋</div>
+            <h3>Organized</h3>
+          </div>
+          <div class="card-back">
+            <p>I thrive on structure and planning. Every project gets proper timelines, clear goals, and organized workflows.</p>
+          </div>
+        </div>
+        
+        <div class="personality-card" data-trait="versatile">
+          <div class="card-front">
+            <div class="trait-icon">🎭</div>
+            <h3>Versatile</h3>
+          </div>
+          <div class="card-back">
+            <p>From motion design to AR/VR, web dev to generative art - I adapt quickly to new challenges and technologies.</p>
+          </div>
+        </div>
+        
+        <div class="personality-card" data-trait="hardworking">
+          <div class="card-front">
+            <div class="trait-icon">💪</div>
+            <h3>Hardworking</h3>
+          </div>
+          <div class="card-back">
+            <p>I believe in putting in the effort. Late nights, tight deadlines, complex projects - I deliver quality work.</p>
+          </div>
+        </div>
+        
+        <div class="personality-card" data-trait="adaptive">
+          <div class="card-front">
+            <div class="trait-icon">🌊</div>
+            <h3>Adaptive</h3>
+          </div>
+          <div class="card-back">
+            <p>Change doesn't scare me - it excites me. New workflows, different teams, evolving requirements - I roll with it.</p>
+          </div>
+        </div>
+        
+        <div class="personality-card" data-trait="collaborative">
+          <div class="card-front">
+            <div class="trait-icon">🤝</div>
+            <h3>Team Player</h3>
+          </div>
+          <div class="card-back">
+            <p>I value creative environments and collaborative work. Leading NEME taught me the power of working together.</p>
+          </div>
+        </div>
+        
+        <div class="personality-card" data-trait="curious">
+          <div class="card-front">
+            <div class="trait-icon">🔍</div>
+            <h3>Curious</h3>
+          </div>
+          <div class="card-back">
+            <p>I start with sketches and storyboards, always asking "what if?" and pushing creative boundaries.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content-section" id="about">
+      <div class="content-grid">
+        <div class="content-block">
+          <h3>Sobre Mim</h3>
+          <p>Tenho bastante experiência prática em motion design e animação, tanto em contexto académico como freelance. Esta é a minha área de especialização e também a que mais me entusiasma. Ainda assim, a minha formação em Multimédia permite-me atuar com conforto em áreas complementares como vídeo mapping, web dev, realidade aumentada, virtual, arte generativa... entre outras.</p>
+          
+          <p>Sou uma pessoa organizada, versátil, trabalhadora e com facilidade de adaptação. Estou habituado a trabalhar em equipa e valorizo um ambiente criativo. Destaco também a experiência na coordenação de projetos que tive ao presidir o Núcleo de Estudantes de Multimédia (NEME) da ESMAD e coordenando o departamento de design da AEESMAD em simultâneo, mostrando a minha vontade de participar e capacidade de trabalhar sob pressão e cumprir prazos.</p>
+        </div>
+        
+        <div class="content-block">
+          <h3>How I Contribute</h3>
+          <p>I bring a powerful combination of practical skills and creative vision. Thanks to the initiatives I've thrown myself into, I've learned to work well under pressure and manage timings and priorities without losing aesthetic care - allowing me to fit into production sprints and meet tight deadlines.</p>
+          
+          <p>I adapt quickly to new workflows and programs, thanks to the multidisciplinary experience I've accumulated in Multimedia. I'm curious by nature, starting from sketches and storyboards to reach clear visual solutions with personality.</p>
+          
+          <p>My freelance work while studying helped me become autonomous and solve practical problems in real contexts. I love multimedia and it would be a dream to contribute this energy with you.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section" id="cta">
+      <div class="cta-content">
+        <h2>Ready to Create Something Amazing?</h2>
+        <p>Let's bring your vision to life with motion, creativity, and passion</p>
+        <div class="cta-buttons">
+          <a href="mailto:pedromdcostau@gmail.com" class="cta-btn primary">Get In Touch</a>
+          <a href="assets/docs/DESCALCO_CVPT.pdf" target="_blank" class="cta-btn secondary">Download CV</a>
+        </div>
+      </div>
+      
+      <div class="floating-elements">
+        <div class="float-element">🎬</div>
+        <div class="float-element">✨</div>
+        <div class="float-element">🚀</div>
+        <div class="float-element">💡</div>
+        <div class="float-element">🎨</div>
+      </div>
+    </section>
   </div>
 
-  <script>
-    // Calculate age dynamically based on birth date (January 6, 2003)
-    document.addEventListener('DOMContentLoaded', function() {
-      const birthDate = new Date(2003, 0, 6); // January is 0 in JS
-      const today = new Date();
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const monthDiff = today.getMonth() - birthDate.getMonth();
-      
-      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-      }
-      
-      document.querySelector('.age').textContent = age + ' years';
-    });
-  </script>
+  <!-- Enhanced JavaScript -->
+  <script src="assets/js/mystory-enhanced.js"></script>
   <script type="module" src="firebase-portfolio-analytics.js"></script>
 </body>
 </html>
