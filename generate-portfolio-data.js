@@ -7,6 +7,14 @@ const projectsDataPath = path.join(__dirname, 'backoffice', 'data', 'projects.js
 // Path to the output file
 const outputFilePath = path.join(__dirname, 'assets', 'js', 'portfolio-data.js');
 
+// Utility function to generate slug from title
+const generateSlug = (title) => {
+    return title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+};
+
 // Function to generate the portfolio data file
 const generatePortfolioData = () => {
     try {
@@ -115,6 +123,7 @@ const generatePortfolioData = () => {
                 tags: project.tags || [],
                 projectType: project.projectType,
                 externalLink: project.externalLink,
+                htmlFile: project.htmlFile || null,
                 featured: project.featured || false,
                 coverMedia,
                 mediaType,

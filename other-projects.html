@@ -118,22 +118,22 @@
         // Use the imported portfolio projects
         allProjects = PORTFOLIO_PROJECTS.map(project => {
           // Transform the project data to match the expected format
-          return {
-            id: project.id,
-            title: project.title,
-            year: project.year,
-            category: project.category,
-            description: project.description,
-            tags: project.tags || [],
-            featured: project.featured || false,
-            externalLink: project.externalLink || project.htmlFile,
-            coverMedia: project.coverMedia?.path ? 
-              `backoffice${project.coverMedia.path}` : 
-              project.coverMedia,
-            mediaType: project.coverMedia?.type || 
-              (project.coverMedia && project.coverMedia.includes('.mp4') ? 'video' : 'image'),
-            displayOrder: project.displayOrder
-          };
+            return {
+                id: project.id,
+                title: project.title,
+                year: project.year,
+                category: project.category,
+                description: project.description,
+                tags: project.tags || [],
+                featured: project.featured || false,
+                externalLink: project.projectType === 'case-study' ? project.htmlFile : project.externalLink,
+                coverMedia: project.coverMedia?.path ? 
+                  `backoffice${project.coverMedia.path}` : 
+                  project.coverMedia,
+                mediaType: project.coverMedia?.type || 
+                  (project.coverMedia && project.coverMedia.includes('.mp4') ? 'video' : 'image'),
+                displayOrder: project.displayOrder
+            };
         });
 
         // Projects are already sorted by displayOrder in the portfolio-data.js file

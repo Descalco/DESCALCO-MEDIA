@@ -1,5 +1,5 @@
 // Auto-generated portfolio data from backoffice
-// Generated on: 2025-08-21T22:39:38.979Z
+// Generated on: 2025-08-21T23:36:44.684Z
 // Total projects: 11 visible (1 hidden)
 
 const PORTFOLIO_PROJECTS = [
@@ -17,6 +17,7 @@ const PORTFOLIO_PROJECTS = [
     ],
     "projectType": "case-study",
     "externalLink": null,
+    "htmlFile": "SOF-WEEK.html",
     "featured": false,
     "coverMedia": "assets/img/OUTROS/SOF-WEEK.mp4",
     "mediaType": "video",
@@ -38,6 +39,7 @@ const PORTFOLIO_PROJECTS = [
     ],
     "projectType": "simple",
     "externalLink": "https://youtu.be/P0jaOjuQ654",
+    "htmlFile": null,
     "featured": true,
     "coverMedia": "assets/img/OUTROS/Noushoe.mp4",
     "mediaType": "video",
@@ -48,20 +50,21 @@ const PORTFOLIO_PROJECTS = [
   },
   {
     "id": "8c542f54-a1f9-4d1b-b9dd-04726f60cb29",
-    "title": "LIMISHOP – Promotional Ad",
+    "title": "LIMISHOP – Promotional AD",
     "year": 2025,
     "category": "Motion Design",
     "description": "Advertising video created for LIMISHOP, a technology store. The project involved editing and motion design to present the brand and its products in a dynamic and clear way, optimized for digital platforms.",
     "tags": [],
     "projectType": "simple",
     "externalLink": "https://youtu.be/DIXGXbFdbDI",
+    "htmlFile": null,
     "featured": true,
     "coverMedia": "assets/img/OUTROS/coverMedia-1755575298285-57165946-covermedia-1755573454079-838802493-limishop-ad-horizontal.mp4",
     "mediaType": "video",
     "isStatic": false,
     "displayOrder": 2,
     "createdAt": "2025-08-19T03:48:18.329Z",
-    "updatedAt": "2025-08-21T22:16:44.049Z"
+    "updatedAt": "2025-08-21T23:21:54.986Z"
   },
   {
     "id": "limifield-corporate",
@@ -76,6 +79,7 @@ const PORTFOLIO_PROJECTS = [
     ],
     "projectType": "simple",
     "externalLink": "https://www.youtube.com/watch?v=ug4wro36A-o&t=2s",
+    "htmlFile": null,
     "featured": false,
     "coverMedia": "assets/img/OUTROS/LIMIFIELD-INSTITUCIONAL.mp4",
     "mediaType": "video",
@@ -97,6 +101,7 @@ const PORTFOLIO_PROJECTS = [
     ],
     "projectType": "case-study",
     "externalLink": null,
+    "htmlFile": "CidadeDoFuturo.html",
     "featured": true,
     "coverMedia": "assets/img/OUTROS/pa_-_immersivus_x_a_cidade_do_futuro (1080p) (online-video-cutter.com).mp4",
     "mediaType": "video",
@@ -118,6 +123,7 @@ const PORTFOLIO_PROJECTS = [
     ],
     "projectType": "simple",
     "externalLink": "https://www.youtube.com/watch?v=o8OGEqCWxZ8",
+    "htmlFile": null,
     "featured": false,
     "coverMedia": "assets/img/OUTROS/KINETIC DUALITY.mp4",
     "mediaType": "video",
@@ -139,6 +145,7 @@ const PORTFOLIO_PROJECTS = [
     ],
     "projectType": "case-study",
     "externalLink": null,
+    "htmlFile": "GUISADO.html",
     "featured": true,
     "coverMedia": "assets/img/OUTROS/GUISADO-VIDEO.mp4#t=3",
     "mediaType": "image",
@@ -160,6 +167,7 @@ const PORTFOLIO_PROJECTS = [
     ],
     "projectType": "case-study",
     "externalLink": null,
+    "htmlFile": "LetItHappen.html",
     "featured": false,
     "coverMedia": "assets/img/OUTROS/LETITHAPPEN.mp4",
     "mediaType": "video",
@@ -181,6 +189,7 @@ const PORTFOLIO_PROJECTS = [
     ],
     "projectType": "simple",
     "externalLink": "https://www.youtube.com/watch?v=jBuUN4bA3YI",
+    "htmlFile": null,
     "featured": false,
     "coverMedia": "assets/img/OUTROS/limifield-type-ad.mp4",
     "mediaType": "video",
@@ -202,6 +211,7 @@ const PORTFOLIO_PROJECTS = [
     ],
     "projectType": "case-study",
     "externalLink": null,
+    "htmlFile": "DESISTIR.html",
     "featured": false,
     "coverMedia": "assets/img/DESISTIR/DESISTIR-CAPA2.jpg",
     "mediaType": "image",
@@ -223,6 +233,7 @@ const PORTFOLIO_PROJECTS = [
     ],
     "projectType": "simple",
     "externalLink": "https://youtu.be/xAjgsekjEcI",
+    "htmlFile": null,
     "featured": false,
     "coverMedia": "assets/img/OUTROS/queen.mp4",
     "mediaType": "video",

@@ -558,6 +558,9 @@
                 tags = tags.filter(t => t !== tag);
                 updateTagsDisplay();
             };
+
+            // Make updateTagsDisplay available globally
+            window.updateTagsDisplay = updateTagsDisplay;
         }
 
         function setupFileUploads() {
@@ -622,12 +625,7 @@
                 // Set tags
                 tags = project.tags || [];
                 document.getElementById('tags').value = tags.join(',');
-                document.getElementById('tagsContainer').innerHTML = tags.map(tag => `
-                    <span class="tag">
-                        ${tag}
-                        <span class="tag-remove" onclick="removeTag('${tag}')">×</span>
-                    </span>
-                `).join('');
+                updateTagsDisplay();
                 
             } catch (error) {
                 showError('Failed to load project: ' + error.message);
