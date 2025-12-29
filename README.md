@@ -139,7 +139,6 @@ Custom content management system for portfolio projects, allowing easy addition/
 backoffice/
 ├── server.js                  # Express server
 ├── package.json              # Node.js dependencies
-├── .env                      # Environment variables
 ├── admin/                    # Frontend admin interface
 │   ├── login.html           # Admin login
 │   ├── dashboard.html       # Main admin dashboard
@@ -321,15 +320,7 @@ Admin Interface → projects.json → generate-portfolio-data.js → portfolio-d
 1. Upload all files to web server
 2. Configure server for Node.js (backoffice)
 3. Set up domain/subdomain for backoffice
-4. Configure environment variables
 5. Set up SSL certificates
-
-### Environment Variables (`.env`)
-```
-ADMIN_PASSWORD=your-secure-password
-PORT=3001
-NODE_ENV=production
-```
 
 ## 🔍 Troubleshooting
 

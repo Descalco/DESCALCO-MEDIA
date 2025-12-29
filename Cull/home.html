@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlbumTeller - Projects</title>
+    <link rel="stylesheet" href="styles/main-styles.css">
+</head>
+<body class="home-page">
+    <div class="app-container">
+        <aside>
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <div class="logo-icon">📸</div>
+                    <span class="logo">AlbumTeller</span>
+                </div>
+            </div>
+            <nav>
+                <a href="#" class="nav-item active">
+                    <span class="nav-icon">▦</span>
+                    All Projects
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">🕐</span>
+                    Recent
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">♥</span>
+                    Favorites
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙</span>
+                    Settings
+                </a>
+            </div>
+        </aside>
+
+        <main>
+            <div class="header-row">
+                <div class="header-title">
+                    <h1>Projects</h1>
+                    <span class="project-count">6 total</span>
+                </div>
+                <div class="header-controls">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Search projects...">
+                    </div>
+                    <a href="Upload.html" class="btn-primary">
+                        <span>+</span>
+                        New Project
+                    </a>
+                </div>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card" data-project-name="Sarah & James Wedding" data-photo-count="847" onclick="openProject(this)">
+                    <div class="card-img" style="background-image: url('imgs-placeholders/15415033.jpg');"></div>
+                    <div class="card-info">
+                        <div class="card-title">Sarah & James Wedding</div>
+                        <div class="card-meta">
+                            <span class="card-date">Dec 15, 2025</span>
+                            <span class="photo-count">847 photos</span>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="overlay-button">
+                            Open Project
+                            <span class="arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-project-name="Emma & Michael Ceremony" data-photo-count="652" onclick="openProject(this)">
+                    <div class="card-img" style="background-image: url('imgs-placeholders/15415032.jpg');"></div>
+                    <div class="card-info">
+                        <div class="card-title">Emma & Michael Ceremony</div>
+                        <div class="card-meta">
+                            <span class="card-date">Nov 28, 2025</span>
+                            <span class="photo-count">652 photos</span>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="overlay-button">
+                            Open Project
+                            <span class="arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-project-name="Olivia & David Editorial" data-photo-count="423" onclick="openProject(this)">
+                    <div class="card-img" style="background-image: url('imgs-placeholders/15415031.jpg');"></div>
+                    <div class="card-info">
+                        <div class="card-title">Olivia & David Editorial</div>
+                        <div class="card-meta">
+                            <span class="card-date">Nov 10, 2025</span>
+                            <span class="photo-count">423 photos</span>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="overlay-button">
+                            Open Project
+                            <span class="arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-project-name="Sophie & Ryan Engagement" data-photo-count="298" onclick="openProject(this)">
+                    <div class="card-img" style="background-image: url('imgs-placeholders/15415030.jpg');"></div>
+                    <div class="card-info">
+                        <div class="card-title">Sophie & Ryan Engagement</div>
+                        <div class="card-meta">
+                            <span class="card-date">Oct 22, 2025</span>
+                            <span class="photo-count">298 photos</span>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="overlay-button">
+                            Open Project
+                            <span class="arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-project-name="Reception - Johnson Family" data-photo-count="534" onclick="openProject(this)">
+                    <div class="card-img" style="background-image: url('imgs-placeholders/15415006.jpg');"></div>
+                    <div class="card-info">
+                        <div class="card-title">Reception - Johnson Family</div>
+                        <div class="card-meta">
+                            <span class="card-date">Oct 05, 2025</span>
+                            <span class="photo-count">534 photos</span>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="overlay-button">
+                            Open Project
+                            <span class="arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-project-name="Corporate Headshots" data-photo-count="156" onclick="openProject(this)">
+                    <div class="card-img" style="background-image: url('imgs-placeholders/15415005.jpg');"></div>
+                    <div class="card-info">
+                        <div class="card-title">Corporate Headshots</div>
+                        <div class="card-meta">
+                            <span class="card-date">Sep 18, 2025</span>
+                            <span class="photo-count">156 photos</span>
+                        </div>
+                    </div>
+                    <div class="card-overlay">
+                        <div class="overlay-button">
+                            Open Project
+                            <span class="arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Open project and store in session for tab system
+        function openProject(card) {
+            const projectName = card.dataset.projectName;
+            const photoCount = card.dataset.photoCount;
+            
+            // Get existing tabs or create new array
+            let openTabs = JSON.parse(sessionStorage.getItem('openTabs') || '[]');
+            
+            // Check if project already open
+            const existingTab = openTabs.find(tab => tab.name === projectName);
+            
+            if (!existingTab) {
+                // Add new tab
+                openTabs.push({
+                    name: projectName,
+                    photoCount: photoCount,
+                    id: Date.now()
+                });
+                sessionStorage.setItem('openTabs', JSON.stringify(openTabs));
+            }
+            
+            // Set active tab
+            sessionStorage.setItem('activeTab', projectName);
+            
+            // Navigate to cull page
+            window.location.href = 'Cull.html';
+        }
+    </script>
+</body>
+</html>

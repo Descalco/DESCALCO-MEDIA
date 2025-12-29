@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CullPro - Review Your Setup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #373737;
+            --background-dark: #2a2a2a;
+            --card: #313131;
+            --foreground: #eaeaea;
+            --primary: #ffdd00;
+            --primary-foreground: #313131;
+            --muted-foreground: #c4c4c4;
+            --border: #525252;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: 'Montserrat', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--primary);
+            width: 100%;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .background-blur {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ff6f6f;
+            opacity: 0.2;
+            filter: blur(100px);
+            z-index: 0;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            animation: fadeIn 0.5s ease-in;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .question-container {
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .progress-label {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .question-title {
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--foreground);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .question-subtitle {
+            color: var(--muted-foreground);
+            font-size: 1.125rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            line-height: 1.75rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 800px) {
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .summary-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.625rem;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .summary-card:hover {
+            border-color: rgba(255, 221, 0, 0.3);
+            background: rgba(255, 221, 0, 0.05);
+        }
+
+        .summary-card-title {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .summary-card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .summary-icon {
+            font-size: 1.2rem;
+            min-width: 1.5rem;
+        }
+
+        .summary-value {
+            color: var(--foreground);
+            font-weight: 500;
+        }
+
+        .summary-empty {
+            color: var(--muted-foreground);
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        .chips-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .chip {
+            background: rgba(255, 221, 0, 0.15);
+            border: 1px solid rgba(255, 221, 0, 0.3);
+            color: var(--primary);
+            padding: 0.4rem 0.85rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .bottom-nav {
+            height: 97px;
+            background: var(--card);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3rem;
+            flex-shrink: 0;
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            color: var(--foreground);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.2s;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            color: var(--primary);
+            transform: translateX(-4px);
+        }
+
+        .nav-button:disabled {
+            color: #6d6d6d;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .nav-button.back {
+            margin-left: -1.5rem;
+        }
+
+        .nav-step {
+            color: var(--muted-foreground);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .nav-continue {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            margin-right: -1.5rem;
+            padding-right: 2rem;
+            padding-left: 2rem;
+            border-radius: 0.625rem;
+            font-weight: 600;
+        }
+
+        .nav-continue:hover {
+            background: #e5c200;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar"></div>
+
+    <div class="slide-wrapper">
+        <div class="background-blur"></div>
+        <div class="slide-content">
+            <div class="question-container">
+                <div class="progress-label">Final Step</div>
+                <h2 class="question-title">Review Your Setup</h2>
+                <p class="question-subtitle">Here's what we'll use to help you cull your photos</p>
+                
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="summary-card-title">📸 Photography Style</div>
+                        <div class="summary-card-content">
+                            <div id="photography-summary" class="chips-container"></div>
+                        </div>
+                    </div>
+
+                    <div class="summary-card">
+                        <div class="summary-card-title">⭐ Rating System</div>
+                        <div class="summary-card-content">
+                            <div id="rating-summary" class="summary-item">
+                                <span class="summary-empty">Not selected</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="summary-card">
+                        <div class="summary-card-title">🎓 Experience Level</div>
+                        <div class="summary-card-content">
+                            <div id="experience-summary" class="summary-item">
+                                <span class="summary-empty">Not selected</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="summary-card">
+                        <div class="summary-card-title">✨ Smart Filters</div>
+                        <div class="summary-card-content">
+                            <div id="filters-summary" class="chips-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="step-5-filters.html" class="nav-button back">‹ Back</a>
+        <div class="nav-step">5 of 5</div>
+        <button onclick="startCulling()" class="nav-button nav-continue">Start Culling 🚀</button>
+    </div>
+
+    <script>
+        const data = JSON.parse(sessionStorage.getItem('cullpro-onboarding')) || {};
+
+        const ratingLabels = {
+            'stars': '⭐ Five-Star System',
+            'flag': '🚩 Flag System',
+            'color': '🎨 Color System'
+        };
+
+        const experienceLabels = {
+            'beginner': '👶 Beginner',
+            'intermediate': '👤 Intermediate',
+            'advanced': '🎯 Advanced',
+            'professional': '👔 Professional'
+        };
+
+        const filterLabels = {
+            'focus': '🎯 Focus Detection',
+            'exposure': '☀️ Exposure Analysis',
+            'duplicate': '📋 Duplicate Detection',
+            'facial': '😊 Expression Analysis'
+        };
+
+        function startCulling() {
+            // Save to localStorage for main app
+            localStorage.setItem('cullpro-profile', JSON.stringify(data));
+            // Clear session data
+            sessionStorage.removeItem('cullpro-onboarding');
+            // Redirect to home or main app
+            window.location.href = 'home.html';
+        }
+
+        window.addEventListener('load', () => {
+            // Photography types
+            const photoContainer = document.getElementById('photography-summary');
+            if (data.photography && data.photography.length > 0) {
+                photoContainer.innerHTML = data.photography.map(type => 
+                    `<div class="chip">${type}</div>`
+                ).join('');
+            } else {
+                photoContainer.innerHTML = '<span class="summary-empty">No types selected</span>';
+            }
+
+            // Rating system
+            const ratingContainer = document.getElementById('rating-summary');
+            if (data.rating) {
+                ratingContainer.innerHTML = `<span class="summary-icon">${data.rating === 'stars' ? '⭐' : data.rating === 'flag' ? '🚩' : '🎨'}</span><span class="summary-value">${ratingLabels[data.rating]}</span>`;
+            }
+
+            // Experience level
+            const experienceContainer = document.getElementById('experience-summary');
+            if (data.experience) {
+                const icon = data.experience === 'beginner' ? '👶' : data.experience === 'intermediate' ? '👤' : data.experience === 'advanced' ? '🎯' : '👔';
+                experienceContainer.innerHTML = `<span class="summary-icon">${icon}</span><span class="summary-value">${experienceLabels[data.experience]}</span>`;
+            }
+
+            // Smart filters
+            const filtersContainer = document.getElementById('filters-summary');
+            if (data.filters) {
+                const activeFilters = Object.entries(data.filters)
+                    .filter(([key, value]) => value)
+                    .map(([key]) => `<div class="chip">${filterLabels[key]}</div>`)
+                    .join('');
+                filtersContainer.innerHTML = activeFilters || '<span class="summary-empty">No filters selected</span>';
+            }
+        });
+    </script>
+</body>
+</html>

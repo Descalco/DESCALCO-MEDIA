@@ -1,0 +1,793 @@
+/* ============================================
+   ALBUMTELLER CULLING APP - MAIN STYLESHEET
+   Professional CSS Organization
+   ============================================ */
+
+/* ============================================
+   1. IMPORTS & FONTS
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   2. CSS CUSTOM PROPERTIES (Design Tokens)
+   ============================================ */
+:root {
+  /* Typography */
+  --font-ui: 'Montserrat', sans-serif;
+  --font-tech: 'Montserrat', monospace;
+  --font-size: 16px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Color Palette - Background */
+  --background: #373737;
+  --background-dark: #2a2a2a;
+  --background-warm: #4a3a38;
+  --bg-deep: #1a1a1a;
+  --bg-surface: #313131;
+  
+  /* Color Palette - Foreground */
+  --foreground: #eaeaea;
+  --text-main: #eaeaea;
+  --text-muted: #c4c4c4;
+  
+  /* Color Palette - Components */
+  --card: #313131;
+  --card-foreground: #eaeaea;
+  --popover: #313131;
+  --popover-foreground: #eaeaea;
+  
+  /* Color Palette - Brand & Actions */
+  --primary: #ffdd00;
+  --primary-foreground: #313131;
+  --accent: #ffdd00;
+  --accent-foreground: #313131;
+  --secondary: #575757;
+  --secondary-foreground: #eaeaea;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  
+  /* Color Palette - UI Elements */
+  --muted: #525252;
+  --muted-foreground: #c4c4c4;
+  --border: #525252;
+  --border-glass: rgba(255, 255, 255, 0.1);
+  --input: #525252;
+  --input-background: #313131;
+  --switch-background: #525252;
+  --ring: #ffdd00;
+  
+  /* Chart Colors */
+  --chart-1: #ffdd00;
+  --chart-2: #525252;
+  --chart-3: #373737;
+  --chart-4: #c4c4c4;
+  --chart-5: #eaeaea;
+  
+  /* Spacing & Layout */
+  --radius: 0.625rem;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+}
+
+/* ============================================
+   3. RESET & BASE STYLES
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--font-size);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-ui);
+  line-height: 1.6;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ============================================
+   4. TYPOGRAPHY
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: -1.5px;
+  margin-bottom: var(--spacing-md);
+}
+
+h2 {
+  font-size: 2.2rem;
+  letter-spacing: -1px;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin-bottom: var(--spacing-sm);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* ============================================
+   5. UTILITY CLASSES
+   ============================================ */
+.hidden {
+  display: none !important;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ============================================
+   6. ANIMATIONS
+   ============================================ */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-enter {
+  animation: fadeSlideUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* ============================================
+   7. LAYOUT COMPONENTS
+   ============================================ */
+
+/* 7.1 Split Layout (Welcome Screen) */
+.split-layout {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 100vh;
+}
+
+.content-panel {
+  padding: 4rem 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  order: 1;
+}
+
+.image-panel {
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.6s ease-in-out;
+  position: relative;
+  order: 2;
+}
+
+.image-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* 7.2 Onboarding Layouts */
+.onboarding-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.step-container {
+  flex: 1;
+  display: none;
+  position: relative;
+}
+
+.step-container.active {
+  display: flex;
+}
+
+.slide-welcome {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  height: 100%;
+}
+
+.welcome-content {
+  background: var(--background-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 3rem;
+  position: relative;
+}
+
+.welcome-visual {
+  background: #d41f2a;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-visual-icon {
+  font-size: 6rem;
+  color: var(--primary);
+  opacity: 0.3;
+}
+
+.slide-question-centered {
+  background: var(--background-warm);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  text-align: center;
+}
+
+.slide-question-dark {
+  background: var(--background-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  text-align: center;
+}
+
+.slide-completion {
+  background: var(--background-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  text-align: center;
+  overflow-y: auto;
+}
+
+.question-container {
+  max-width: 900px;
+  width: 100%;
+}
+
+.completion-content {
+  max-width: 800px;
+  width: 100%;
+}
+
+/* 7.3 App Container (Projects Page) */
+.app-container {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  height: 100vh;
+}
+
+/* 7.4 Workspace Layout (Cull Screen) */
+.workspace {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 60px 1fr 120px;
+  grid-template-columns: 1fr 300px;
+  grid-template-areas:
+    "header header"
+    "main sidebar"
+    "filmstrip sidebar";
+}
+
+header {
+  grid-area: header;
+  border-bottom: 1px solid var(--border-glass);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+
+#main-view {
+  grid-area: main;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+aside {
+  grid-area: sidebar;
+  background: var(--bg-surface);
+  border-left: 1px solid var(--border-glass);
+  padding: 20px;
+}
+
+#filmstrip {
+  grid-area: filmstrip;
+  background: #151515;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+main {
+  padding: 3rem;
+  overflow-y: auto;
+}
+
+/* ============================================
+   8. NAVIGATION COMPONENTS
+   ============================================ */
+
+/* 8.1 Sidebar Navigation */
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  display: block;
+  color: var(--accent);
+}
+
+.nav-item {
+  display: block;
+  padding: 10px 0;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: white;
+}
+
+/* 8.2 Bottom Navigation */
+.bottom-nav {
+  height: 80px;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  flex-shrink: 0;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  color: var(--foreground);
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+  font-weight: var(--font-weight-medium);
+}
+
+.nav-button:hover:not(:disabled) {
+  color: var(--primary);
+}
+
+.nav-button:disabled {
+  color: #6d6d6d;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.nav-button.back {
+  margin-left: -1.5rem;
+}
+
+.nav-step {
+  color: var(--muted-foreground);
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.nav-continue {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  margin-right: -1.5rem;
+  padding-right: 2rem !important;
+  padding-left: 2rem !important;
+}
+
+.nav-continue:hover:not(:disabled) {
+  background: #e5c200;
+}
+
+.nav-continue:disabled {
+  background: var(--muted);
+  cursor: not-allowed;
+}
+
+.nav-back {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-back:hover {
+  color: white;
+}
+
+.nav-footer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: auto;
+}
+
+/* ============================================
+   9. BUTTON COMPONENTS
+   ============================================ */
+
+/* 9.1 Base Button */
+.btn {
+  padding: 0.85rem 1.75rem;
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-ui);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 9.2 Primary Button */
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--primary-foreground);
+  padding: 16px 48px;
+  border-radius: 50px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(255, 221, 0, 0.3);
+}
+
+/* 9.3 Ghost Button */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.btn-ghost:hover {
+  color: white;
+}
+
+/* 9.4 Rating Buttons */
+.rating-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.rating-btn {
+  flex: 1;
+  padding: 10px;
+  background: #2a2a2a;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.rating-btn:hover {
+  background: #333;
+}
+
+.rating-btn.reject {
+  color: #ff4d4d;
+}
+
+.rating-btn.pick {
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+/* ============================================
+   10. CARD COMPONENTS
+   ============================================ */
+
+/* 10.1 Project Cards */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: var(--bg-surface);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.card-img {
+  height: 150px;
+  background-color: #333;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-info {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.card-meta {
+  font-family: var(--font-tech);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* 10.2 Option Cards */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.option-card {
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--muted-foreground);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.95rem;
+}
+
+.option-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.option-card.selected {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: 0 8px 24px rgba(255, 221, 0, 0.2);
+}
+
+/* 10.3 List Cards */
+.vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 3rem;
+  max-width: 400px;
+}
+
+.list-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  padding: 18px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: all 0.2s ease;
+}
+
+.list-card:hover {
+  border-color: white;
+  background: #252525;
+}
+
+.list-card.selected {
+  background: #2a2a2a;
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 15px rgba(255, 221, 0, 0.05);
+}
+
+.list-card-icon {
+  font-size: 1.2rem;
+  min-width: 30px;
+  text-align: center;
+}
+
+.list-card-text {
+  font-weight: var(--font-weight-medium);
+}
+
+/* 10.4 Rating Cards */
+.rating-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2.5rem;
+  max-width: 900px;
+}
+
+.rating-card {
+  padding: 2.5rem 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rating-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px);
+}
+
+.rating-card.selected {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: 0 16px 40px rgba(255, 221, 0, 0.25);
+}
+
+.rating-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.rating-card.selected .rating-icon {
+  color: var(--primary-foreground);
+}
+
+.rating-label {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+
+.rating-card.selected .rating-label {
+  color: var(--primary-foreground);
+}
+
+.rating-desc {
+  font-size: 0.9rem;
+  color: var(--muted-foreground);
+}
+
+.rating-card.selected .rating-desc {
+  color: rgba(49, 49, 49, 0.7);
+}
+
+/* 10.5 Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.summary-card-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 221, 0, 0.15);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.summary-card-title {
+  font-size: 0.85rem;
+  color: var(--muted-foreground);
+  margin-bottom: 0.5rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.summary-card-value {
+  font-size: 1rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--foreground);
+}
+
+.summary-card-desc {
+  font-size: 0.8rem;
+  color: #9a9a9a;
+  margin-top: 0.25rem;
+}
