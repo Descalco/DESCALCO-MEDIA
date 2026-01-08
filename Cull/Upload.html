@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CullPro - Import your photos. Upload RAW, JPEG, TIFF and other image formats." />
+    <title>CullPro - Import</title>
+    <link
+      rel="icon"
+      href="imgs-placeholders/favicon.svg"
+      type="image/svg+xml" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet" />
+    <!-- Modular CSS Architecture -->
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+  </head>
+  <body class="upload-page">
+    <!-- Top Header Bar -->
+    <header class="site-header">
+      <nav
+        class="header__tabs"
+        id="grid-header-tabs"
+        aria-label="Separadores de projeto">
+        <a
+          href="home.html"
+          class="tabs__home"
+          title="Início"
+          aria-label="Ir para início">
+          <img src="styles/icons/Icon-1.svg" alt="" class="tabs__icon" />
+        </a>
+      </nav>
+      <div class="header__actions">
+        <button
+          class="btn btn--header"
+          title="Exportar"
+          aria-label="Exportar fotos">
+          <img src="styles/icons/Icon-1.svg" alt="" class="btn__icon" />
+        </button>
+        <button
+          class="btn btn--header"
+          title="Partilhar"
+          aria-label="Partilhar galeria">
+          <img src="styles/icons/Icon-2.svg" alt="" class="btn__icon" />
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Upload Area -->
+    <main class="upload-main">
+      <section class="upload-card" aria-labelledby="upload-heading">
+        <div class="upload-card-body">
+          <div class="upload-icon">
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true">
+              <path
+                d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+
+          <h1 class="upload-heading" id="upload-heading">Import Your Photos</h1>
+          <p class="upload-subtitle">
+            Select a folder or drag and drop to begin culling
+          </p>
+
+          <button class="upload-cta" id="choose-folder" type="button">
+            <span class="upload-cta-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true">
+                <path
+                  d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </span>
+            <span class="upload-cta-text">Choose Folder</span>
+          </button>
+
+          <p class="upload-supported">Supported Formats</p>
+          <div class="upload-formats" aria-label="Supported file formats">
+            <span class="upload-chip-pill">RAW</span>
+            <span class="upload-chip-pill">JPEG</span>
+            <span class="upload-chip-pill">TIFF</span>
+            <span class="upload-chip-pill">CR2</span>
+            <span class="upload-chip-pill">NEF</span>
+            <span class="upload-chip-pill">ARW</span>
+            <span class="upload-chip-pill">DNG</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Demo Modal -->
+    <div
+      class="demo-modal hidden"
+      id="demo-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="demo-modal-title">
+      <div class="demo-modal-backdrop" id="demo-modal-backdrop"></div>
+      <div class="demo-modal-card">
+        <h2 class="demo-modal-title" id="demo-modal-title">
+          This is just a demo
+        </h2>
+        <p class="demo-modal-text">
+          Folder selection is not wired here yet. Continue to the project view
+          to see the workstation layout.
+        </p>
+        <div class="demo-modal-actions">
+          <button class="demo-btn secondary" type="button" id="demo-close">
+            Close
+          </button>
+          <a class="demo-btn primary" href="Cull.html">Go to Project View</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const chooseBtn = document.getElementById("choose-folder");
+        const modal = document.getElementById("demo-modal");
+        const closeBtn = document.getElementById("demo-close");
+        const backdrop = document.getElementById("demo-modal-backdrop");
+
+        function openModal(event) {
+          event.preventDefault();
+          modal.classList.remove("hidden");
+        }
+
+        function closeModal() {
+          modal.classList.add("hidden");
+        }
+
+        if (chooseBtn && modal) {
+          chooseBtn.addEventListener("click", openModal);
+        }
+
+        if (closeBtn) {
+          closeBtn.addEventListener("click", closeModal);
+        }
+
+        if (backdrop) {
+          backdrop.addEventListener("click", closeModal);
+        }
+      })();
+    </script>
+
+    <!-- Designer Signature -->
+    <footer class="designer-signature designer-signature--fixed">
+      <span>Designed by Pedro Costa</span>
+      <span class="signature-context">IPCA ESD · Digital Design</span>
+    </footer>
+  </body>
+</html>

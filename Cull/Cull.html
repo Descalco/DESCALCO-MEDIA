@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CullPro - Professional photo culling workspace. Rate, filter, and organize your photos efficiently." />
+    <title>CullPro - Culling</title>
+    <link
+      rel="icon"
+      href="imgs-placeholders/favicon.svg"
+      type="image/svg+xml" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet" />
+    <!-- Modular CSS Architecture -->
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+  </head>
+  <body class="culling-page">
+    <!-- ==================== GRID VIEW ==================== -->
+    <section id="grid-view" class="view view--active">
+      <!-- Top Header Bar -->
+      <header class="site-header">
+        <nav
+          class="header__tabs"
+          id="grid-header-tabs"
+          aria-label="Separadores de projeto">
+          <a
+            href="home.html"
+            class="tabs__home"
+            title="Início"
+            aria-label="Ir para início">
+            <img src="styles/icons/Icon-1.svg" alt="" class="tabs__icon" />
+          </a>
+        </nav>
+        <div class="header__actions">
+          <button
+            class="btn btn--header"
+            title="Exportar"
+            aria-label="Exportar fotos">
+            <img src="styles/icons/Icon-1.svg" alt="" class="btn__icon" />
+          </button>
+          <button
+            class="btn btn--header"
+            title="Partilhar"
+            aria-label="Partilhar galeria">
+            <img src="styles/icons/Icon-2.svg" alt="" class="btn__icon" />
+          </button>
+        </div>
+      </header>
+
+      <!-- Toolbar with Filters -->
+      <nav class="toolbar" aria-label="Controlos de filtragem e visualização">
+        <div class="toolbar__group">
+          <div class="grid-control">
+            <img
+              src="styles/icons/Grid.svg"
+              alt=""
+              class="grid-control__icon" />
+            <input
+              type="range"
+              id="grid-size-slider"
+              min="2"
+              max="6"
+              value="5"
+              class="grid-control__slider" />
+            <span class="grid-control__label" id="grid-size-label">5</span>
+          </div>
+
+          <div class="view-modes">
+            <button
+              class="btn btn--view btn--view-active"
+              data-view="grid"
+              title="Vista em grelha">
+              <img src="styles/icons/Grid.svg" alt="" />
+            </button>
+            <button
+              class="btn btn--view"
+              data-view="loupe"
+              title="Vista detalhada">
+              <img
+                src="styles/icons/Layers Select Front Streamline Streamline Bold 3.0.svg"
+                alt="" />
+            </button>
+            <button
+              class="btn btn--view"
+              data-view="compare"
+              title="Vista de comparação">
+              <img
+                src="styles/icons/Cursor Select Frame Streamline Streamline Bold 3.0.svg"
+                alt="" />
+            </button>
+            <button
+              class="btn btn--view"
+              data-view="survey"
+              title="Vista de inquérito">
+              <img
+                src="styles/icons/Picture Polaroid Streamline Streamline Light 3.0.svg"
+                alt="" />
+            </button>
+          </div>
+        </div>
+
+        <div class="toolbar__group toolbar__group--center">
+          <div class="dropdown" id="ai-tip-dropdown">
+            <button class="dropdown__trigger">
+              <span class="dropdown__label">AI TIP</span>
+              <img
+                src="styles/icons/keyboard_arrow_down.svg"
+                alt=""
+                class="dropdown__arrow" />
+            </button>
+            <ul class="dropdown__menu" id="ai-tip-menu">
+              <li class="dropdown__item" data-value="all">All Photos</li>
+              <li class="dropdown__item" data-value="best">Best Shots</li>
+              <li class="dropdown__item" data-value="similar">
+                Similar Groups
+              </li>
+              <li class="dropdown__item" data-value="faces">Faces Detected</li>
+              <li class="dropdown__item" data-value="landscape">Landscapes</li>
+              <li class="dropdown__item" data-value="portrait">Portraits</li>
+            </ul>
+          </div>
+
+          <div class="dropdown" id="focus-dropdown">
+            <button class="dropdown__trigger">
+              <span class="dropdown__label">FOCUS</span>
+              <img
+                src="styles/icons/keyboard_arrow_down.svg"
+                alt=""
+                class="dropdown__arrow" />
+            </button>
+            <ul class="dropdown__menu" id="focus-menu">
+              <li class="dropdown__item" data-value="all">All</li>
+              <li class="dropdown__item" data-value="sharp">Sharp Only</li>
+              <li class="dropdown__item" data-value="blurred">Blurred</li>
+              <li class="dropdown__item" data-value="motion">Motion Blur</li>
+              <li class="dropdown__item" data-value="soft">Soft Focus</li>
+            </ul>
+          </div>
+
+          <div class="filter-stars">
+            <button class="filter-stars__item">
+              <img src="styles/icons/star.svg" alt="" /><span>01</span>
+            </button>
+            <button class="filter-stars__item">
+              <img src="styles/icons/star.svg" alt="" /><span>00</span>
+            </button>
+            <button class="filter-stars__item">
+              <img src="styles/icons/star.svg" alt="" /><span>20</span>
+            </button>
+            <button class="filter-stars__item">
+              <img src="styles/icons/star.svg" alt="" /><span>32</span>
+            </button>
+            <button class="filter-stars__item">
+              <img src="styles/icons/star.svg" alt="" /><span>05</span>
+            </button>
+          </div>
+
+          <div class="filter-colors">
+            <button class="filter-colors__item">
+              <span
+                class="filter-colors__badge filter-colors__badge--neutral"></span
+              ><span>01</span>
+            </button>
+            <button class="filter-colors__item">
+              <span
+                class="filter-colors__badge filter-colors__badge--green"></span
+              ><span>00</span>
+            </button>
+            <button class="filter-colors__item">
+              <span
+                class="filter-colors__badge filter-colors__badge--blue"></span
+              ><span>20</span>
+            </button>
+            <button class="filter-colors__item">
+              <span
+                class="filter-colors__badge filter-colors__badge--yellow"></span
+              ><span>32</span>
+            </button>
+            <button class="filter-colors__item">
+              <span
+                class="filter-colors__badge filter-colors__badge--red"></span
+              ><span>05</span>
+            </button>
+          </div>
+
+          <button class="btn btn--clear">Clear</button>
+          <button class="btn btn--more">⋮</button>
+        </div>
+
+        <div class="toolbar__group toolbar__group--right">
+          <button class="btn btn--sidebar" id="grid-sidebar-toggle">
+            <img src="styles/icons/Sidebar.svg" alt="" />
+          </button>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <main class="grid-container">
+          <div class="photo-grid" id="photo-grid" role="grid" aria-label="Galeria de fotos">
+            <!-- 12 Photo Cards -->
+            <article
+              class="photo-card photo-card--selected photo-card--border-red photo-card--group-red"
+              data-index="0"
+              data-src="imgs-placeholders/15415033.jpg"
+              tabindex="0"
+              role="gridcell"
+              aria-label="Foto 1 de 60 - 178934_PedroCosta_photo.jpeg">
+              <figure class="photo-card__figure">
+                <img
+                  src="imgs-placeholders/15415033.jpg"
+                  alt="Foto 1 de 60"
+                  class="photo-card__image" />
+                <button class="btn btn--delete" aria-label="Eliminar foto" title="Eliminar">
+                  <img src="styles/icons/Trash.svg" alt="" />
+                </button>
+                <span class="badge badge--similar" title="3 fotos similares">3+</span>
+              </figure>
+              <footer class="photo-card__footer">
+                <div class="photo-card__meta">
+                  <span class="photo-card__filename" title="178934_PedroCosta_photo.jpeg"
+                    >178934_PedroCosta_photo.jpeg</span
+                  >
+                  <span class="photo-card__count">1 / 60</span>
+                </div>
+                <div class="rating" data-rating="0" role="group" aria-label="Avaliação por estrelas">
+                  <button class="rating__star" data-star="1" aria-label="1 estrela" title="1 estrela">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="2" aria-label="2 estrelas" title="2 estrelas">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="3" aria-label="3 estrelas" title="3 estrelas">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="4" aria-label="4 estrelas" title="4 estrelas">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="5" aria-label="5 estrelas" title="5 estrelas">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                </div>
+              </footer>
+            </article>
+
+            <article
+              class="photo-card photo-card--border-red photo-card--group-red"
+              data-index="1"
+              data-src="imgs-placeholders/15415032.jpg"
+              tabindex="0"
+              role="gridcell"
+              aria-label="Foto 2 de 60 - 178934_PedroCosta_photo.jpeg">
+              <figure class="photo-card__figure">
+                <img
+                  src="imgs-placeholders/15415032.jpg"
+                  alt="Foto 2 de 60"
+                  class="photo-card__image" />
+                <button class="btn btn--delete" aria-label="Eliminar foto" title="Eliminar">
+                  <img src="styles/icons/Trash.svg" alt="" />
+                </button>
+                <span class="badge badge--similar badge--orange" title="4 fotos similares">4+</span>
+              </figure>
+              <footer class="photo-card__footer">
+                <div class="photo-card__meta">
+                  <span class="photo-card__filename"
+                    >178934_PedroCosta_photo.jpeg</span
+                  >
+                  <span class="photo-card__count">2 of 60</span>
+                </div>
+                <div class="rating" data-rating="5">
+                  <button
+                    class="rating__star rating__star--filled"
+                    data-star="1">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button
+                    class="rating__star rating__star--filled"
+                    data-star="2">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button
+                    class="rating__star rating__star--filled"
+                    data-star="3">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button
+                    class="rating__star rating__star--filled"
+                    data-star="4">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button
+                    class="rating__star rating__star--filled"
+                    data-star="5">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                </div>
+              </footer>
+            </article>
+
+            <article
+              class="photo-card photo-card--border-red photo-card--group-red"
+              data-index="2"
+              data-src="imgs-placeholders/15415031.jpg">
+              <figure class="photo-card__figure">
+                <span class="badge badge--issue badge--purple"
+                  >Eyes Closed 👁</span
+                >
+                <img
+                  src="imgs-placeholders/15415031.jpg"
+                  alt="Foto 3 de 60"
+                  class="photo-card__image" />
+                <button class="btn btn--delete">
+                  <img src="styles/icons/Trash.svg" alt="" />
+                </button>
+                <span class="badge badge--similar badge--orange">4+</span>
+              </figure>
+              <footer class="photo-card__footer">
+                <div class="photo-card__meta">
+                  <span class="photo-card__filename"
+                    >178934_PedroCosta_photo.jpeg</span
+                  >
+                  <span class="photo-card__count">3 of 60</span>
+                </div>
+                <div class="rating" data-rating="0">
+                  <button class="rating__star" data-star="1">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="2">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="3">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="4">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="5">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                </div>
+              </footer>
+            </article>
+
+            <article
+              class="photo-card photo-card--border-green photo-card--group-red"
+              data-index="3"
+              data-src="imgs-placeholders/15415030.jpg">
+              <figure class="photo-card__figure">
+                <img
+                  src="imgs-placeholders/15415030.jpg"
+                  alt="Foto 4 de 60"
+                  class="photo-card__image" />
+                <button class="btn btn--delete">
+                  <img src="styles/icons/Trash.svg" alt="" />
+                </button>
+                <span class="badge badge--similar badge--orange">4+</span>
+              </figure>
+              <footer class="photo-card__footer">
+                <div class="photo-card__meta">
+                  <span class="photo-card__filename"
+                    >178934_PedroCosta_photo.jpeg</span
+                  >
+                  <span class="photo-card__count">4 of 60</span>
+                </div>
+                <div class="rating" data-rating="0">
+                  <button class="rating__star" data-star="1">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="2">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="3">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="4">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="5">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                </div>
+              </footer>
+            </article>
+
+            <article
+              class="photo-card photo-card--border-purple photo-card--group-purple"
+              data-index="4"
+              data-src="imgs-placeholders/15415006.jpg">
+              <figure class="photo-card__figure">
+                <img
+                  src="imgs-placeholders/15415006.jpg"
+                  alt="Foto 5 de 60"
+                  class="photo-card__image" />
+                <button class="btn btn--delete">
+                  <img src="styles/icons/Trash.svg" alt="" />
+                </button>
+                <span class="badge badge--similar badge--orange">4+</span>
+              </figure>
+              <footer class="photo-card__footer">
+                <div class="photo-card__meta">
+                  <span class="photo-card__filename"
+                    >178934_PedroCosta_photo.jpeg</span
+                  >
+                  <span class="photo-card__count">5 of 60</span>
+                </div>
+                <div class="rating" data-rating="2">
+                  <button
+                    class="rating__star rating__star--filled"
+                    data-star="1">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button
+                    class="rating__star rating__star--filled"
+                    data-star="2">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="3">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="4">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="5">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                </div>
+              </footer>
+            </article>
+
+            <article
+              class="photo-card photo-card--border-purple photo-card--group-purple"
+              data-index="5"
+              data-src="imgs-placeholders/15415005.jpg">
+              <figure class="photo-card__figure">
+                <span class="badge badge--issue badge--purple"
+                  >Eyes Closed 👁</span
+                >
+                <img
+                  src="imgs-placeholders/15415005.jpg"
+                  alt="Foto 6 de 60"
+                  class="photo-card__image" />
+                <button class="btn btn--delete">
+                  <img src="styles/icons/Trash.svg" alt="" />
+                </button>
+                <span class="badge badge--similar badge--orange">4+</span>
+              </figure>
+              <footer class="photo-card__footer">
+                <div class="photo-card__meta">
+                  <span class="photo-card__filename"
+                    >178934_PedroCosta_photo.jpeg</span
+                  >
+                  <span class="photo-card__count">6 of 60</span>
+                </div>
+                <div class="rating" data-rating="0">
+                  <button class="rating__star" data-star="1">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="2">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="3">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="4">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="5">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                </div>
+              </footer>
+            </article>
+
+            <article
+              class="photo-card photo-card--border-red photo-card--group-purple"
+              data-index="6"
+              data-src="imgs-placeholders/15415033.jpg">
+              <figure class="photo-card__figure">
+                <img
+                  src="imgs-placeholders/15415033.jpg"
+                  alt="Foto 7 de 60"
+                  class="photo-card__image" />
+                <button class="btn btn--delete">
+                  <img src="styles/icons/Trash.svg" alt="" />
+                </button>
+                <span class="badge badge--similar badge--orange">4+</span>
+              </figure>
+              <footer class="photo-card__footer">
+                <div class="photo-card__meta">
+                  <span class="photo-card__filename"
+                    >178934_PedroCosta_photo.jpeg</span
+                  >
+                  <span class="photo-card__count">7 of 60</span>
+                </div>
+                <div class="rating" data-rating="4">
+                  <button
+                    class="rating__star rating__star--filled"
+                    data-star="1">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button
+                    class="rating__star rating__star--filled"
+                    data-star="2">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button
+                    class="rating__star rating__star--filled"
+                    data-star="3">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button
+                    class="rating__star rating__star--filled"
+                    data-star="4">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="5">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                </div>
+              </footer>
+            </article>
+
+            <article
+              class="photo-card photo-card--border-purple photo-card--group-purple"
+              data-index="7"
+              data-src="imgs-placeholders/15415032.jpg">
+              <figure class="photo-card__figure">
+                <img
+                  src="imgs-placeholders/15415032.jpg"
+                  alt="Foto 8 de 60"
+                  class="photo-card__image" />
+                <button class="btn btn--delete">
+                  <img src="styles/icons/Trash.svg" alt="" />
+                </button>
+                <span class="badge badge--similar badge--orange">4+</span>
+              </figure>
+              <footer class="photo-card__footer">
+                <div class="photo-card__meta">
+                  <span class="photo-card__filename"
+                    >178934_PedroCosta_photo.jpeg</span
+                  >
+                  <span class="photo-card__count">8 of 60</span>
+                </div>
+                <div class="rating" data-rating="0">
+                  <button class="rating__star" data-star="1">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="2">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="3">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="4">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="5">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                </div>
+              </footer>
+            </article>
+
+            <article
+              class="photo-card photo-card--border-yellow"
+              data-index="8"
+              data-src="imgs-placeholders/15415031.jpg">
+              <figure class="photo-card__figure">
+                <span class="badge badge--issue badge--green">Blurred 🌀</span>
+                <img
+                  src="imgs-placeholders/15415031.jpg"
+                  alt="Foto 9 de 60"
+                  class="photo-card__image" />
+                <button class="btn btn--delete">
+                  <img src="styles/icons/Trash.svg" alt="" />
+                </button>
+                <span class="badge badge--similar badge--orange">4+</span>
+              </figure>
+              <footer class="photo-card__footer">
+                <div class="photo-card__meta">
+                  <span class="photo-card__filename"
+                    >178934_PedroCosta_photo.jpeg</span
+                  >
+                  <span class="photo-card__count">9 of 60</span>
+                </div>
+                <div class="rating" data-rating="0">
+                  <button class="rating__star" data-star="1">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="2">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="3">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="4">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="5">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                </div>
+              </footer>
+            </article>
+
+            <article
+              class="photo-card photo-card--border-yellow"
+              data-index="9"
+              data-src="imgs-placeholders/15415030.jpg">
+              <figure class="photo-card__figure">
+                <img
+                  src="imgs-placeholders/15415030.jpg"
+                  alt="Foto 10 de 60"
+                  class="photo-card__image" />
+                <button class="btn btn--delete">
+                  <img src="styles/icons/Trash.svg" alt="" />
+                </button>
+                <span class="badge badge--similar badge--orange">4+</span>
+              </figure>
+              <footer class="photo-card__footer">
+                <div class="photo-card__meta">
+                  <span class="photo-card__filename"
+                    >178934_PedroCosta_photo.jpeg</span
+                  >
+                  <span class="photo-card__count">10 of 60</span>
+                </div>
+                <div class="rating" data-rating="0">
+                  <button class="rating__star" data-star="1">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="2">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="3">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="4">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="5">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                </div>
+              </footer>
+            </article>
+
+            <article
+              class="photo-card photo-card--border-yellow"
+              data-index="10"
+              data-src="imgs-placeholders/15415006.jpg">
+              <figure class="photo-card__figure">
+                <img
+                  src="imgs-placeholders/15415006.jpg"
+                  alt="Foto 11 de 60"
+                  class="photo-card__image" />
+                <button class="btn btn--delete">
+                  <img src="styles/icons/Trash.svg" alt="" />
+                </button>
+                <span class="badge badge--similar badge--orange">4+</span>
+              </figure>
+              <footer class="photo-card__footer">
+                <div class="photo-card__meta">
+                  <span class="photo-card__filename"
+                    >178934_PedroCosta_photo.jpeg</span
+                  >
+                  <span class="photo-card__count">11 of 60</span>
+                </div>
+                <div class="rating" data-rating="0">
+                  <button class="rating__star" data-star="1">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="2">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="3">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="4">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="5">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                </div>
+              </footer>
+            </article>
+
+            <article
+              class="photo-card photo-card--border-purple"
+              data-index="11"
+              data-src="imgs-placeholders/15415005.jpg">
+              <figure class="photo-card__figure">
+                <span class="badge badge--issue badge--yellow"
+                  >Over Exposed ☀</span
+                >
+                <img
+                  src="imgs-placeholders/15415005.jpg"
+                  alt="Foto 12 de 60"
+                  class="photo-card__image" />
+                <button class="btn btn--delete">
+                  <img src="styles/icons/Trash.svg" alt="" />
+                </button>
+                <span class="badge badge--similar badge--orange">4+</span>
+              </figure>
+              <footer class="photo-card__footer">
+                <div class="photo-card__meta">
+                  <span class="photo-card__filename"
+                    >178934_PedroCosta_photo.jpeg</span
+                  >
+                  <span class="photo-card__count">12 of 60</span>
+                </div>
+                <div class="rating" data-rating="0">
+                  <button class="rating__star" data-star="1">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="2">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="3">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="4">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                  <button class="rating__star" data-star="5">
+                    <img src="styles/icons/star.svg" alt="" />
+                  </button>
+                </div>
+              </footer>
+            </article>
+          </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar sidebar--grid" id="grid-sidebar">
+          <h2 class="sidebar__title">GALLERY INFO</h2>
+
+          <section class="sidebar__section">
+            <h3 class="sidebar__heading">STATISTICS</h3>
+            <table class="data-table">
+              <tbody>
+                <tr>
+                  <td class="data-table__label">Total Photos</td>
+                  <td class="data-table__value">60</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Selected</td>
+                  <td class="data-table__value data-table__value--green">24</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Rejected</td>
+                  <td class="data-table__value data-table__value--red">12</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Unrated</td>
+                  <td class="data-table__value">24</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="sidebar__section">
+            <h3 class="sidebar__heading">AI SUMMARY</h3>
+            <table class="data-table">
+              <tbody>
+                <tr>
+                  <td class="data-table__label">Best Shots</td>
+                  <td class="data-table__value">8</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Similar Groups</td>
+                  <td class="data-table__value">5</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Blurred</td>
+                  <td class="data-table__value data-table__value--red">6</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Eyes Closed</td>
+                  <td class="data-table__value data-table__value--red">3</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="sidebar__section">
+            <h3 class="sidebar__heading">ALBUM INFO</h3>
+            <table class="data-table">
+              <tbody>
+                <tr>
+                  <td class="data-table__label">Album Name</td>
+                  <td class="data-table__value">Wedding Day</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Date</td>
+                  <td class="data-table__value">Dec 19, 2025</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Total Size</td>
+                  <td class="data-table__value">2.4 GB</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Camera</td>
+                  <td class="data-table__value">Sony A7IV</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="sidebar__section">
+            <h3 class="sidebar__heading">QUICK ACTIONS</h3>
+            <div class="sidebar__actions">
+              <button class="btn btn--action">Select All Best</button>
+              <button class="btn btn--action">Reject Blurred</button>
+              <button class="btn btn--action btn--danger">
+                Clear Selection
+              </button>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ==================== DETAIL/LOUPE VIEW ==================== -->
+    <section id="detail-view" class="view">
+      <!-- Top Header Bar -->
+      <header class="site-header">
+        <nav
+          class="header__tabs"
+          id="detail-header-tabs"
+          aria-label="Separadores de projeto">
+          <a
+            href="home.html"
+            class="tabs__home"
+            title="Início"
+            aria-label="Ir para início">
+            <img src="styles/icons/Icon-1.svg" alt="" class="tabs__icon" />
+          </a>
+        </nav>
+        <div class="header__actions">
+          <button
+            class="btn btn--header"
+            title="Exportar"
+            aria-label="Exportar fotos">
+            <img src="styles/icons/Icon-1.svg" alt="" class="btn__icon" />
+          </button>
+          <button
+            class="btn btn--header"
+            title="Partilhar"
+            aria-label="Partilhar galeria">
+            <img src="styles/icons/Icon-2.svg" alt="" class="btn__icon" />
+          </button>
+        </div>
+      </header>
+
+      <!-- Toolbar -->
+      <nav class="toolbar" aria-label="Controlos de filtragem e visualização">
+        <div class="toolbar__group">
+          <div class="grid-control">
+            <img
+              src="styles/icons/Grid.svg"
+              alt=""
+              class="grid-control__icon" />
+            <input
+              type="range"
+              min="2"
+              max="6"
+              value="4"
+              class="grid-control__slider"
+              id="detail-size-slider"
+              aria-label="Tamanho da grid" />
+            <span class="grid-control__label" id="detail-size-label">4</span>
+          </div>
+
+          <div class="view-modes">
+            <button
+              class="btn btn--view"
+              data-view="grid"
+              title="Vista de Grid"
+              aria-label="Mudar para vista de grid">
+              <img src="styles/icons/Grid.svg" alt="" class="btn__icon" />
+            </button>
+            <button
+              class="btn btn--view btn--view-active"
+              data-view="loupe"
+              title="Vista Detalhada"
+              aria-label="Vista detalhada ativa">
+              <img
+                src="styles/icons/Layers Select Front Streamline Streamline Bold 3.0.svg"
+                alt=""
+                class="btn__icon" />
+            </button>
+            <button
+              class="btn btn--view"
+              data-view="compare"
+              title="Vista de Comparação"
+              aria-label="Mudar para vista de comparação">
+              <img
+                src="styles/icons/Cursor Select Frame Streamline Streamline Bold 3.0.svg"
+                alt=""
+                class="btn__icon" />
+            </button>
+            <button
+              class="btn btn--view"
+              data-view="survey"
+              title="Vista de Survey"
+              aria-label="Mudar para vista de survey">
+              <img
+                src="styles/icons/Picture Polaroid Streamline Streamline Light 3.0.svg"
+                alt=""
+                class="btn__icon" />
+            </button>
+          </div>
+        </div>
+
+        <div class="toolbar__group toolbar__group--center">
+          <div class="dropdown" id="detail-ai-tip-dropdown">
+            <button class="dropdown__trigger" aria-haspopup="true">
+              <span class="dropdown__label">AI TIP</span>
+              <img
+                src="styles/icons/keyboard_arrow_down.svg"
+                alt=""
+                class="dropdown__arrow" />
+            </button>
+            <ul class="dropdown__menu" role="menu">
+              <li class="dropdown__item" role="menuitem">Todas as Fotos</li>
+              <li class="dropdown__item" role="menuitem">Melhores</li>
+              <li class="dropdown__item" role="menuitem">Grupos Similares</li>
+              <li class="dropdown__item" role="menuitem">Faces Detectadas</li>
+              <li class="dropdown__item" role="menuitem">Paisagens</li>
+              <li class="dropdown__item" role="menuitem">Retratos</li>
+            </ul>
+          </div>
+
+          <div class="dropdown" id="detail-focus-dropdown">
+            <button class="dropdown__trigger" aria-haspopup="true">
+              <span class="dropdown__label">FOCUS</span>
+              <img
+                src="styles/icons/keyboard_arrow_down.svg"
+                alt=""
+                class="dropdown__arrow" />
+            </button>
+            <ul class="dropdown__menu" role="menu">
+              <li class="dropdown__item" role="menuitem">Todas</li>
+              <li class="dropdown__item" role="menuitem">Nítidas</li>
+              <li class="dropdown__item" role="menuitem">Desfocadas</li>
+              <li class="dropdown__item" role="menuitem">Motion Blur</li>
+              <li class="dropdown__item" role="menuitem">Foco Suave</li>
+            </ul>
+          </div>
+
+          <div class="filter-stars">
+            <button
+              class="filter-stars__item"
+              aria-label="Filtrar por 1 estrela">
+              <img
+                src="styles/icons/star.svg"
+                alt=""
+                class="filter-stars__icon" />
+              <span class="filter-stars__count">01</span>
+            </button>
+            <button
+              class="filter-stars__item"
+              aria-label="Filtrar por 2 estrelas">
+              <img
+                src="styles/icons/star.svg"
+                alt=""
+                class="filter-stars__icon" />
+              <span class="filter-stars__count">00</span>
+            </button>
+            <button
+              class="filter-stars__item"
+              aria-label="Filtrar por 3 estrelas">
+              <img
+                src="styles/icons/star.svg"
+                alt=""
+                class="filter-stars__icon" />
+              <span class="filter-stars__count">20</span>
+            </button>
+            <button
+              class="filter-stars__item"
+              aria-label="Filtrar por 4 estrelas">
+              <img
+                src="styles/icons/star.svg"
+                alt=""
+                class="filter-stars__icon" />
+              <span class="filter-stars__count">32</span>
+            </button>
+            <button
+              class="filter-stars__item"
+              aria-label="Filtrar por 5 estrelas">
+              <img
+                src="styles/icons/star.svg"
+                alt=""
+                class="filter-stars__icon" />
+              <span class="filter-stars__count">05</span>
+            </button>
+          </div>
+
+          <div class="filter-colors">
+            <button
+              class="filter-colors__item"
+              aria-label="Filtrar por cor neutra">
+              <span
+                class="filter-colors__badge filter-colors__badge--neutral"></span>
+              <span class="filter-colors__count">01</span>
+            </button>
+            <button
+              class="filter-colors__item"
+              aria-label="Filtrar por cor verde">
+              <span
+                class="filter-colors__badge filter-colors__badge--green"></span>
+              <span class="filter-colors__count">00</span>
+            </button>
+            <button
+              class="filter-colors__item"
+              aria-label="Filtrar por cor azul">
+              <span
+                class="filter-colors__badge filter-colors__badge--blue"></span>
+              <span class="filter-colors__count">20</span>
+            </button>
+            <button
+              class="filter-colors__item"
+              aria-label="Filtrar por cor amarela">
+              <span
+                class="filter-colors__badge filter-colors__badge--yellow"></span>
+              <span class="filter-colors__count">32</span>
+            </button>
+            <button
+              class="filter-colors__item"
+              aria-label="Filtrar por cor vermelha">
+              <span
+                class="filter-colors__badge filter-colors__badge--red"></span>
+              <span class="filter-colors__count">05</span>
+            </button>
+          </div>
+
+          <button class="btn btn--clear" aria-label="Limpar filtros">
+            Clear
+          </button>
+        </div>
+
+        <div class="toolbar__group toolbar__group--right">
+          <button
+            class="btn btn--more"
+            title="Mais opções"
+            aria-label="Mais opções">
+            ⋮
+          </button>
+
+          <div class="nav-controls">
+            <span class="nav-controls__count" id="detail-nav-count"
+              >4 / 16</span
+            >
+            <button
+              class="nav-controls__btn"
+              id="detail-prev-photo"
+              aria-label="Foto anterior">
+              ‹
+            </button>
+            <button
+              class="nav-controls__btn"
+              id="detail-next-photo"
+              aria-label="Próxima foto">
+              ›
+            </button>
+          </div>
+
+          <button
+            class="btn btn--sidebar"
+            id="detail-sidebar-toggle"
+            title="Alternar sidebar"
+            aria-label="Mostrar/esconder sidebar">
+            <img src="styles/icons/Sidebar.svg" alt="" class="btn__icon" />
+          </button>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <div class="detail-content">
+        <!-- Filmstrip -->
+        <aside class="filmstrip">
+          <button class="filmstrip__back" aria-label="Voltar">←</button>
+          <h3 class="filmstrip__title">FILMSTRIP (16)</h3>
+          <div class="filmstrip__list" id="filmstrip-list">
+            <!-- Items will be populated by JS -->
+          </div>
+        </aside>
+
+        <!-- Main Image -->
+        <main class="detail-main">
+          <img
+            src="imgs-placeholders/15415033.jpg"
+            alt="Foto selecionada"
+            class="detail-main__image"
+            id="detail-image" />
+        </main>
+
+        <!-- Sidebar with Properties -->
+        <aside class="detail-sidebar" id="detail-sidebar">
+          <h3 class="sidebar__title">PROPRIEDADES</h3>
+
+          <!-- Location -->
+          <section class="property-section">
+            <h4 class="property-section__heading">LOCALIZAÇÃO</h4>
+            <div class="location-map">
+              <iframe
+                class="location-map__iframe"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23851.02475799877!2d-8.636682!3d41.533091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24f45f8c6c5b83%3A0x500ebbde49036e0!2sBarcelona%2C%20Portugal!5e0!3m2!1sen!2s!4v1703851200000!5m2!1sen!2s"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Localização da foto">
+              </iframe>
+              <div class="location-map__bar">
+                <span class="location-map__pin">📍 Barcelos</span>
+                <span class="location-map__coords">41.5331° N, 8.6197° W</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- AI Analysis -->
+          <section class="property-section">
+            <h4 class="property-section__heading">ANÁLISE AI</h4>
+            <table class="data-table">
+              <tbody>
+                <tr>
+                  <td class="data-table__label">Qualidade de Foco</td>
+                  <td class="data-table__value data-table__value--red">
+                    DESFOCADA
+                  </td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Composição</td>
+                  <td class="data-table__value">97/100</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Olhos Fechados</td>
+                  <td class="data-table__value data-table__value--green">
+                    NÃO
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="property-note">Boa composição geral</p>
+          </section>
+
+          <!-- EXIF Data -->
+          <section class="property-section">
+            <h4 class="property-section__heading">DADOS EXIF</h4>
+            <table class="data-table">
+              <tbody>
+                <tr>
+                  <td class="data-table__label">ISO</td>
+                  <td class="data-table__value">3200</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Abertura</td>
+                  <td class="data-table__value">f/1.4</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Velocidade</td>
+                  <td class="data-table__value">1/500</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Focal</td>
+                  <td class="data-table__value">135mm</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <!-- File Info -->
+          <section class="property-section">
+            <h4 class="property-section__heading">INFO DO FICHEIRO</h4>
+            <table class="data-table">
+              <tbody>
+                <tr>
+                  <td class="data-table__label">Nome</td>
+                  <td class="data-table__value" id="detail-filename">
+                    178934_PedroCosta_photo.jpeg
+                  </td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Data</td>
+                  <td class="data-table__value">12/19/2025, 10:06:00 AM</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Resolução</td>
+                  <td class="data-table__value">6000 × 4000</td>
+                </tr>
+                <tr>
+                  <td class="data-table__label">Tamanho</td>
+                  <td class="data-table__value">12.4 MB</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <!-- Status -->
+          <section class="property-section">
+            <h4 class="property-section__heading">ESTADO</h4>
+            <div class="status-buttons">
+              <button class="status-btn status-btn--pick">Escolher</button>
+              <button class="status-btn status-btn--reject">Rejeitar</button>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <!-- Bottom Bar -->
+      <footer class="detail-bottombar">
+        <span class="detail-bottombar__filename" id="bottom-filename">
+          178934_PedroCosta_photo.jpeg
+        </span>
+        <div
+          class="detail-bottombar__stars"
+          id="detail-stars-rating"
+          data-rating="5">
+          <button
+            class="rating__star rating__star--filled"
+            data-star="1"
+            aria-label="1 estrela">
+            <img src="styles/icons/star.svg" alt="" />
+          </button>
+          <button
+            class="rating__star rating__star--filled"
+            data-star="2"
+            aria-label="2 estrelas">
+            <img src="styles/icons/star.svg" alt="" />
+          </button>
+          <button
+            class="rating__star rating__star--filled"
+            data-star="3"
+            aria-label="3 estrelas">
+            <img src="styles/icons/star.svg" alt="" />
+          </button>
+          <button
+            class="rating__star rating__star--filled"
+            data-star="4"
+            aria-label="4 estrelas">
+            <img src="styles/icons/star.svg" alt="" />
+          </button>
+          <button
+            class="rating__star rating__star--filled"
+            data-star="5"
+            aria-label="5 estrelas">
+            <img src="styles/icons/star.svg" alt="" />
+          </button>
+        </div>
+        <div class="detail-bottombar__colors">
+          <button
+            class="color-label color-label--green color-label--active"
+            aria-label="Etiqueta verde"></button>
+          <button
+            class="color-label color-label--blue"
+            aria-label="Etiqueta azul"></button>
+          <button
+            class="color-label color-label--yellow"
+            aria-label="Etiqueta amarela"></button>
+          <button
+            class="color-label color-label--orange"
+            aria-label="Etiqueta laranja"></button>
+          <button class="trash-btn" aria-label="Eliminar foto">
+            <img src="styles/icons/Trash.svg" alt="" class="trash-btn__icon" />
+          </button>
+        </div>
+      </footer>
+    </section>
+
+    <!-- ==================== COMPARE VIEW ==================== -->
+    <section id="compare-view" class="view">
+      <!-- Top Header Bar -->
+      <header class="site-header">
+        <nav
+          class="header__tabs"
+          id="compare-header-tabs"
+          aria-label="Separadores de projeto">
+          <a
+            href="home.html"
+            class="tabs__home"
+            title="Início"
+            aria-label="Ir para início">
+            <img src="styles/icons/Icon-1.svg" alt="" class="tabs__icon" />
+          </a>
+        </nav>
+        <div class="header__actions">
+          <button
+            class="btn btn--header"
+            title="Exportar"
+            aria-label="Exportar fotos">
+            <img src="styles/icons/Icon-1.svg" alt="" class="btn__icon" />
+          </button>
+          <button
+            class="btn btn--header"
+            title="Partilhar"
+            aria-label="Partilhar galeria">
+            <img src="styles/icons/Icon-2.svg" alt="" class="btn__icon" />
+          </button>
+        </div>
+      </header>
+
+      <!-- Toolbar -->
+      <nav class="toolbar" aria-label="Controlos de filtragem e visualização">
+        <div class="toolbar__group">
+          <div class="grid-control">
+            <img
+              src="styles/icons/Grid.svg"
+              alt=""
+              class="grid-control__icon" />
+            <input
+              type="range"
+              min="2"
+              max="6"
+              value="4"
+              class="grid-control__slider"
+              id="compare-size-slider"
+              aria-label="Tamanho da grid" />
+            <span class="grid-control__label" id="compare-size-label">4</span>
+          </div>
+
+          <div class="view-modes">
+            <button
+              class="btn btn--view"
+              data-view="grid"
+              title="Vista de Grid"
+              aria-label="Mudar para vista de grid">
+              <img src="styles/icons/Grid.svg" alt="" class="btn__icon" />
+            </button>
+            <button
+              class="btn btn--view"
+              data-view="loupe"
+              title="Vista Detalhada"
+              aria-label="Mudar para vista detalhada">
+              <img
+                src="styles/icons/Layers Select Front Streamline Streamline Bold 3.0.svg"
+                alt=""
+                class="btn__icon" />
+            </button>
+            <button
+              class="btn btn--view btn--view-active"
+              data-view="compare"
+              title="Vista de Comparação"
+              aria-label="Vista de comparação ativa">
+              <img
+                src="styles/icons/Cursor Select Frame Streamline Streamline Bold 3.0.svg"
+                alt=""
+                class="btn__icon" />
+            </button>
+            <button
+              class="btn btn--view"
+              data-view="survey"
+              title="Vista de Survey"
+              aria-label="Mudar para vista de survey">
+              <img
+                src="styles/icons/Picture Polaroid Streamline Streamline Light 3.0.svg"
+                alt=""
+                class="btn__icon" />
+            </button>
+          </div>
+        </div>
+
+        <div class="toolbar__group toolbar__group--center">
+          <div class="dropdown" id="compare-ai-tip-dropdown">
+            <button class="dropdown__trigger" aria-haspopup="true">
+              <span class="dropdown__label">AI TIP</span>
+              <img
+                src="styles/icons/keyboard_arrow_down.svg"
+                alt=""
+                class="dropdown__arrow" />
+            </button>
+            <ul class="dropdown__menu" role="menu">
+              <li class="dropdown__item" role="menuitem">Todas as Fotos</li>
+              <li class="dropdown__item" role="menuitem">Melhores</li>
+            </ul>
+          </div>
+
+          <div class="dropdown" id="compare-focus-dropdown">
+            <button class="dropdown__trigger" aria-haspopup="true">
+              <span class="dropdown__label">FOCUS</span>
+              <img
+                src="styles/icons/keyboard_arrow_down.svg"
+                alt=""
+                class="dropdown__arrow" />
+            </button>
+            <ul class="dropdown__menu" role="menu">
+              <li class="dropdown__item" role="menuitem">Todas</li>
+              <li class="dropdown__item" role="menuitem">Nítidas</li>
+            </ul>
+          </div>
+
+          <button class="btn btn--clear" aria-label="Limpar filtros">
+            Clear
+          </button>
+        </div>
+
+        <div class="toolbar__group toolbar__group--right">
+          <button
+            class="btn btn--more"
+            title="Mais opções"
+            aria-label="Mais opções">
+            ⋮
+          </button>
+
+          <div class="nav-controls">
+            <span class="nav-controls__count" id="compare-nav-count"
+              >1-2 / 16</span
+            >
+            <button
+              class="nav-controls__btn"
+              id="compare-prev"
+              aria-label="Par anterior">
+              ‹
+            </button>
+            <button
+              class="nav-controls__btn"
+              id="compare-next"
+              aria-label="Próximo par">
+              ›
+            </button>
+          </div>
+
+          <button
+            class="btn btn--sidebar"
+            id="compare-sidebar-toggle"
+            title="Alternar sidebar"
+            aria-label="Mostrar/esconder sidebar">
+            <img src="styles/icons/Sidebar.svg" alt="" class="btn__icon" />
+          </button>
+        </div>
+      </nav>
+
+      <!-- Compare Content -->
+      <div class="compare-content">
+        <!-- Left Panel -->
+        <article class="compare-panel" id="compare-left">
+          <figure class="compare-panel__image-wrapper">
+            <img
+              src="imgs-placeholders/15415033.jpg"
+              alt="Foto A"
+              class="compare-panel__image"
+              id="compare-image-left" />
+          </figure>
+          <footer class="compare-panel__info">
+            <span class="compare-panel__filename">Photo_001.jpg</span>
+            <div class="compare-panel__stars" data-rating="3">
+              <button
+                class="rating__star rating__star--filled"
+                data-star="1"
+                aria-label="1 estrela">
+                <img src="styles/icons/star.svg" alt="" />
+              </button>
+              <button
+                class="rating__star rating__star--filled"
+                data-star="2"
+                aria-label="2 estrelas">
+                <img src="styles/icons/star.svg" alt="" />
+              </button>
+              <button
+                class="rating__star rating__star--filled"
+                data-star="3"
+                aria-label="3 estrelas">
+                <img src="styles/icons/star.svg" alt="" />
+              </button>
+              <button
+                class="rating__star"
+                data-star="4"
+                aria-label="4 estrelas">
+                <img src="styles/icons/star.svg" alt="" />
+              </button>
+              <button
+                class="rating__star"
+                data-star="5"
+                aria-label="5 estrelas">
+                <img src="styles/icons/star.svg" alt="" />
+              </button>
+            </div>
+            <div class="compare-panel__actions">
+              <button
+                class="compare-btn compare-btn--pick"
+                title="Escolher"
+                aria-label="Escolher esta foto">
+                ✓
+              </button>
+              <button
+                class="compare-btn compare-btn--reject"
+                title="Rejeitar"
+                aria-label="Rejeitar esta foto">
+                ✗
+              </button>
+            </div>
+          </footer>
+        </article>
+
+        <div class="compare-divider" role="separator"></div>
+
+        <!-- Right Panel -->
+        <article class="compare-panel" id="compare-right">
+          <figure class="compare-panel__image-wrapper">
+            <img
+              src="imgs-placeholders/15415032.jpg"
+              alt="Foto B"
+              class="compare-panel__image"
+              id="compare-image-right" />
+          </figure>
+          <footer class="compare-panel__info">
+            <span class="compare-panel__filename">Photo_002.jpg</span>
+            <div class="compare-panel__stars" data-rating="4">
+              <button
+                class="rating__star rating__star--filled"
+                data-star="1"
+                aria-label="1 estrela">
+                <img src="styles/icons/star.svg" alt="" />
+              </button>
+              <button
+                class="rating__star rating__star--filled"
+                data-star="2"
+                aria-label="2 estrelas">
+                <img src="styles/icons/star.svg" alt="" />
+              </button>
+              <button
+                class="rating__star rating__star--filled"
+                data-star="3"
+                aria-label="3 estrelas">
+                <img src="styles/icons/star.svg" alt="" />
+              </button>
+              <button
+                class="rating__star rating__star--filled"
+                data-star="4"
+                aria-label="4 estrelas">
+                <img src="styles/icons/star.svg" alt="" />
+              </button>
+              <button
+                class="rating__star"
+                data-star="5"
+                aria-label="5 estrelas">
+                <img src="styles/icons/star.svg" alt="" />
+              </button>
+            </div>
+            <div class="compare-panel__actions">
+              <button
+                class="compare-btn compare-btn--pick"
+                title="Escolher"
+                aria-label="Escolher esta foto">
+                ✓
+              </button>
+              <button
+                class="compare-btn compare-btn--reject"
+                title="Rejeitar"
+                aria-label="Rejeitar esta foto">
+                ✗
+              </button>
+            </div>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== SURVEY VIEW ==================== -->
+    <section id="survey-view" class="view">
+      <!-- Top Header Bar -->
+      <header class="site-header">
+        <nav
+          class="header__tabs"
+          id="survey-header-tabs"
+          aria-label="Separadores de projeto">
+          <a
+            href="home.html"
+            class="tabs__home"
+            title="Início"
+            aria-label="Ir para início">
+            <img src="styles/icons/Icon-1.svg" alt="" class="tabs__icon" />
+          </a>
+        </nav>
+        <div class="header__actions">
+          <button
+            class="btn btn--header"
+            title="Exportar"
+            aria-label="Exportar fotos">
+            <img src="styles/icons/Icon-1.svg" alt="" class="btn__icon" />
+          </button>
+          <button
+            class="btn btn--header"
+            title="Partilhar"
+            aria-label="Partilhar galeria">
+            <img src="styles/icons/Icon-2.svg" alt="" class="btn__icon" />
+          </button>
+        </div>
+      </header>
+
+      <!-- Toolbar -->
+      <nav class="toolbar" aria-label="Controlos de filtragem e visualização">
+        <div class="toolbar__group">
+          <div class="grid-control">
+            <img
+              src="styles/icons/Grid.svg"
+              alt=""
+              class="grid-control__icon" />
+            <input
+              type="range"
+              min="2"
+              max="6"
+              value="4"
+              class="grid-control__slider"
+              id="survey-size-slider"
+              aria-label="Tamanho da grid" />
+            <span class="grid-control__label" id="survey-size-label">4</span>
+          </div>
+
+          <div class="view-modes">
+            <button
+              class="btn btn--view"
+              data-view="grid"
+              title="Vista de Grid"
+              aria-label="Mudar para vista de grid">
+              <img src="styles/icons/Grid.svg" alt="" class="btn__icon" />
+            </button>
+            <button
+              class="btn btn--view"
+              data-view="loupe"
+              title="Vista Detalhada"
+              aria-label="Mudar para vista detalhada">
+              <img
+                src="styles/icons/Layers Select Front Streamline Streamline Bold 3.0.svg"
+                alt=""
+                class="btn__icon" />
+            </button>
+            <button
+              class="btn btn--view"
+              data-view="compare"
+              title="Vista de Comparação"
+              aria-label="Mudar para vista de comparação">
+              <img
+                src="styles/icons/Cursor Select Frame Streamline Streamline Bold 3.0.svg"
+                alt=""
+                class="btn__icon" />
+            </button>
+            <button
+              class="btn btn--view btn--view-active"
+              data-view="survey"
+              title="Vista de Survey"
+              aria-label="Vista de survey ativa">
+              <img
+                src="styles/icons/Picture Polaroid Streamline Streamline Light 3.0.svg"
+                alt=""
+                class="btn__icon" />
+            </button>
+          </div>
+        </div>
+
+        <div class="toolbar__group toolbar__group--center">
+          <div class="dropdown" id="survey-ai-tip-dropdown">
+            <button class="dropdown__trigger" aria-haspopup="true">
+              <span class="dropdown__label">AI TIP</span>
+              <img
+                src="styles/icons/keyboard_arrow_down.svg"
+                alt=""
+                class="dropdown__arrow" />
+            </button>
+            <ul class="dropdown__menu" role="menu">
+              <li class="dropdown__item" role="menuitem">Todas as Fotos</li>
+              <li class="dropdown__item" role="menuitem">Melhores</li>
+            </ul>
+          </div>
+
+          <div class="dropdown" id="survey-focus-dropdown">
+            <button class="dropdown__trigger" aria-haspopup="true">
+              <span class="dropdown__label">FOCUS</span>
+              <img
+                src="styles/icons/keyboard_arrow_down.svg"
+                alt=""
+                class="dropdown__arrow" />
+            </button>
+            <ul class="dropdown__menu" role="menu">
+              <li class="dropdown__item" role="menuitem">Todas</li>
+              <li class="dropdown__item" role="menuitem">Nítidas</li>
+            </ul>
+          </div>
+
+          <button class="btn btn--clear" aria-label="Limpar filtros">
+            Clear
+          </button>
+        </div>
+
+        <div class="toolbar__group toolbar__group--right">
+          <button
+            class="btn btn--more"
+            title="Mais opções"
+            aria-label="Mais opções">
+            ⋮
+          </button>
+
+          <div class="nav-controls">
+            <span class="nav-controls__count" id="survey-nav-count"
+              >1-6 / 16</span
+            >
+            <button
+              class="nav-controls__btn"
+              id="survey-prev"
+              aria-label="Grupo anterior">
+              ‹
+            </button>
+            <button
+              class="nav-controls__btn"
+              id="survey-next"
+              aria-label="Próximo grupo">
+              ›
+            </button>
+          </div>
+
+          <button
+            class="btn btn--sidebar"
+            id="survey-sidebar-toggle"
+            title="Alternar sidebar"
+            aria-label="Mostrar/esconder sidebar">
+            <img src="styles/icons/Sidebar.svg" alt="" class="btn__icon" />
+          </button>
+        </div>
+      </nav>
+
+      <!-- Survey Content -->
+      <main class="survey-content">
+        <div class="survey-grid" id="survey-grid">
+          <!-- Photo 1 -->
+          <article class="survey-item" data-index="0">
+            <figure class="survey-item__wrapper">
+              <img
+                src="imgs-placeholders/15415033.jpg"
+                alt="Foto 1"
+                class="survey-item__image" />
+              <span class="survey-item__badge">1</span>
+            </figure>
+            <footer class="survey-item__info">
+              <span class="survey-item__filename">Photo_001.jpg</span>
+              <div class="survey-item__rating" data-rating="3">
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="1"
+                  aria-label="1 estrela">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="2"
+                  aria-label="2 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="3"
+                  aria-label="3 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star"
+                  data-star="4"
+                  aria-label="4 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star"
+                  data-star="5"
+                  aria-label="5 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+              </div>
+            </footer>
+          </article>
+
+          <!-- Photo 2 -->
+          <article class="survey-item" data-index="1">
+            <figure class="survey-item__wrapper">
+              <img
+                src="imgs-placeholders/15415032.jpg"
+                alt="Foto 2"
+                class="survey-item__image" />
+              <span class="survey-item__badge">2</span>
+            </figure>
+            <footer class="survey-item__info">
+              <span class="survey-item__filename">Photo_002.jpg</span>
+              <div class="survey-item__rating" data-rating="4">
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="1"
+                  aria-label="1 estrela">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="2"
+                  aria-label="2 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="3"
+                  aria-label="3 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="4"
+                  aria-label="4 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star"
+                  data-star="5"
+                  aria-label="5 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+              </div>
+            </footer>
+          </article>
+
+          <!-- Photo 3 -->
+          <article class="survey-item" data-index="2">
+            <figure class="survey-item__wrapper">
+              <img
+                src="imgs-placeholders/15415031.jpg"
+                alt="Foto 3"
+                class="survey-item__image" />
+              <span class="survey-item__badge">3</span>
+            </figure>
+            <footer class="survey-item__info">
+              <span class="survey-item__filename">Photo_003.jpg</span>
+              <div class="survey-item__rating" data-rating="2">
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="1"
+                  aria-label="1 estrela">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="2"
+                  aria-label="2 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star"
+                  data-star="3"
+                  aria-label="3 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star"
+                  data-star="4"
+                  aria-label="4 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star"
+                  data-star="5"
+                  aria-label="5 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+              </div>
+            </footer>
+          </article>
+
+          <!-- Photo 4 -->
+          <article class="survey-item" data-index="3">
+            <figure class="survey-item__wrapper">
+              <img
+                src="imgs-placeholders/15415030.jpg"
+                alt="Foto 4"
+                class="survey-item__image" />
+              <span class="survey-item__badge">4</span>
+            </figure>
+            <footer class="survey-item__info">
+              <span class="survey-item__filename">Photo_004.jpg</span>
+              <div class="survey-item__rating" data-rating="1">
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="1"
+                  aria-label="1 estrela">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star"
+                  data-star="2"
+                  aria-label="2 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star"
+                  data-star="3"
+                  aria-label="3 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star"
+                  data-star="4"
+                  aria-label="4 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star"
+                  data-star="5"
+                  aria-label="5 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+              </div>
+            </footer>
+          </article>
+
+          <!-- Photo 5 -->
+          <article class="survey-item" data-index="4">
+            <figure class="survey-item__wrapper">
+              <img
+                src="imgs-placeholders/15415006.jpg"
+                alt="Foto 5"
+                class="survey-item__image" />
+              <span class="survey-item__badge">5</span>
+            </figure>
+            <footer class="survey-item__info">
+              <span class="survey-item__filename">Photo_005.jpg</span>
+              <div class="survey-item__rating" data-rating="5">
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="1"
+                  aria-label="1 estrela">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="2"
+                  aria-label="2 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="3"
+                  aria-label="3 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="4"
+                  aria-label="4 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="5"
+                  aria-label="5 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+              </div>
+            </footer>
+          </article>
+
+          <!-- Photo 6 -->
+          <article class="survey-item" data-index="5">
+            <figure class="survey-item__wrapper">
+              <img
+                src="imgs-placeholders/15415005.jpg"
+                alt="Foto 6"
+                class="survey-item__image" />
+              <span class="survey-item__badge">6</span>
+            </figure>
+            <footer class="survey-item__info">
+              <span class="survey-item__filename">Photo_006.jpg</span>
+              <div class="survey-item__rating" data-rating="3">
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="1"
+                  aria-label="1 estrela">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="2"
+                  aria-label="2 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star rating__star--filled"
+                  data-star="3"
+                  aria-label="3 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star"
+                  data-star="4"
+                  aria-label="4 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+                <button
+                  class="rating__star"
+                  data-star="5"
+                  aria-label="5 estrelas">
+                  <img src="styles/icons/star.svg" alt="" />
+                </button>
+              </div>
+            </footer>
+          </article>
+        </div>
+      </main>
+
+      <!-- Bottom Bar -->
+      <footer class="survey-bottombar">
+        <div class="survey-bottombar__actions">
+          <button
+            class="survey-action survey-action--pick"
+            aria-label="Escolher selecionadas">
+            <span>✓</span> Escolher Selecionadas
+          </button>
+          <button
+            class="survey-action survey-action--reject"
+            aria-label="Rejeitar selecionadas">
+            <span>✗</span> Rejeitar Selecionadas
+          </button>
+        </div>
+        <div class="survey-bottombar__selection">
+          <img
+            src="styles/icons/Seen.svg"
+            alt=""
+            class="survey-bottombar__icon" />
+          <span id="survey-selection-count">0 selecionadas</span>
+        </div>
+      </footer>
+    </section>
+
+    <!-- Designer Signature -->
+    <footer class="designer-signature designer-signature--fixed">
+      <span>Designed by Pedro Costa</span>
+      <span class="signature-context">IPCA ESD · Digital Design</span>
+    </footer>
+
+    <script src="scripts/culling.js"></script>
+  </body>
+</html>

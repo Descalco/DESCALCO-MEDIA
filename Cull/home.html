@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CullPro - Manage your photography projects. Import, organize, and cull your photos." />
+    <title>CullPro - Projects</title>
+    <link
+      rel="icon"
+      href="imgs-placeholders/favicon.svg"
+      type="image/svg+xml" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet" />
+    <!-- Modular CSS Architecture -->
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+  </head>
+  <body class="home-page">
+    <div class="app-container">
+      <!-- Sidebar Navigation -->
+      <aside class="home-sidebar">
+        <header class="sidebar-header">
+          <div class="logo-container">
+            <span class="logo-icon">📸</span>
+            <span class="logo">CullPro</span>
+          </div>
+        </header>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <a href="#" class="nav-item active">
+            <span class="nav-icon">▦</span>
+            All Projects
+          </a>
+          <a href="#" class="nav-item">
+            <span class="nav-icon">🕐</span>
+            Recent
+          </a>
+          <a href="#" class="nav-item">
+            <span class="nav-icon">♥</span>
+            Favorites
+          </a>
+        </nav>
+
+        <footer class="sidebar-footer">
+          <a href="#" class="nav-item">
+            <span class="nav-icon">⚙</span>
+            Settings
+          </a>
+          <div class="designer-signature">
+            <span>Designed by Pedro Costa</span>
+            <span class="signature-context">IPCA ESD · Digital Design</span>
+          </div>
+        </footer>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="home-main">
+        <header class="header-row">
+          <div class="header-title">
+            <h1>Projects</h1>
+            <span class="project-count">6 total</span>
+          </div>
+          <div class="header-controls">
+            <div class="search-container">
+              <input
+                type="search"
+                class="search-input"
+                placeholder="Search projects..."
+                aria-label="Search projects" />
+            </div>
+            <a href="Upload.html" class="btn btn--primary">
+              <span>+</span>
+              New Project
+            </a>
+          </div>
+        </header>
+
+        <section class="projects-grid" aria-label="Project gallery">
+          <!-- Project Card 1 -->
+          <article
+            class="project-card"
+            data-project-name="Sarah & James Wedding"
+            data-photo-count="847"
+            onclick="openProject(this)">
+            <div
+              class="card-img"
+              style="background-image: url('imgs-placeholders/15415033.jpg')"
+              role="img"
+              aria-label="Sarah & James Wedding thumbnail"></div>
+            <footer class="card-info">
+              <h2 class="card-title">Sarah & James Wedding</h2>
+              <div class="card-meta">
+                <time class="card-date" datetime="2025-12-15"
+                  >Dec 15, 2025</time
+                >
+                <span class="photo-count">847 photos</span>
+              </div>
+            </footer>
+            <div class="card-overlay">
+              <span class="overlay-button">
+                Open Project
+                <span class="arrow">→</span>
+              </span>
+            </div>
+          </article>
+
+          <!-- Project Card 2 -->
+          <article
+            class="project-card"
+            data-project-name="Emma & Michael Ceremony"
+            data-photo-count="652"
+            onclick="openProject(this)">
+            <div
+              class="card-img"
+              style="background-image: url('imgs-placeholders/15415032.jpg')"
+              role="img"
+              aria-label="Emma & Michael Ceremony thumbnail"></div>
+            <footer class="card-info">
+              <h2 class="card-title">Emma & Michael Ceremony</h2>
+              <div class="card-meta">
+                <time class="card-date" datetime="2025-11-28"
+                  >Nov 28, 2025</time
+                >
+                <span class="photo-count">652 photos</span>
+              </div>
+            </footer>
+            <div class="card-overlay">
+              <span class="overlay-button">
+                Open Project
+                <span class="arrow">→</span>
+              </span>
+            </div>
+          </article>
+
+          <!-- Project Card 3 -->
+          <article
+            class="project-card"
+            data-project-name="Olivia & David Editorial"
+            data-photo-count="423"
+            onclick="openProject(this)">
+            <div
+              class="card-img"
+              style="background-image: url('imgs-placeholders/15415031.jpg')"
+              role="img"
+              aria-label="Olivia & David Editorial thumbnail"></div>
+            <footer class="card-info">
+              <h2 class="card-title">Olivia & David Editorial</h2>
+              <div class="card-meta">
+                <time class="card-date" datetime="2025-11-10"
+                  >Nov 10, 2025</time
+                >
+                <span class="photo-count">423 photos</span>
+              </div>
+            </footer>
+            <div class="card-overlay">
+              <span class="overlay-button">
+                Open Project
+                <span class="arrow">→</span>
+              </span>
+            </div>
+          </article>
+
+          <!-- Project Card 4 -->
+          <article
+            class="project-card"
+            data-project-name="Sophie & Ryan Engagement"
+            data-photo-count="298"
+            onclick="openProject(this)">
+            <div
+              class="card-img"
+              style="background-image: url('imgs-placeholders/15415030.jpg')"
+              role="img"
+              aria-label="Sophie & Ryan Engagement thumbnail"></div>
+            <footer class="card-info">
+              <h2 class="card-title">Sophie & Ryan Engagement</h2>
+              <div class="card-meta">
+                <time class="card-date" datetime="2025-10-22"
+                  >Oct 22, 2025</time
+                >
+                <span class="photo-count">298 photos</span>
+              </div>
+            </footer>
+            <div class="card-overlay">
+              <span class="overlay-button">
+                Open Project
+                <span class="arrow">→</span>
+              </span>
+            </div>
+          </article>
+
+          <!-- Project Card 5 -->
+          <article
+            class="project-card"
+            data-project-name="Reception - Johnson Family"
+            data-photo-count="534"
+            onclick="openProject(this)">
+            <div
+              class="card-img"
+              style="background-image: url('imgs-placeholders/15415006.jpg')"
+              role="img"
+              aria-label="Reception - Johnson Family thumbnail"></div>
+            <footer class="card-info">
+              <h2 class="card-title">Reception - Johnson Family</h2>
+              <div class="card-meta">
+                <time class="card-date" datetime="2025-10-05"
+                  >Oct 05, 2025</time
+                >
+                <span class="photo-count">534 photos</span>
+              </div>
+            </footer>
+            <div class="card-overlay">
+              <span class="overlay-button">
+                Open Project
+                <span class="arrow">→</span>
+              </span>
+            </div>
+          </article>
+
+          <!-- Project Card 6 -->
+          <article
+            class="project-card"
+            data-project-name="Corporate Headshots"
+            data-photo-count="156"
+            onclick="openProject(this)">
+            <div
+              class="card-img"
+              style="background-image: url('imgs-placeholders/15415005.jpg')"
+              role="img"
+              aria-label="Corporate Headshots thumbnail"></div>
+            <footer class="card-info">
+              <h2 class="card-title">Corporate Headshots</h2>
+              <div class="card-meta">
+                <time class="card-date" datetime="2025-09-18"
+                  >Sep 18, 2025</time
+                >
+                <span class="photo-count">156 photos</span>
+              </div>
+            </footer>
+            <div class="card-overlay">
+              <span class="overlay-button">
+                Open Project
+                <span class="arrow">→</span>
+              </span>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      /**
+       * Opens a project and stores it in session for the tab system
+       * @param {HTMLElement} card - The project card element
+       */
+      function openProject(card) {
+        const projectName = card.dataset.projectName;
+        const photoCount = card.dataset.photoCount;
+
+        // Get existing tabs or create new array
+        let openTabs = JSON.parse(sessionStorage.getItem("openTabs") || "[]");
+
+        // Check if project already open
+        const existingTab = openTabs.find((tab) => tab.name === projectName);
+
+        if (!existingTab) {
+          // Add new tab
+          openTabs.push({
+            name: projectName,
+            photoCount: photoCount,
+            id: Date.now(),
+          });
+          sessionStorage.setItem("openTabs", JSON.stringify(openTabs));
+        }
+
+        // Set active tab
+        sessionStorage.setItem("activeTab", projectName);
+
+        // Navigate to cull page
+        window.location.href = "Cull.html";
+      }
+    </script>
+  </body>
+</html>

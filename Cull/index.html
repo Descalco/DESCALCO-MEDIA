@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CullPro - Professional photo culling application. Streamline your photography workflow with smart AI-powered image selection." />
+    <title>CullPro - Onboarding</title>
+    <link
+      rel="icon"
+      href="imgs-placeholders/favicon.svg"
+      type="image/svg+xml" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet" />
+    <!-- Modular CSS Architecture -->
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+  </head>
+  <body class="onboarding-page">
+    <!-- Progress Indicator -->
+    <div
+      class="progress-bar"
+      id="progressBar"
+      role="progressbar"
+      aria-valuenow="0"
+      aria-valuemin="0"
+      aria-valuemax="100"></div>
+
+    <div class="onboarding-wrapper">
+      <!-- STEP 1: WELCOME -->
+      <section
+        class="step-container active"
+        data-step="1"
+        aria-labelledby="welcome-title">
+        <div class="slide-welcome">
+          <article class="welcome-content">
+            <span class="pill-badge">👋 Welcome to CullPro</span>
+            <h1 class="welcome-headline" id="welcome-title">
+              Your perfect<br />culling workflow<br />starts here
+            </h1>
+            <p class="welcome-subtext">
+              <strong>7 quick questions</strong> to personalize your
+              experience.<br />
+              <strong>Takes less than 2 minutes.</strong>
+            </p>
+            <button class="btn btn--primary" type="button">
+              Get Started →
+            </button>
+          </article>
+          <aside class="welcome-visual" aria-hidden="true">
+            <img src="imgs-placeholders/15414932.jpg" alt="" />
+          </aside>
+        </div>
+      </section>
+
+      <!-- STEP 2: PHOTOGRAPHY TYPE -->
+      <section
+        class="step-container"
+        data-step="2"
+        aria-labelledby="photo-type-title">
+        <div
+          class="slide-question-centered has-bg-image"
+          style="background-image: url('imgs-placeholders/15414933.jpg')">
+          <div class="question-container">
+            <span class="progress-label">Step 2 of 4</span>
+            <h2 class="question-title" id="photo-type-title">
+              What type of photography do you do?
+            </h2>
+            <p class="question-subtitle">Select all that apply</p>
+
+            <div
+              class="options-grid"
+              role="group"
+              aria-label="Photography type options">
+              <button class="option-card" type="button" aria-pressed="false">
+                Wedding
+              </button>
+              <button class="option-card" type="button" aria-pressed="false">
+                Portrait
+              </button>
+              <button class="option-card" type="button" aria-pressed="false">
+                Landscape
+              </button>
+              <button class="option-card" type="button" aria-pressed="false">
+                Wildlife
+              </button>
+              <button class="option-card" type="button" aria-pressed="false">
+                Sports
+              </button>
+              <button class="option-card" type="button" aria-pressed="false">
+                Event
+              </button>
+              <button class="option-card" type="button" aria-pressed="false">
+                Product
+              </button>
+              <button class="option-card" type="button" aria-pressed="false">
+                Street
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 3: RATING SYSTEM -->
+      <section
+        class="step-container"
+        data-step="3"
+        aria-labelledby="rating-title">
+        <div
+          class="slide-question-dark has-bg-image"
+          style="background-image: url('imgs-placeholders/15414934.jpg')">
+          <div class="question-container">
+            <span class="progress-label">Step 3 of 4</span>
+            <h2 class="question-title" id="rating-title">
+              How do you prefer to rate images?
+            </h2>
+            <p class="question-subtitle">
+              Choose the system that feels most natural
+            </p>
+
+            <div
+              class="rating-cards"
+              role="radiogroup"
+              aria-label="Rating system options">
+              <article
+                class="rating-card"
+                role="radio"
+                aria-checked="false"
+                tabindex="0">
+                <span class="rating-icon">⭐</span>
+                <h3 class="rating-label">5-Star Rating</h3>
+                <p class="rating-desc">Lightroom-style</p>
+              </article>
+              <article
+                class="rating-card"
+                role="radio"
+                aria-checked="false"
+                tabindex="0">
+                <span class="rating-icon">⚡</span>
+                <h3 class="rating-label">Flag System</h3>
+                <p class="rating-desc">P / Pick, X / Reject</p>
+              </article>
+              <article
+                class="rating-card"
+                role="radio"
+                aria-checked="false"
+                tabindex="0">
+                <span class="rating-icon">📷</span>
+                <h3 class="rating-label">Color Labels</h3>
+                <p class="rating-desc">Custom colour labels</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 4: COMPLETION -->
+      <section
+        class="step-container"
+        data-step="4"
+        aria-labelledby="completion-title">
+        <div class="slide-completion">
+          <div class="completion-content">
+            <div class="checkmark-circle" aria-hidden="true">✓</div>
+            <h2 class="completion-title" id="completion-title">All set!</h2>
+            <p class="completion-subtitle">
+              Your workspace is ready. Here's what we've configured for you.
+            </p>
+
+            <div class="summary-cards">
+              <article class="summary-card">
+                <span class="summary-card-icon" aria-hidden="true">📷</span>
+                <h3 class="summary-card-title">Photography Style</h3>
+                <p class="summary-card-value" id="summaryPhotography">
+                  Not selected
+                </p>
+              </article>
+              <article class="summary-card">
+                <span class="summary-card-icon" aria-hidden="true">⭐</span>
+                <h3 class="summary-card-title">Rating System</h3>
+                <p class="summary-card-value" id="summaryRating">
+                  Not selected
+                </p>
+                <p class="summary-card-desc" id="summaryRatingDesc"></p>
+              </article>
+              <article class="summary-card">
+                <span class="summary-card-icon" aria-hidden="true">⚡</span>
+                <h3 class="summary-card-title">Smart Filters</h3>
+                <p class="summary-card-value">4 Filters</p>
+                <p class="summary-card-desc">enabled, keep</p>
+              </article>
+            </div>
+
+            <div class="profile-panel">
+              <h3 class="profile-title">Your Complete Profile</h3>
+              <dl class="profile-grid">
+                <div class="profile-item">
+                  <dt class="profile-label">Experience Level</dt>
+                  <dd class="profile-value" id="profileExperience">
+                    Not selected
+                  </dd>
+                </div>
+                <div class="profile-item">
+                  <dt class="profile-label">Auto-Reject</dt>
+                  <dd class="profile-value">Disabled</dd>
+                </div>
+                <div class="profile-item">
+                  <dt class="profile-label">Photography Types</dt>
+                  <dd class="profile-value" id="profilePhotography">
+                    <div id="photographyTags"></div>
+                  </dd>
+                </div>
+                <div class="profile-item">
+                  <dt class="profile-label">Active Filters</dt>
+                  <dd class="profile-value">
+                    <div id="filterTags"></div>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+
+            <p class="text-muted text-sm mb-lg">
+              You can change these preferences anytime in settings
+            </p>
+
+            <button class="btn btn--primary btn--lg" type="button">
+              🎬 Start Culling
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav" aria-label="Onboarding navigation">
+      <button class="nav-button back" type="button" id="backBtn">‹ Back</button>
+      <div class="nav-center">
+        <span class="nav-step" id="stepIndicator">Welcome</span>
+        <span class="nav-signature">Designed by Pedro Costa</span>
+      </div>
+      <button class="nav-button nav-continue" type="button" id="continueBtn">
+        Continue →
+      </button>
+    </nav>
+
+    <!-- External JavaScript -->
+    <script src="scripts/onboarding.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,486 @@
+/* ==========================================================================
+   CULLPRO - GLOBAL STYLES
+   Base styles, CSS Variables, Reset, and Typography
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   ========================================================================== */
+:root {
+  /* ========== Typography ========== */
+  --font-primary: "Montserrat", system-ui, -apple-system, sans-serif;
+  --font-mono: "Montserrat", monospace;
+
+  --font-size-xs: 0.65rem; /* 10.4px */
+  --font-size-sm: 0.75rem; /* 12px */
+  --font-size-base: 0.85rem; /* 13.6px */
+  --font-size-md: 0.875rem; /* 14px */
+  --font-size-lg: 1rem; /* 16px */
+  --font-size-xl: 1.1rem; /* 17.6px */
+  --font-size-2xl: 1.25rem; /* 20px */
+  --font-size-3xl: 2.2rem; /* 35.2px */
+  --font-size-4xl: 2.8rem; /* 44.8px */
+  --font-size-5xl: 3.5rem; /* 56px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+
+  /* ========== Color Palette ========== */
+  /* Background Colors */
+  --color-bg-primary: #0f0f0f;
+  --color-bg-elevated: #1b1b1b;
+  --color-bg-surface: #1c1c1c;
+  --color-bg-control: #1e1e1e;
+  --color-bg-input: #2f2f2f;
+  --color-bg-hover: #2a2a2a;
+  --color-bg-active: #3a3a3a;
+
+  /* Onboarding specific backgrounds */
+  --color-bg-dark: #2a2a2a;
+  --color-bg-warm: #4a3a38;
+  --color-bg-card: #313131;
+
+  /* Text Colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #eaeaea;
+  --color-text-muted: #999999;
+  --color-text-subtle: #666666;
+  --color-text-disabled: #525252;
+
+  /* Border Colors */
+  --color-border-primary: #2b2b2b;
+  --color-border-subtle: #3a3a3a;
+  --color-border-strong: #525252;
+
+  /* Brand Colors */
+  --color-primary: #ffdd00;
+  --color-primary-hover: #e5c200;
+  --color-primary-active: #ccb100;
+  --color-primary-dark: #000000;
+  --color-primary-foreground: #000000;
+
+  /* Semantic Colors */
+  --color-success: #2a7231;
+  --color-success-light: #4dff4d;
+  --color-success-hover: #348a3d;
+
+  --color-danger: #d32f2f;
+  --color-danger-light: #ff4d4d;
+  --color-danger-hover: #e53935;
+  --color-danger-bg: #4a2020;
+  --color-danger-border: #6a3030;
+
+  --color-warning: #ffe500;
+
+  /* Color Labels */
+  --color-red: #ff0000;
+  --color-green: #2a7231;
+  --color-green-bright: #00ff1e;
+  --color-blue: #0d00ff;
+  --color-blue-light: #0066cc;
+  --color-yellow: #ffe500;
+  --color-purple: #4f378b;
+  --color-orange: #ff6b00;
+  --color-neutral: #858585;
+
+  /* Badge Colors */
+  --color-badge-purple: #9391ff;
+  --color-badge-green: #6aff00;
+  --color-badge-yellow: #ffe500;
+
+  /* ========== Spacing Scale ========== */
+  --space-xs: 0.25rem; /* 4px */
+  --space-sm: 0.5rem; /* 8px */
+  --space-md: 0.75rem; /* 12px */
+  --space-lg: 1rem; /* 16px */
+  --space-xl: 1.25rem; /* 20px */
+  --space-2xl: 1.5rem; /* 24px */
+  --space-3xl: 2rem; /* 32px */
+  --space-4xl: 3rem; /* 48px */
+  --space-5xl: 4rem; /* 64px */
+
+  /* ========== Border Radius ========== */
+  --radius-sm: 0.375rem; /* 6px */
+  --radius-md: 0.5rem; /* 8px */
+  --radius-lg: 0.625rem; /* 10px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-full: 50%;
+  --radius-pill: 2rem;
+
+  /* ========== Shadows ========== */
+  --shadow-sm: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
+  --shadow-primary: 0 0.5rem 1.5rem rgba(255, 208, 0, 0.2);
+  --shadow-primary-lg: 0 1rem 2.5rem rgba(255, 208, 0, 0.25);
+  --shadow-glow: 0 0 3.75rem rgba(255, 208, 0, 0.18);
+
+  /* ========== Transitions ========== */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
+
+  /* ========== Layout Dimensions ========== */
+  --header-height: 2.5rem; /* 40px */
+  --toolbar-height: 3.625rem; /* 58px */
+  --sidebar-width: 20rem; /* 320px */
+  --sidebar-width-sm: 18rem; /* 288px */
+  --filmstrip-width: 16rem; /* 256px - accessible size */
+  --filmstrip-width-sm: 14rem; /* 224px */
+  --bottombar-height: 3.125rem; /* 50px */
+  --nav-height: 5rem; /* 80px */
+
+  /* ========== Z-Index Scale ========== */
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 50;
+  --z-modal: 100;
+  --z-tooltip: 150;
+}
+
+/* ==========================================================================
+   CSS RESET (Modern Normalize)
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent font size inflation */
+html {
+  font-size: 16px;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default margin and set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: var(--line-height-normal);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+label {
+  line-height: var(--line-height-tight);
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Remove default button styles */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* Remove animations for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   BASE TYPOGRAPHY
+   ========================================================================== */
+h1 {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+}
+
+h2 {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+p {
+  color: var(--color-text-muted);
+  line-height: var(--line-height-relaxed);
+}
+
+strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+small {
+  font-size: var(--font-size-sm);
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Hidden */
+.hidden {
+  display: none !important;
+}
+
+/* Text utilities */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Font Size Utilities */
+.text-xs {
+  font-size: var(--font-size-xs);
+}
+
+.text-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-lg {
+  font-size: var(--font-size-lg);
+}
+
+/* Spacing Utilities */
+.mb-sm {
+  margin-bottom: var(--space-sm);
+}
+
+.mb-md {
+  margin-bottom: var(--space-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--space-lg);
+}
+
+.mb-xl {
+  margin-bottom: var(--space-xl);
+}
+
+.mb-2xl {
+  margin-bottom: var(--space-2xl);
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+/* ==========================================================================
+   DESIGNER SIGNATURE
+   ========================================================================== */
+.designer-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-md) var(--space-lg);
+  margin-top: var(--space-lg);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+  border-top: 1px solid var(--color-border-primary);
+  opacity: 0.7;
+  transition: opacity var(--transition-normal);
+}
+
+.designer-signature:hover {
+  opacity: 1;
+}
+
+.designer-signature span:first-child {
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.5px;
+}
+
+.signature-context {
+  font-size: 0.6rem;
+  color: var(--color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Fixed position variant for onboarding */
+.designer-signature--fixed {
+  position: fixed;
+  bottom: var(--space-sm);
+  left: var(--space-lg);
+  margin-top: 0;
+  padding: var(--space-xs) var(--space-sm);
+  border-top: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  backdrop-filter: none;
+  opacity: 0.4;
+  z-index: 1;
+  pointer-events: none;
+  font-size: 0.55rem;
+}
+
+.designer-signature--fixed:hover {
+  opacity: 0.6;
+}
+
+.designer-signature--fixed .signature-context {
+  font-size: 0.5rem;
+}
+
+/* Inline variant for welcome section */
+.designer-signature--inline {
+  margin-top: var(--space-3xl);
+  padding: 0;
+  border-top: none;
+  opacity: 0.5;
+}
