@@ -6,12 +6,66 @@ const session = require('express-session');
 const fs = require('fs-extra');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const { body, validationResult } = require('express-validator');
 
-// Load environment variables
-require('dotenv').config();
+// Load environment variables from the correct directory
+require('dotenv').config({ path: path.join(__dirname, '.env') });
+
+// Security: Check for required environment variables
+if (!process.env.ADMIN_PASSWORD) {
+  console.warn('⚠️  WARNING: ADMIN_PASSWORD not set in environment variables!');
+  console.warn('⚠️  Please create a .env file with ADMIN_PASSWORD=your_secure_password');
+}
+if (!process.env.SESSION_SECRET) {
+  console.warn('⚠️  WARNING: SESSION_SECRET not set in environment variables!');
+}
+
+// Rate limiters for security
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // limit each IP to 5 login attempts per windowMs
+  message: { error: 'Too many login attempts, please try again after 15 minutes' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const generalLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 100, // limit each IP to 100 requests per minute
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const analyticsLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 30, // limit analytics tracking
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// Security headers
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "blob:"],
+      mediaSrc: ["'self'", "blob:"],
+      connectSrc: ["'self'"],
+    },
+  },
+  crossOriginEmbedderPolicy: false,
+}));
+
+// Apply general rate limiting
+app.use(generalLimiter);
 
 // Middleware
 app.use(cors({
@@ -33,12 +87,18 @@ app.use(express.static('admin'));
 app.use('/uploads', express.static('uploads'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Session configuration
+// Session configuration with security options
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'descalco-portfolio-secret-key',
+  secret: process.env.SESSION_SECRET || require('crypto').randomBytes(32).toString('hex'),
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 } // 24 hours
+  cookie: {
+    secure: process.env.NODE_ENV === 'production', // HTTPS only in production
+    httpOnly: true, // Prevents XSS access to cookies
+    sameSite: 'strict', // Prevents CSRF attacks
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  },
+  name: 'sessionId' // Don't use default 'connect.sid'
 }));
 
 // File upload configuration
@@ -152,20 +212,56 @@ app.get('/login.html', (req, res) => {
   }
 });
 
-// Login endpoint
-app.post('/api/login', async (req, res) => {
-  const { password } = req.body;
-  
-  // Use environment variable for admin password
-  const adminPassword = process.env.ADMIN_PASSWORD || 'descalco2025!';
-  
-  if (password === adminPassword) {
-    req.session.authenticated = true;
-    res.json({ success: true });
-  } else {
-    res.status(401).json({ error: 'Invalid password' });
+// Login endpoint with rate limiting and input validation
+app.post('/api/login', 
+  loginLimiter,
+  body('password').isString().isLength({ min: 1, max: 128 }).trim(),
+  async (req, res) => {
+    // Validate input
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Invalid input' });
+    }
+
+    const { password } = req.body;
+    
+    // SECURITY: Require environment variable - no fallback password
+    const adminPassword = process.env.ADMIN_PASSWORD;
+    
+    if (!adminPassword) {
+      console.error('SECURITY ERROR: ADMIN_PASSWORD environment variable not set!');
+      return res.status(500).json({ error: 'Server configuration error' });
+    }
+    
+    // Use timing-safe comparison to prevent timing attacks
+    const crypto = require('crypto');
+    let passwordMatch = false;
+    
+    try {
+      // Pad both passwords to the same length to prevent length-based timing attacks
+      const maxLen = Math.max(password.length, adminPassword.length);
+      const paddedInput = password.padEnd(maxLen, '\0');
+      const paddedAdmin = adminPassword.padEnd(maxLen, '\0');
+      
+      passwordMatch = crypto.timingSafeEqual(
+        Buffer.from(paddedInput, 'utf8'),
+        Buffer.from(paddedAdmin, 'utf8')
+      ) && password.length === adminPassword.length;
+    } catch (error) {
+      console.error('Password comparison error:', error.message);
+      passwordMatch = false;
+    }
+    
+    if (passwordMatch) {
+      req.session.authenticated = true;
+      res.json({ success: true });
+    } else {
+      // Add small delay to prevent timing attacks
+      await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 100));
+      res.status(401).json({ error: 'Invalid password' });
+    }
   }
-});
+);
 
 // Logout endpoint
 app.post('/api/logout', (req, res) => {
@@ -306,7 +402,16 @@ app.get('/api/projects/:id/cover', (req, res) => {
       return res.status(404).json({ error: 'Cover media not found' });
     }
     
-    const filePath = path.join(__dirname, project.coverMedia.path.replace(/^\/backoffice/, ''));
+    // Security: Prevent path traversal
+    const uploadsDir = path.resolve(__dirname, 'uploads');
+    const requestedPath = project.coverMedia.path.replace(/^\/backoffice/, '').replace(/^\/uploads/, '');
+    const filePath = path.resolve(uploadsDir, requestedPath.replace(/^\//, ''));
+    
+    // Verify the resolved path is within uploads directory
+    if (!filePath.startsWith(uploadsDir)) {
+      console.warn('Path traversal attempt blocked:', requestedPath);
+      return res.status(403).json({ error: 'Access denied' });
+    }
     
     if (fs.existsSync(filePath)) {
       res.sendFile(filePath);
@@ -324,6 +429,53 @@ app.get('/api/admin/projects', requireAuth, (req, res) => {
   const data = getProjectsData();
   res.json(data.projects);
 });
+
+// Input validation helper
+const validateProjectInput = (body) => {
+  const errors = [];
+  const { title, year, category, projectType, description, externalLink } = body;
+  
+  // Required fields
+  if (!title || typeof title !== 'string' || title.trim().length === 0) {
+    errors.push('Title is required');
+  } else if (title.length > 200) {
+    errors.push('Title must be less than 200 characters');
+  }
+  
+  if (!year || isNaN(parseInt(year)) || parseInt(year) < 1900 || parseInt(year) > 2100) {
+    errors.push('Valid year is required (1900-2100)');
+  }
+  
+  if (!category || typeof category !== 'string' || category.trim().length === 0) {
+    errors.push('Category is required');
+  } else if (category.length > 100) {
+    errors.push('Category must be less than 100 characters');
+  }
+  
+  if (!projectType || !['simple', 'case-study'].includes(projectType)) {
+    errors.push('Project type must be "simple" or "case-study"');
+  }
+  
+  if (!description || typeof description !== 'string' || description.trim().length === 0) {
+    errors.push('Description is required');
+  } else if (description.length > 5000) {
+    errors.push('Description must be less than 5000 characters');
+  }
+  
+  // Optional fields validation
+  if (externalLink && typeof externalLink === 'string' && externalLink.trim().length > 0) {
+    try {
+      const url = new URL(externalLink);
+      if (!['http:', 'https:'].includes(url.protocol)) {
+        errors.push('External link must be a valid HTTP/HTTPS URL');
+      }
+    } catch {
+      errors.push('External link must be a valid URL');
+    }
+  }
+  
+  return errors;
+};
 
 // Create new project (ADMIN ONLY)
 app.post('/api/projects', requireAuth, upload.fields([
@@ -343,10 +495,12 @@ app.post('/api/projects', requireAuth, upload.fields([
       featured
     } = req.body;
 
-    // Validation
-    if (!title || !year || !category || !projectType || !description) {
+    // Input validation
+    const validationErrors = validateProjectInput(req.body);
+    if (validationErrors.length > 0) {
       return res.status(400).json({ 
-        error: 'Missing required fields: title, year, category, projectType, description' 
+        error: 'Validation failed',
+        details: validationErrors
       });
     }
 
@@ -597,10 +751,18 @@ app.delete('/api/projects/:id', requireAuth, (req, res) => {
 
 // ===== ANALYTICS ROUTES =====
 
-// Public Analytics Endpoints (no auth required)
-app.post('/api/analytics/track', (req, res) => {
+// Public Analytics Endpoints (with rate limiting for abuse prevention)
+app.post('/api/analytics/track', analyticsLimiter, (req, res) => {
   try {
     const { projectId, action, userAgent, timestamp } = req.body;
+    
+    // Input validation
+    if (!projectId || typeof projectId !== 'string' || projectId.length > 100) {
+      return res.status(400).json({ error: 'Invalid projectId' });
+    }
+    if (!action || !['view', 'click', 'hover'].includes(action)) {
+      return res.status(400).json({ error: 'Invalid action' });
+    }
     
     // Get analytics data
     const analyticsPath = path.join(__dirname, 'data', 'analytics.json');
@@ -610,14 +772,20 @@ app.post('/api/analytics/track', (req, res) => {
       analyticsData = JSON.parse(fs.readFileSync(analyticsPath, 'utf8'));
     }
     
-    // Add new event
+    // Add new event (anonymize IP for privacy - only store hash)
+    const crypto = require('crypto');
+    const anonymizedIp = crypto.createHash('sha256')
+      .update((req.ip || req.connection.remoteAddress || '') + 'salt_descalco')
+      .digest('hex')
+      .substring(0, 16); // Only store partial hash
+    
     const event = {
       id: uuidv4(),
-      projectId,
-      action, // 'view', 'click', 'hover'
-      userAgent,
+      projectId: projectId.substring(0, 100), // Limit length
+      action,
+      userAgent: (userAgent || '').substring(0, 500), // Limit length
       timestamp: timestamp || new Date().toISOString(),
-      ip: req.ip || req.connection.remoteAddress
+      ipHash: anonymizedIp // Store anonymized version instead of raw IP
     };
     
     analyticsData.events.push(event);
@@ -734,10 +902,19 @@ const processAnalyticsData = (events, projects) => {
 app.listen(PORT, () => {
   console.log(`🚀 Backoffice server running on http://localhost:${PORT}`);
   console.log(`📁 Admin panel: http://localhost:${PORT}/dashboard`);
-  console.log(`🔑 Default password: descalco2025!`);
+  console.log(`� Security: Rate limiting enabled`);
+  console.log(`🛡️  Security: Helmet headers enabled`);
   console.log(`📊 Analytics tracking enabled`);
   console.log(`🌐 CORS enabled for Netlify integration`);
   console.log(`🎨 Dynamic Portfolio API available at /api/projects`);
+  
+  // Security warnings
+  if (!process.env.ADMIN_PASSWORD) {
+    console.log('\n⚠️  SECURITY WARNING: Set ADMIN_PASSWORD in .env file!');
+  }
+  if (!process.env.SESSION_SECRET) {
+    console.log('⚠️  SECURITY WARNING: Set SESSION_SECRET in .env file!');
+  }
   
   // Ensure required directories exist
   fs.ensureDirSync(path.join(__dirname, 'data'));

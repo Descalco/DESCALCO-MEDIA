@@ -1,16 +1,33 @@
 assets/img/OUTROS/PF_02_MakingOf_FilipeRocha_PedroCosta_PedroSousa.mp4
 
-# Environment variables - SECURITY: Never commit these!
+# ===========================================
+# SECURITY: Environment & Secrets
+# ===========================================
+# Environment variables - NEVER commit these!
 backoffice/.env
 .env
+.env.local
+.env.*.local
+*.env
 
+# ===========================================
 # Node modules
+# ===========================================
 node_modules/
 backoffice/node_modules/
 
-# Logs
+# ===========================================
+# Analytics data (may contain IP addresses)
+# ===========================================
+backoffice/data/analytics.json
+
+# ===========================================
+# Logs & Debug
+# ===========================================
 *.log
 npm-debug.log*
+debug.log
+error.log
 
 # Runtime data
 pids

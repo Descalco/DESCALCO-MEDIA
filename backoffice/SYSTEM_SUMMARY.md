@@ -119,9 +119,11 @@ backoffice/
 ## 🔧 **TECHNICAL FEATURES**
 
 ### **Security**
-- Password: `descalco2025!`
-- Session-based authentication
+- Password: `Configured via .env file (never commit to git)`
+- Session-based authentication with secure cookies
 - API endpoint protection
+- Rate limiting on login (5 attempts per 15 minutes)
+- Helmet security headers
 - CORS configuration
 - File upload validation
 
@@ -175,7 +177,9 @@ backoffice/
 ### **Access Information**
 - **URL**: `http://localhost:3001`
 - **Username**: `admin`
-- **Password**: `descalco2025!`
+- **Password**: `Set in backoffice/.env file`
+
+> ⚠️ **SECURITY**: Configure your password in `backoffice/.env` - See `.env.example` for reference.
 
 ### **Next Steps**
 1. **Test the system** by adding a new project

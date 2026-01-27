@@ -649,6 +649,14 @@
         let projects = [];
         let projectToDelete = null;
 
+        // XSS Prevention: Sanitize user-provided content
+        function escapeHtml(text) {
+            if (text === null || text === undefined) return '';
+            const div = document.createElement('div');
+            div.textContent = String(text);
+            return div.innerHTML;
+        }
+
         // Load projects on page load
         document.addEventListener('DOMContentLoaded', () => {
             loadProjects();
@@ -716,11 +724,11 @@
 
             const projectsHTML = projects.map((project, index) => `
                 <div class="project-card ${project.visible === false ? 'hidden' : ''}" 
-                     data-project-id="${project.id}" 
+                     data-project-id="${escapeHtml(project.id)}" 
                      draggable="true">
                     <div class="drag-handle" title="Drag to reorder">⋮⋮</div>
                     <button class="visibility-toggle ${project.visible !== false ? 'visible' : 'hidden'}" 
-                            onclick="toggleVisibility('${project.id}')" 
+                            onclick="toggleVisibility('${escapeHtml(project.id)}')" 
                             title="${project.visible !== false ? 'Hide project' : 'Show project'}">
                         ${project.visible !== false ? '👁️' : '🙈'}
                     </button>
@@ -733,11 +741,11 @@
                         }
                     </div>
                     <div class="project-info">
-                        <h3>${project.title}</h3>
+                        <h3>${escapeHtml(project.title)}</h3>
                         <div class="project-meta">
-                            <span>${project.year}</span>
-                            <span>${project.category}</span>
-                            <span class="project-type ${project.projectType === 'case-study' ? 'case-study' : ''}">${project.projectType}</span>
+                            <span>${escapeHtml(project.year)}</span>
+                            <span>${escapeHtml(project.category)}</span>
+                            <span class="project-type ${project.projectType === 'case-study' ? 'case-study' : ''}">${escapeHtml(project.projectType)}</span>
                             ${project.featured ? '<span>⭐ Featured</span>' : ''}
                             ${project.source === 'hardcoded' ? '<span class="hardcoded-tag">(hardcoded)</span>' : ''}
                             ${project.visible === false ? '<span style="color: #ef4444; font-size: 0.75rem;">Hidden</span>' : ''}
@@ -746,9 +754,9 @@
                     <div class="project-actions">
                         ${project.source === 'hardcoded' ? 
                             '<span style="color: #fbbf24; font-size: 0.8rem;">Read-only</span>' : 
-                            '<button onclick="editProject(\'' + project.id + '\')" class="btn btn-secondary">Edit</button>'
+                            '<button onclick="editProject(\'' + escapeHtml(project.id) + '\')" class="btn btn-secondary">Edit</button>'
                         }
-                        <button onclick="deleteProject('${project.id}')" class="btn btn-danger">Delete</button>
+                        <button onclick="deleteProject('${escapeHtml(project.id)}')" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
             `).join('');
