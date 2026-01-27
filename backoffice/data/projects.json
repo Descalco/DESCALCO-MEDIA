@@ -20,7 +20,7 @@
       "htmlFile": "SOF-WEEK.html",
       "coverMedia": "assets/img/OUTROS/SOF-WEEK.mp4",
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-22T01:51:05.037Z",
+      "updatedAt": "2026-01-27T21:49:16.164Z",
       "displayOrder": 0
     },
     {
@@ -42,9 +42,9 @@
       "htmlFile": "GUISADO.html",
       "coverMedia": "assets/img/OUTROS/GUISADO-VIDEO.mp4#t=3",
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-22T01:51:05.037Z",
+      "updatedAt": "2026-01-27T21:49:16.164Z",
       "visible": true,
-      "displayOrder": 4
+      "displayOrder": 5
     },
     {
       "id": "cidade-do-futuro",
@@ -65,8 +65,8 @@
       "htmlFile": "CidadeDoFuturo.html",
       "coverMedia": "assets/img/OUTROS/pa_-_immersivus_x_a_cidade_do_futuro (1080p) (online-video-cutter.com).mp4",
       "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-22T01:51:05.037Z",
-      "displayOrder": 3
+      "updatedAt": "2026-01-27T21:49:16.164Z",
+      "displayOrder": 4
     },
     {
       "id": "motion-jam-winner",
@@ -87,7 +87,7 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/Noushoe.mp4",
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-22T01:51:05.037Z",
+      "updatedAt": "2026-01-27T21:49:16.164Z",
       "displayOrder": 1
     },
     {
@@ -109,8 +109,8 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/LIMIFIELD-INSTITUCIONAL.mp4",
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-22T01:51:05.037Z",
-      "displayOrder": 5
+      "updatedAt": "2026-01-27T21:49:16.164Z",
+      "displayOrder": 6
     },
     {
       "id": "limifield-type-ad",
@@ -131,8 +131,8 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/limifield-type-ad.mp4",
       "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-22T01:51:05.037Z",
-      "displayOrder": 8
+      "updatedAt": "2026-01-27T21:49:16.164Z",
+      "displayOrder": 9
     },
     {
       "id": "let-it-happen",
@@ -153,8 +153,8 @@
       "htmlFile": "LetItHappen.html",
       "coverMedia": "assets/img/OUTROS/LETITHAPPEN.mp4",
       "createdAt": "2022-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-22T01:51:05.037Z",
-      "displayOrder": 7
+      "updatedAt": "2026-01-27T21:49:16.164Z",
+      "displayOrder": 8
     },
     {
       "id": "queen-animation",
@@ -175,8 +175,8 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/queen.mp4",
       "createdAt": "2022-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-22T01:51:05.037Z",
-      "displayOrder": 10
+      "updatedAt": "2026-01-27T21:49:16.164Z",
+      "displayOrder": 11
     },
     {
       "id": "kinetic-duality",
@@ -197,8 +197,8 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/KINETIC DUALITY.mp4",
       "createdAt": "2022-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-22T01:51:05.037Z",
-      "displayOrder": 6
+      "updatedAt": "2026-01-27T21:49:16.164Z",
+      "displayOrder": 7
     },
     {
       "id": "desistir-book",
@@ -219,8 +219,8 @@
       "htmlFile": "DESISTIR.html",
       "coverMedia": "assets/img/DESISTIR/DESISTIR-CAPA2.jpg",
       "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-22T01:51:05.037Z",
-      "displayOrder": 9
+      "updatedAt": "2026-01-27T21:49:16.164Z",
+      "displayOrder": 10
     },
     {
       "id": "empresta-verbo-amar",
@@ -241,8 +241,8 @@
       "htmlFile": null,
       "coverMedia": "assets/img/OUTROS/EmprestaOVerboAmar.mp4",
       "createdAt": "2022-01-01T00:00:00.000Z",
-      "updatedAt": "2025-08-22T01:51:05.037Z",
-      "displayOrder": 11,
+      "updatedAt": "2026-01-27T21:49:16.164Z",
+      "displayOrder": 12,
       "visible": false
     },
     {
@@ -266,30 +266,34 @@
         "videos": []
       },
       "createdAt": "2025-08-19T03:48:18.329Z",
-      "updatedAt": "2025-08-22T01:51:05.037Z",
+      "updatedAt": "2026-01-27T21:49:16.164Z",
       "visible": true,
-      "displayOrder": 2
+      "displayOrder": 3
     },
     {
-      "id": "31344f48-52fd-4fdb-9935-e12753e665b5",
-      "slug": "explainer-assitencia-tecnica-rma",
-      "title": "EXPLAINER - ASSITENCIA TECNICA RMA",
+      "id": "63ab7f4b-2a16-4e0f-8b7e-6f633dcc3956",
+      "slug": "limifield-rma-process-customer-journey-explainer",
+      "title": "Limifield RMA Process: Customer Journey Explainer",
       "year": 2025,
       "category": "Motion Design",
       "projectType": "simple",
-      "description": "Explainer",
+      "description": "An instructional motion design piece for Limifield that visually simplifies their RMA and warranty protocols, turning complex text policies into a clear, step-by-step customer guide.",
       "tags": [],
-      "externalLink": "https://youtu.be/32KpSg9Ebg4",
+      "externalLink": "https://www.youtube.com/watch?v=eyy5Tg7-tjI",
       "featured": false,
-      "visible": false,
-      "displayOrder": 12,
-      "coverMedia": null,
+      "visible": true,
+      "displayOrder": 2,
+      "coverMedia": {
+        "type": "video",
+        "filename": "coverMedia-1769550490812-440039714-rma-r--pido-limifield-o-processo-de-garantia-e-devolu----o-de-produtos-limifield.---limifield-lda--1080p--h264-.mp4",
+        "path": "/uploads/limifield-rma-process-customer-journey-explainer/LimifieldRMA.mp4"
+      },
       "gallery": {
         "images": [],
         "videos": []
       },
-      "createdAt": "2025-08-22T01:47:52.525Z",
-      "updatedAt": "2025-08-22T01:51:05.037Z"
+      "createdAt": "2026-01-27T21:48:10.862Z",
+      "updatedAt": "2026-01-27T21:49:16.164Z"
     }
   ]
 }

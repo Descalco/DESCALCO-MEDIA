@@ -1,6 +1,6 @@
 // Auto-generated portfolio data from backoffice
-// Generated on: 2025-08-22T01:51:13.672Z
-// Total projects: 11 visible (2 hidden)
+// Generated on: 2026-01-27T21:50:23.419Z
+// Total projects: 12 visible (1 hidden)
 
 const PORTFOLIO_PROJECTS = [
   {
@@ -24,7 +24,7 @@ const PORTFOLIO_PROJECTS = [
     "isStatic": false,
     "displayOrder": 0,
     "createdAt": "2025-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-22T01:51:05.037Z"
+    "updatedAt": "2026-01-27T21:49:16.164Z"
   },
   {
     "id": "motion-jam-winner",
@@ -46,7 +46,25 @@ const PORTFOLIO_PROJECTS = [
     "isStatic": false,
     "displayOrder": 1,
     "createdAt": "2025-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-22T01:51:05.037Z"
+    "updatedAt": "2026-01-27T21:49:16.164Z"
+  },
+  {
+    "id": "63ab7f4b-2a16-4e0f-8b7e-6f633dcc3956",
+    "title": "Limifield RMA Process: Customer Journey Explainer",
+    "year": 2025,
+    "category": "Motion Design",
+    "description": "An instructional motion design piece for Limifield that visually simplifies their RMA and warranty protocols, turning complex text policies into a clear, step-by-step customer guide.",
+    "tags": [],
+    "projectType": "simple",
+    "externalLink": "https://www.youtube.com/watch?v=eyy5Tg7-tjI",
+    "htmlFile": null,
+    "featured": false,
+    "coverMedia": "assets/img/OUTROS/coverMedia-1769550490812-440039714-rma-r--pido-limifield-o-processo-de-garantia-e-devolu----o-de-produtos-limifield.---limifield-lda--1080p--h264-.mp4",
+    "mediaType": "video",
+    "isStatic": false,
+    "displayOrder": 2,
+    "createdAt": "2026-01-27T21:48:10.862Z",
+    "updatedAt": "2026-01-27T21:49:16.164Z"
   },
   {
     "id": "8c542f54-a1f9-4d1b-b9dd-04726f60cb29",
@@ -62,9 +80,9 @@ const PORTFOLIO_PROJECTS = [
     "coverMedia": "assets/img/OUTROS/coverMedia-1755575298285-57165946-covermedia-1755573454079-838802493-limishop-ad-horizontal.mp4",
     "mediaType": "video",
     "isStatic": false,
-    "displayOrder": 2,
+    "displayOrder": 3,
     "createdAt": "2025-08-19T03:48:18.329Z",
-    "updatedAt": "2025-08-22T01:51:05.037Z"
+    "updatedAt": "2026-01-27T21:49:16.164Z"
   },
   {
     "id": "cidade-do-futuro",
@@ -84,9 +102,9 @@ const PORTFOLIO_PROJECTS = [
     "coverMedia": "assets/img/OUTROS/pa_-_immersivus_x_a_cidade_do_futuro (1080p) (online-video-cutter.com).mp4",
     "mediaType": "video",
     "isStatic": false,
-    "displayOrder": 3,
+    "displayOrder": 4,
     "createdAt": "2023-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-22T01:51:05.037Z"
+    "updatedAt": "2026-01-27T21:49:16.164Z"
   },
   {
     "id": "guisado",
@@ -106,9 +124,9 @@ const PORTFOLIO_PROJECTS = [
     "coverMedia": "assets/img/OUTROS/GUISADO-VIDEO.mp4#t=3",
     "mediaType": "image",
     "isStatic": false,
-    "displayOrder": 4,
+    "displayOrder": 5,
     "createdAt": "2025-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-22T01:51:05.037Z"
+    "updatedAt": "2026-01-27T21:49:16.164Z"
   },
   {
     "id": "limifield-corporate",
@@ -128,9 +146,9 @@ const PORTFOLIO_PROJECTS = [
     "coverMedia": "assets/img/OUTROS/LIMIFIELD-INSTITUCIONAL.mp4",
     "mediaType": "video",
     "isStatic": false,
-    "displayOrder": 5,
+    "displayOrder": 6,
     "createdAt": "2024-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-22T01:51:05.037Z"
+    "updatedAt": "2026-01-27T21:49:16.164Z"
   },
   {
     "id": "kinetic-duality",
@@ -150,9 +168,9 @@ const PORTFOLIO_PROJECTS = [
     "coverMedia": "assets/img/OUTROS/KINETIC DUALITY.mp4",
     "mediaType": "video",
     "isStatic": false,
-    "displayOrder": 6,
+    "displayOrder": 7,
     "createdAt": "2022-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-22T01:51:05.037Z"
+    "updatedAt": "2026-01-27T21:49:16.164Z"
   },
   {
     "id": "let-it-happen",
@@ -172,9 +190,9 @@ const PORTFOLIO_PROJECTS = [
     "coverMedia": "assets/img/OUTROS/LETITHAPPEN.mp4",
     "mediaType": "video",
     "isStatic": false,
-    "displayOrder": 7,
+    "displayOrder": 8,
     "createdAt": "2022-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-22T01:51:05.037Z"
+    "updatedAt": "2026-01-27T21:49:16.164Z"
   },
   {
     "id": "limifield-type-ad",
@@ -194,9 +212,9 @@ const PORTFOLIO_PROJECTS = [
     "coverMedia": "assets/img/OUTROS/limifield-type-ad.mp4",
     "mediaType": "video",
     "isStatic": false,
-    "displayOrder": 8,
+    "displayOrder": 9,
     "createdAt": "2023-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-22T01:51:05.037Z"
+    "updatedAt": "2026-01-27T21:49:16.164Z"
   },
   {
     "id": "desistir-book",
@@ -216,9 +234,9 @@ const PORTFOLIO_PROJECTS = [
     "coverMedia": "assets/img/DESISTIR/DESISTIR-CAPA2.jpg",
     "mediaType": "image",
     "isStatic": false,
-    "displayOrder": 9,
+    "displayOrder": 10,
     "createdAt": "2024-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-22T01:51:05.037Z"
+    "updatedAt": "2026-01-27T21:49:16.164Z"
   },
   {
     "id": "queen-animation",
@@ -238,9 +256,9 @@ const PORTFOLIO_PROJECTS = [
     "coverMedia": "assets/img/OUTROS/queen.mp4",
     "mediaType": "video",
     "isStatic": false,
-    "displayOrder": 10,
+    "displayOrder": 11,
     "createdAt": "2022-01-01T00:00:00.000Z",
-    "updatedAt": "2025-08-22T01:51:05.037Z"
+    "updatedAt": "2026-01-27T21:49:16.164Z"
   }
 ];
 
