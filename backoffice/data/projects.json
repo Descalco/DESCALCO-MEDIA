@@ -283,11 +283,7 @@
       "featured": false,
       "visible": true,
       "displayOrder": 2,
-      "coverMedia": {
-        "type": "video",
-        "filename": "coverMedia-1769550490812-440039714-rma-r--pido-limifield-o-processo-de-garantia-e-devolu----o-de-produtos-limifield.---limifield-lda--1080p--h264-.mp4",
-        "path": "/uploads/limifield-rma-process-customer-journey-explainer/LimifieldRMA.mp4"
-      },
+      "coverMedia": "assets/img/OUTROS/Limifield RMA.mp4",
       "gallery": {
         "images": [],
         "videos": []

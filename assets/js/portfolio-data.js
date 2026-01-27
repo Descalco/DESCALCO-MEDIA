@@ -1,5 +1,5 @@
 // Auto-generated portfolio data from backoffice
-// Generated on: 2026-01-27T21:50:23.419Z
+// Generated on: 2026-01-27T22:28:57.651Z
 // Total projects: 12 visible (1 hidden)
 
 const PORTFOLIO_PROJECTS = [
@@ -59,7 +59,7 @@ const PORTFOLIO_PROJECTS = [
     "externalLink": "https://www.youtube.com/watch?v=eyy5Tg7-tjI",
     "htmlFile": null,
     "featured": false,
-    "coverMedia": "assets/img/OUTROS/coverMedia-1769550490812-440039714-rma-r--pido-limifield-o-processo-de-garantia-e-devolu----o-de-produtos-limifield.---limifield-lda--1080p--h264-.mp4",
+    "coverMedia": "assets/img/OUTROS/Limifield RMA.mp4",
     "mediaType": "video",
     "isStatic": false,
     "displayOrder": 2,
