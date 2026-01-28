@@ -1,5 +1,12 @@
 # Netlify redirects file
 
+# Redirects for old project URLs (after folder restructuring)
+/CidadeDoFuturo.html    /projects/cidade-do-futuro.html    301
+/DESISTIR.html          /projects/desistir.html            301
+/GUISADO.html           /projects/guisado.html             301
+/LetItHappen.html       /projects/let-it-happen.html       301
+/SOF-WEEK.html          /projects/sof-week.html            301
+
 # Form submissions - redirect to thank you page on success
 /success /index.html 200
 

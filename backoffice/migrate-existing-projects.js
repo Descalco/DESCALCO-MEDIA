@@ -15,7 +15,7 @@ const existingProjects = [
         featured: true,
         status: 'published',
         source: 'hardcoded',
-        htmlFile: 'SOF-WEEK.html',
+        htmlFile: 'projects/sof-week.html',
         coverMedia: 'assets/img/OUTROS/SOF-WEEK.mp4',
         createdAt: new Date('2025-01-01').toISOString(),
         updatedAt: new Date().toISOString()
@@ -32,7 +32,7 @@ const existingProjects = [
         featured: true,
         status: 'published',
         source: 'hardcoded',
-        htmlFile: 'GUISADO.html',
+        htmlFile: 'projects/guisado.html',
         coverMedia: 'assets/img/OUTROS/GUISADO-VIDEO.mp4#t=3',
         createdAt: new Date('2025-01-01').toISOString(),
         updatedAt: new Date().toISOString()
@@ -49,7 +49,7 @@ const existingProjects = [
         featured: true,
         status: 'published',
         source: 'hardcoded',
-        htmlFile: 'CidadeDoFuturo.html',
+        htmlFile: 'projects/cidade-do-futuro.html',
         coverMedia: 'assets/img/OUTROS/pa_-_immersivus_x_a_cidade_do_futuro (1080p) (online-video-cutter.com).mp4',
         createdAt: new Date('2023-01-01').toISOString(),
         updatedAt: new Date().toISOString()
@@ -117,7 +117,7 @@ const existingProjects = [
         featured: false,
         status: 'published',
         source: 'hardcoded',
-        htmlFile: 'LetItHappen.html',
+        htmlFile: 'projects/let-it-happen.html',
         coverMedia: 'assets/img/OUTROS/LETITHAPPEN.mp4',
         createdAt: new Date('2022-01-01').toISOString(),
         updatedAt: new Date().toISOString()
@@ -168,7 +168,7 @@ const existingProjects = [
         featured: false,
         status: 'published',
         source: 'hardcoded',
-        htmlFile: 'DESISTIR.html',
+        htmlFile: 'projects/desistir.html',
         coverMedia: 'assets/img/DESISTIR/DESISTIR-CAPA2.jpg',
         createdAt: new Date('2024-01-01').toISOString(),
         updatedAt: new Date().toISOString()
