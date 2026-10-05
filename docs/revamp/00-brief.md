@@ -3,7 +3,7 @@
 **What the revamp is for.** Every other document serves this one.
 **Written 2026-10-05** as an intent check across the audit, docs 01–07, and your Notion (Brain, Independent, Master's Thesis).
 
-The verdict: **the *how* is well established; the *for whom* and *to what end* never were.** Docs 01–07 are rigorous about stack, media, taxonomy and visual craft. None of them states who the site is for or what a visitor should do — and the one framing that comes close ("even as a junior") conflicts with where you are now.
+The verdict: **the *how* was well established; the *for whom* and *to what end* never were.** Docs 01–07 are rigorous about stack, media, taxonomy and visual craft. None of them stated who the site is for or what a visitor should do. **Resolved the same day — see [Answers](#answers--locked-2026-10-05).**
 
 ---
 
@@ -81,6 +81,37 @@ No launch target anywhere. With a full-time job, a Master's and NAU, capacity is
 
 ---
 
-## Answers
+## Answers — locked 2026-10-05
 
-*Pending — to be filled in from your answers.*
+| # | Gap | Answer | Consequence |
+| --- | --- | --- | --- |
+| 1 | Audience | **Studios hiring me.** Freelance clients, academia and peers are secondary. | D9 ("even as a junior") is **confirmed**, not reopened. The current hero set fits. Limifield stays low in the order. |
+| 2 | Primary action | Follows from #1: **get in touch about a role** | Email, CV and LinkedIn reachable from every page; a quote/brief form is *not* needed. |
+| 3 | Identity | **Pedro, as Descalco** — Descalco Media is your personal practice name | First person ("I") throughout. Your name visible, not hidden behind the brand. NAU appears as a credit, not as "us". |
+| 6 | Employer work | **Not shown.** AlbumTeller's final product can't be shown yet; the online Cull is a Master's *study*; LabsForge site isn't work you're proud of | [D7](02-decisions.md#d7--uxweb-pillar-ships-intentionally-thin) holds: UX/Web launches as a capability statement. The Cull study may appear later, labelled as a study — not at launch. |
+| 7 | Timeline | **Launch by end of 2026** (~12 weeks from today) | Forces a launch scope — below. |
+
+### Brief, in one paragraph
+
+A personal portfolio for **Pedro Costa, working as Descalco Media**, built to make **motion studios want to hire him**. Motion design first, range second. The site is itself a work sample: one coherent motion system, not accumulated effects. Visitors should see the reel, reach the strongest work, and find a way to contact him — fast. Launches by **31 Dec 2026**.
+
+### Success definition — proposed from the answers
+
+> A creative director at a motion studio who has never heard of Pedro understands **within 10 seconds** that he is a motion designer with a signature and range, reaches the **reel or a hero case study in one click**, and finds **email / CV / LinkedIn in one more**.
+
+### Launch scope (by 31 Dec) vs post-launch
+
+| Launch | Post-launch |
+| --- | --- |
+| Home: reel loop hero, selected work (4 heroes), capability statement, contact | Play (needs ~15 pieces — [D6](02-decisions.md#d6--play-deferred-to-post-launch)) |
+| `/work` curated index (13 entries) + `/work/{slug}` | Capability pages (Burocratik `/branding` pattern) |
+| 4 hero case studies migrated; 9 simple entries | Dedicated `/recognition` page — **awards and credits go on cards and in About at launch** |
+| `/reel/2026` (YouTube facade) | Backoffice adapted to the new schema — launch reads the generated data file as-is |
+| About (first person, with CV link), Contact | Software case studies (Money Trail, Arkive) |
+| Media pass (GIF → video, JPG resize), OG/SEO basics, reduced-motion | Themed page transitions, custom cursor-level polish |
+
+### Still open
+
+- **#4 Positioning sentence** — write it now that the audience is fixed. It goes on the homepage.
+- **#5 Signature** — does the site's motion system come from your thesis's Motion Personality Matrix? Recommended: yes. It turns borrowed tokens into your own, and for a studio audience it's the strongest proof of "signature".
+- **Q3** hero loop export, **Q4** typeface — see [06](06-roadmap.md#open-questions). Q4 now has a deadline: Phase 3 can't start without it.

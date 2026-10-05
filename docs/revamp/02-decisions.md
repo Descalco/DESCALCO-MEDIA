@@ -69,7 +69,7 @@ Money Trail, Arkive and Cull are expected to become case studies. Long-term grow
 
 **Presentation note:** launch it as a capability *statement*, not an empty grid, so it doesn't read as a gap.
 
-> ⚠️ **"Zero UX/Web work exists" is probably wrong (2026-10-05).** The LabsForge company website (full design, launched) and the Cull/AlbumTeller culling UI both exist. Whether they can be shown depends on your employer — see [00 — Brief](00-brief.md#gaps--not-established).
+> ✅ **Re-confirmed 2026-10-05.** Employer work stays off the site: AlbumTeller's final product can't be shown yet, the online Cull is a Master's study, and the LabsForge site isn't portfolio-grade. The Cull study may appear later, labelled as a study. See [00 — Brief](00-brief.md#answers--locked-2026-10-05).
 
 ## D8 — Relationship as the organising axis — as ordering, not tabs
 
@@ -105,7 +105,7 @@ An established studio can run on Squarespace because the client list carries the
 - Depth beats breadth — process-led case studies prove thinking
 - Awards and credits are structural, not incidental — adopt the Burocratik [`/recognition`](07-visual-language.md#two-structural-ideas-worth-taking) pattern
 
-> ⚠️ **Under review (2026-10-05).** The "junior" framing assumes a job-seeking reader. You are currently employed full-time, and freelance + NAU + the Master's all point at different readers. See [00 — Brief](00-brief.md#gaps--not-established).
+> ✅ **Confirmed 2026-10-05.** Primary audience is studios hiring; secondary readers (freelance clients, academia, peers) don't change the design. See [00 — Brief](00-brief.md#answers--locked-2026-10-05).
 
 ---
 

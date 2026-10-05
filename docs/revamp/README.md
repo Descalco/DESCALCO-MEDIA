@@ -2,7 +2,7 @@
 
 Working documentation for the portfolio rebuild. Start here.
 
-**Status:** Phase 1 (strategy & curation) closed, but the **brief is reopened** — audience, goal and identity were never stated ([00](00-brief.md)). Phase 2 can start in parallel. No rebuild code written yet.
+**Status:** Brief and Phase 1 **closed**. Audience: motion studios hiring · identity: Pedro, as Descalco · **launch by 31 Dec 2026** ([00](00-brief.md), [schedule](06-roadmap.md#schedule--launch-by-31-dec-2026)). Phase 2 ready. No rebuild code written yet.
 **Last updated:** 2026-10-05
 
 > ⚠️ **Do not merge `docs/` to `main` until the Netlify publish directory is fixed.** The live site serves the repo root, so these files would become public at `descalcomedia.pt/docs/…`. See [01 — re-verification](01-audit-review.md#re-verification--2026-10-05).
@@ -13,7 +13,7 @@ Working documentation for the portfolio rebuild. Start here.
 
 | # | Document | What it covers |
 | --- | --- | --- |
-| 00 | [Brief](00-brief.md) | **What the revamp is for.** What you've stated vs what was only inferred, and the gaps — audience, primary action, identity, signature, timeline. |
+| 00 | [Brief](00-brief.md) | **What the revamp is for** — audience, primary action, identity, success definition, launch scope. Read first. |
 | 01 | [Audit review](01-audit-review.md) | Verification of the original audit against the codebase. **Read before trusting the original audit** — several of its headline claims are wrong. |
 | 02 | [Decisions](02-decisions.md) | Locked decisions: framework, CMS, language, hosting. With the reasoning and the rejected alternatives. |
 | 03 | [Curation](03-curation.md) | The 13-project inventory, hero set, Work/Play split, and open curation problems. |

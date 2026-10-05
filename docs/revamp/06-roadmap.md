@@ -8,9 +8,9 @@
 
 | Phase | Status | Notes |
 | --- | --- | --- |
-| **0 — Brief** | 🟡 **Reopened 2026-10-05** | Audience, goal and identity were never stated. See [00 — Brief](00-brief.md). |
-| **1 — Strategy & curation** | 🟢 **Closed** (pending the brief) | Taxonomy settled by [D8](02-decisions.md#d8--relationship-as-the-organising-axis--as-ordering-not-tabs). The hero set and D9 may shift depending on the brief. |
-| **2 — IA & content model** | ⚪ **Ready to start** | Schema and sitemap mostly don't depend on the brief; the homepage and About copy do |
+| **0 — Brief** | 🟢 **Closed 2026-10-05** | Audience: studios hiring. Identity: Pedro, as Descalco. Launch by 31 Dec 2026. See [00 — Brief](00-brief.md). |
+| **1 — Strategy & curation** | 🟢 **Closed** | Taxonomy settled by [D8](02-decisions.md#d8--relationship-as-the-organising-axis--as-ordering-not-tabs); hero set and D9 confirmed by the brief |
+| **2 — IA & content model** | ⚪ **Ready to start** | Nothing blocking |
 | **3 — Visual & motion system** | ⚪ Not started | Needs typography decision |
 | **4 — Front-end rebuild** | ⚪ Not started | `portfolio/` is an empty stub |
 | **5 — Data & CMS** | 🟢 **Mostly decided** | [D2](02-decisions.md#d2--backoffice-stays-isolated) settles the architecture |
@@ -25,11 +25,13 @@
 | ~~Q1~~ | ~~Collapse the 4 Limifield projects into one client-group entry?~~ | — | ✅ Resolved by [D8](02-decisions.md#d8--relationship-as-the-organising-axis--as-ordering-not-tabs) |
 | ~~Q2~~ | ~~Does Play launch with 2 pieces, or wait for a batch?~~ | — | ✅ Resolved by [D6](02-decisions.md#d6--play-deferred-to-post-launch) |
 | **Q3** | Cut a 6–10s silent hero loop + poster frame from the reel? | Homepage hero design | 🟡 Open |
-| **Q4** | Typography — which display face, and is there any budget for a licence? | Phase 3 | 🟡 Open |
+| **Q4** | Typography — which display face, and is there any budget for a licence? | Phase 3 | 🟡 Open — **needed by 2026-10-26** |
+| **Q7** | Positioning sentence for the homepage | Homepage copy | 🟡 Open — audience now fixed, so it can be written |
+| **Q8** | Does the site's motion system come from the thesis Motion Personality Matrix? | Phase 3 motion tokens | 🟡 Open — recommended yes ([00](00-brief.md#5-what-is-the-signature)) |
 | ~~Q5~~ | ~~Cidade do Futuro / Empresta o Verbo Amar — commissioned or personal?~~ | — | ✅ Both `relation: collaboration` |
 | ~~Q6~~ | ~~Showreel annual or single?~~ | — | ✅ Annual — `/reel/2026`, Reel as top-level nav |
 
-**Only Q3 and Q4 remain, and neither blocks Phase 2.** Q3 needs one export from the reel; Q4 is a Phase 3 decision.
+**None of these block Phase 2.** Q3 needs one export from the reel; Q4 and Q8 gate Phase 3; Q7 gates homepage copy.
 
 ---
 
@@ -50,6 +52,23 @@ These are **independent of the rebuild**, improve the public site immediately, a
 | 8 | `git rm --cached` `backoffice/node_modules` (1,274 files) and `backoffice/data/analytics.json` | Both are gitignored but were committed before the rule | Trivial |
 
 Items 3–6 and 8 are near-zero-risk. Item 0 is the precondition for merging this documentation. Items 1 and 7 are the highest-leverage changes available on the site today.
+
+---
+
+## Schedule — launch by 31 Dec 2026
+
+~12 weeks next to a full-time job and a Master's. Scope is fixed by [00 — Launch scope](00-brief.md#launch-scope-by-31-dec-vs-post-launch); anything not on that list waits.
+
+| Weeks | Dates | Work | Exit criterion |
+| --- | --- | --- | --- |
+| 1 | 6–12 Oct | Quick wins 0, 3–8 on the live site | Reel visible on descalcomedia.pt; no public `backoffice/` |
+| 2–3 | 13–26 Oct | Phase 2: sitemap, TS content schema, redirect map. GIF/JPG media pass. **Decide Q3, Q4, Q7, Q8** | Schema validates against `assets/js/portfolio-data.js` |
+| 4–5 | 27 Oct–9 Nov | Phase 3: tokens (type, colour, motion), home + work + case-study layouts | Static Next.js shell with tokens, deployed to a preview URL |
+| 6–9 | 10 Nov–7 Dec | Phase 4: build pages, migrate 4 hero case studies + 9 simple entries, `/reel/2026` | All launch pages exist with real content |
+| 10–11 | 8–21 Dec | Phase 6: performance, mobile, reduced motion, OG/SEO, redirects, real-device testing | Lighthouse ≥ 90 on mobile; every old URL resolves |
+| 12 | 22–31 Dec | Buffer + launch | Live |
+
+The holiday weeks are the buffer. If week 5 slips, cut from Phase 4 polish — not from the media pass or redirects.
 
 ---
 
@@ -83,8 +102,8 @@ Items 3–6 and 8 are near-zero-risk. Item 0 is the precondition for merging thi
 
 ## What "done" means
 
-The audit never defined success. Proposed definition, **still unconfirmed** — it depends on the audience question in [00 — Brief](00-brief.md):
+The audit never defined success. Rewritten 2026-10-05 for the audience fixed in [00 — Brief](00-brief.md) — confirm or adjust:
 
-> A visitor who has never heard of Descalco Media understands within 10 seconds that this is a motion designer with a signature and range, and can reach the strongest three pieces of work in two clicks.
+> A creative director at a motion studio who has never heard of Pedro understands **within 10 seconds** that he is a motion designer with a signature and range, reaches the **reel or a hero case study in one click**, and finds **email / CV / LinkedIn in one more**.
 
 Everything else is in service of that.
