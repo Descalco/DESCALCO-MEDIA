@@ -1,0 +1,7 @@
+model_reasoning_effort  = "medium"
+approval_policy         = "on-failure"
+web_search              = "live"   # Useful for checking design trends, libraries
+
+[sandbox_workspace_write]
+writable_roots          = ["src", "public", "content", "backoffice"]
+network_access          = true     # May need to fetch CMS or API data during dev
