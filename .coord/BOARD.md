@@ -1,11 +1,11 @@
-# BOARD — updated 2026-10-23
+# BOARD — updated 2026-10-23 (T01 in review)
 
 Target: launch 31 Dec 2026 (cut line in `docs/revamp/plan-review-2026-10-23.md`). Nothing dispatched yet; waiting for Pedro's go on the decision below.
 
 ## Tasks
 | ID | Outcome | Lane | Role | Model | Cloud | State | Depends |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| T01 | Live site no longer publishes backoffice/docs/coord; 404s are real; tracked junk removed | site | dev | sonnet | yes (verify needs Pedro) | todo | — |
+| T01 | Live site no longer publishes backoffice/docs/coord; 404s are real; tracked junk removed | site | dev | sonnet | yes (verify needs Pedro) | **review — PR #2** (maintenance mode: `/` = under rework, site at `/old/`, publish `dist/` only). Left: untrack `backoffice/node_modules` + `analytics.json` | — |
 | T02 | Trivial code fixes: functions.js orphan block, SOF WEEK/LIMISHOP ordering | site | mechanical | haiku | yes | todo | — |
 | T03 | Phase 2: sitemap, TS content schema + validator, redirect map, preserve-list | docs/rebuild | dev | sonnet | yes | todo | — |
 | T04 | Typography + positioning shortlist so Pedro can decide Q4/Q7/Q8 by 26 Oct | research | research | sonnet | yes | todo | — |
