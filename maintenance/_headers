@@ -1,0 +1,3 @@
+# The working site under /old/ is for direct access only — keep it out of search results.
+/old/*
+  X-Robots-Tag: noindex, nofollow

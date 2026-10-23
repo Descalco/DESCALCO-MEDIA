@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Descalco Media</title>
+  <meta name="description" content="Pedro Costa — motion designer. Website under rework.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1076 1077'%3E%3Cpath fill='%23dc2626' d='M1075.91,537.23h0L746.71,448.57,826.19,213.66h0L620.91,324.61,525.05,0h0L430.65,323.36,233.91,217.7h0l75.19,232L0,537.46h0l309.6,103.43-74.05,231.8h0l196.22-92.1,95.92,296.61h0l94.3-298.79,205.81,92.82h0L747.18,639.77ZM697.91,639.46,525.09,538.58,357.91,638.46l-.47-191,167.65,91.11L697.91,447.46Z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ground: #0c0c0c;
+      --ink: #f2f1ed;
+      --muted: rgba(242, 241, 237, 0.6);
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body {
+      position: relative;
+      overflow: hidden;
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      place-items: center;
+      padding: 32px 16px;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: Poppins, system-ui, sans-serif;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Liquid gradient: blurred dark-red blobs morphing and drifting over black */
+    .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: #050505; }
+    .bg::after {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, transparent 30%, #050505 85%);
+    }
+    .blob {
+      position: absolute;
+      width: 70vmax; height: 70vmax;
+      border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+      filter: blur(70px);
+      opacity: 0.85;
+      will-change: transform, border-radius;
+    }
+    .b1 { background: radial-gradient(circle at 40% 40%, #6b0d0d, #2a0404 60%, transparent 72%); top: -25vmax; left: -15vmax; animation: flow1 26s ease-in-out infinite alternate, morph 14s ease-in-out infinite alternate; }
+    .b2 { background: radial-gradient(circle at 60% 50%, #4a0808, #1a0202 60%, transparent 72%); bottom: -30vmax; right: -20vmax; animation: flow2 32s ease-in-out infinite alternate, morph 18s ease-in-out infinite alternate-reverse; }
+    .b3 { background: radial-gradient(circle, #7f1111, #300505 55%, transparent 70%); width: 45vmax; height: 45vmax; top: 30%; left: 35%; opacity: 0.6; animation: flow3 22s ease-in-out infinite alternate, morph 12s ease-in-out infinite alternate; }
+    @keyframes flow1 { to { transform: translate(30vw, 25vh) rotate(60deg) scale(1.15); } }
+    @keyframes flow2 { to { transform: translate(-35vw, -20vh) rotate(-50deg) scale(0.9); } }
+    @keyframes flow3 { 0% { transform: translate(-20vw, -10vh) scale(0.9); } 100% { transform: translate(15vw, 12vh) rotate(90deg) scale(1.2); } }
+    @keyframes morph {
+      0%   { border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; }
+      50%  { border-radius: 63% 37% 38% 62% / 55% 61% 39% 45%; }
+      100% { border-radius: 36% 64% 52% 48% / 62% 38% 62% 38%; }
+    }
+    h1 { font-weight: 500; font-size: clamp(1.75rem, 5vw, 3.5rem); letter-spacing: -0.02em; line-height: 1.15; }
+    p { margin-top: 12px; color: var(--muted); font-size: clamp(0.95rem, 1.4vw, 1.1rem); }
+    footer { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; font-size: 0.9rem; }
+    a { color: var(--ink); text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease; }
+    a:hover, a:focus-visible { opacity: 1; text-decoration: underline; text-underline-offset: 4px; outline: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .blob { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+  <main>
+    <h1>Website under rework</h1>
+    <p>Pedro Costa — motion designer</p>
+  </main>
+  <footer>
+    <a href="mailto:pedromdcostau@gmail.com">pedromdcostau@gmail.com</a>
+    <a href="https://www.linkedin.com/in/pedro-costa-descalco/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="https://www.instagram.com/descalcomedia/" target="_blank" rel="noopener noreferrer">Instagram</a>
+  </footer>
+  <script>
+    // Served as 404.html for any unknown path: show the clean root URL.
+    if (location.pathname !== '/') history.replaceState(null, '', '/');
+  </script>
+</body>
+</html>
