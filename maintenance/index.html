@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Descalco Media</title>
+  <meta name="description" content="Pedro Costa — motion designer. Website under rework.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1076 1077'%3E%3Cpath fill='%23dc2626' d='M1075.91,537.23h0L746.71,448.57,826.19,213.66h0L620.91,324.61,525.05,0h0L430.65,323.36,233.91,217.7h0l75.19,232L0,537.46h0l309.6,103.43-74.05,231.8h0l196.22-92.1,95.92,296.61h0l94.3-298.79,205.81,92.82h0L747.18,639.77ZM697.91,639.46,525.09,538.58,357.91,638.46l-.47-191,167.65,91.11L697.91,447.46Z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ground: #0c0c0c;
+      --ink: #ecebe6;
+      --muted: #8a8984;
+      --accent: #dc2626;
+      --dur-slow: 24s;
+      --dur-base: 0.9s;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body {
+      background: var(--ground);
+      color: var(--ink);
+      font-family: Inter, system-ui, sans-serif;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: clamp(24px, 5vw, 64px);
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: var(--accent); color: var(--ink); }
+    main { align-self: center; display: grid; gap: clamp(20px, 3vw, 32px); max-width: 60rem; }
+    .mark { width: clamp(40px, 6vw, 64px); height: auto; animation: spin var(--dur-slow) linear infinite; }
+    h1 {
+      font-weight: 800;
+      font-size: clamp(2.5rem, 9vw, 7rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+    }
+    h1 span { color: var(--accent); }
+    p { color: var(--muted); font-size: clamp(1rem, 1.6vw, 1.25rem); line-height: 1.5; letter-spacing: -0.01em; }
+    p strong { color: var(--ink); font-weight: 500; }
+    footer { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 0.95rem; }
+    a { color: var(--ink); text-decoration: none; border-bottom: 1px solid #ecebe633; padding-bottom: 2px; transition: border-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out); }
+    a:hover, a:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+    .reveal { opacity: 0; transform: translateY(16px); animation: rise var(--dur-base) var(--ease-out) forwards; }
+    .reveal:nth-child(2) { animation-delay: 0.08s; }
+    .reveal:nth-child(3) { animation-delay: 0.16s; }
+    footer.reveal { animation-delay: 0.24s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      .mark, .reveal { animation: none; opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <svg class="mark reveal" viewBox="0 0 1076 1077" aria-hidden="true"><path fill="#ecebe6" d="M1075.91,537.23h0L746.71,448.57,826.19,213.66h0L620.91,324.61,525.05,0h0L430.65,323.36,233.91,217.7h0l75.19,232L0,537.46h0l309.6,103.43-74.05,231.8h0l196.22-92.1,95.92,296.61h0l94.3-298.79,205.81,92.82h0L747.18,639.77ZM697.91,639.46,525.09,538.58,357.91,638.46l-.47-191,167.65,91.11L697.91,447.46Z"/></svg>
+    <h1 class="reveal">Website under<br>rework<span>.</span></h1>
+    <p class="reveal"><strong>Pedro Costa</strong> — motion designer. A new site is on its way.</p>
+  </main>
+  <footer class="reveal">
+    <a href="mailto:pedromdcostau@gmail.com">pedromdcostau@gmail.com</a>
+    <a href="https://www.linkedin.com/in/pedro-costa-descalco/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="https://www.instagram.com/descalcomedia/" target="_blank" rel="noopener noreferrer">Instagram</a>
+  </footer>
+</body>
+</html>

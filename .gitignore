@@ -40,3 +40,6 @@ pids
 
 # Optional REPL history
 .node_repl_history
+
+# Netlify build output (scripts/build-site.mjs)
+dist/
