@@ -1,6 +1,4 @@
 # Netlify redirects — maintenance mode (built by scripts/build-site.mjs)
 # Root = "under rework" page; the full site lives under /old/.
-# Rules only apply when no file exists at the path, so real files are served as-is.
-/old/*     /404.html            404
-# Everything else (old pages, old project URLs) → maintenance page, temporarily
-/*           /                    302
+# No rules needed: any path without a file falls through to 404.html, which is the
+# maintenance page itself (Netlify ignored a "/* / 302" catch-all here).

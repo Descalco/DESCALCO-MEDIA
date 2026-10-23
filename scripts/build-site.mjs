@@ -1,7 +1,7 @@
 // Builds dist/ for Netlify (see netlify.toml).
 // Maintenance mode: the "under rework" page is the root; the current site is served under /old/.
 // Only the files below are published — backoffice/, Cull/, docs and repo files never reach the web.
-import { cpSync, rmSync } from 'node:fs';
+import { copyFileSync, cpSync, rmSync } from 'node:fs';
 
 const OUT = 'dist';
 const SITE = ['index.html', 'mystory.html', 'other-projects.html', 'projects', 'assets', 'firebase-portfolio-analytics.js'];
@@ -10,6 +10,8 @@ const EXCLUDE = [/OPENER\.mov$/, /PF_02_MakingOf/, /FULL-LIVRO\.pdf$/];
 
 rmSync(OUT, { recursive: true, force: true });
 cpSync('maintenance', OUT, { recursive: true });
+// Unknown paths (old pages, old project URLs) get the maintenance page too, with a 404 status.
+copyFileSync('maintenance/index.html', `${OUT}/404.html`);
 for (const path of SITE) {
   cpSync(path, `${OUT}/old/${path}`, {
     recursive: true,

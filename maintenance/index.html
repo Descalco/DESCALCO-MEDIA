@@ -77,5 +77,9 @@
     <a href="https://www.linkedin.com/in/pedro-costa-descalco/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     <a href="https://www.instagram.com/descalcomedia/" target="_blank" rel="noopener noreferrer">Instagram</a>
   </footer>
+  <script>
+    // Served as 404.html for any unknown path: show the clean root URL.
+    if (location.pathname !== '/') history.replaceState(null, '', '/');
+  </script>
 </body>
 </html>
