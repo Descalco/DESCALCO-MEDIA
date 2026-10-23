@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./node_modules/**)",
+      "Read(./backoffice/node_modules/**)",
+      "Read(./**/package-lock.json)",
+      "Read(./backoffice/data/analytics.json)",
+      "Read(./backoffice/.env)",
+      "Read(./.env)",
+      "Read(**/*.mp4)",
+      "Read(**/*.mov)",
+      "Read(**/*.webm)",
+      "Read(**/*.gif)",
+      "Read(**/*.psd)",
+      "Read(**/*.ai)"
+    ]
+  }
+}
